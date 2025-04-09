@@ -1,0 +1,2795 @@
+<list>
+  <ProcessDefinition>
+    <processDefinitionPK>
+      <companyId>1</companyId>
+      <processId>Solicitação de Medição NOVO</processId>
+    </processDefinitionPK>
+    <processDescription>Solicitação de Medição (novo)</processDescription>
+    <instruction></instruction>
+    <active>true</active>
+    <publicProcess>true</publicProcess>
+    <volumeId>Default</volumeId>
+    <categoryId>Contratos</categoryId>
+    <managerEngineAllocationId>Grupo</managerEngineAllocationId>
+    <managerEngineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Group&gt;Controladoria&lt;/Group&gt;&lt;/AssignmentController&gt;</managerEngineAllocationConfiguration>
+    <snapshotFrequency>0</snapshotFrequency>
+    <baseDay>0</baseDay>
+    <baseMonth>0</baseMonth>
+    <periodId>Default</periodId>
+    <uniqueCardVersion>false</uniqueCardVersion>
+    <keyWord></keyWord>
+    <complementsLevel>2</complementsLevel>
+    <notifyRequisitionerComplements>true</notifyRequisitionerComplements>
+    <notifyManagerComplements>false</notifyManagerComplements>
+    <deadlineTime>0</deadlineTime>
+    <warningDeadlineTime>0</warningDeadlineTime>
+    <notifyAuthorityComplements>true</notifyAuthorityComplements>
+  </ProcessDefinition>
+  <ProcessDefinitionVersion>
+    <processDefinitionVersionPK>
+      <companyId>1</companyId>
+      <processId>Solicitação de Medição (novo)</processId>
+      <version>27</version>
+    </processDefinitionVersionPK>
+    <versionDescription></versionDescription>
+    <formId>0</formId>
+    <editionMode>true</editionMode>
+    <updateAttachmentsVersion>false</updateAttachmentsVersion>
+    <controlsAttachmentsSecurity>false</controlsAttachmentsSecurity>
+    <active>true</active>
+    <blockedVersion>false</blockedVersion>
+    <counterSign>false</counterSign>
+    <openInstances>0</openInstances>
+    <bpmnVersion>1</bpmnVersion>
+    <processStates/>
+    <favorito>false</favorito>
+    <inheritFormSecurity>false</inheritFormSecurity>
+    <mobileReady>true</mobileReady>
+  </ProcessDefinitionVersion>
+  <list>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>4</sequence>
+      </processStatePK>
+      <stateName>Solicitação de Medições</stateName>
+      <stateDescription>Solicitação de Medições</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>true</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>150</positionX>
+      <positionY>82</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>10</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>5</sequence>
+      </processStatePK>
+      <stateName>Inclusão da Medição</stateName>
+      <stateDescription>Inclusão da Medição</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;InclusaoMedicao&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>220</positionX>
+      <positionY>220</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>17</sequence>
+      </processStatePK>
+      <stateName>Solicitação da Aprovação</stateName>
+      <stateDescription>Solicitação da Aprovação</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>1</agreementPercentage>
+      <engineAllocationId>mecanismoRecebeMedicoes</engineAllocationId>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>36000</allowanceAuthorityTime>
+      <frequenceAuthorityTime>86400</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>460</positionX>
+      <positionY>49</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>22</sequence>
+      </processStatePK>
+      <stateName>Recebimento do Boletim Assinado</stateName>
+      <stateDescription>Recebimento do Boletim Assinado</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;RecebimentodoBoletimAssinado&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>680</positionX>
+      <positionY>186</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>26</sequence>
+      </processStatePK>
+      <stateName>Análise da Documentação</stateName>
+      <stateDescription>Análise da Documentação</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Pool Papel</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;Role&gt;AnaliseDocumentacaoMedicao&lt;/Role&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>980</positionX>
+      <positionY>190</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>30</sequence>
+      </processStatePK>
+      <stateName>Engenheiro</stateName>
+      <stateDescription>Engenheiro</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>mecanismoAprovadorMedicao</engineAllocationId>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>980</positionX>
+      <positionY>437</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>37</sequence>
+      </processStatePK>
+      <stateName>Coordenador</stateName>
+      <stateDescription>Coordenador</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Campo Formulário</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;FormField&gt;superior&lt;/FormField&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>1260</positionX>
+      <positionY>430</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>40</sequence>
+      </processStatePK>
+      <stateName>Diretor</stateName>
+      <stateDescription>Diretor</stateDescription>
+      <instruction></instruction>
+      <deadlineTime>0</deadlineTime>
+      <deadlineFieldName></deadlineFieldName>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId>Campo Formulário</engineAllocationId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;FormField&gt;diretoria&lt;/FormField&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <selectColleague>1</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>3600</allowanceAuthorityTime>
+      <frequenceAuthorityTime>3600</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>true</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>1510</positionX>
+      <positionY>420</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>0</stateType>
+      <bpmnType>80</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <noticeExpirationAuthorityTime>0</noticeExpirationAuthorityTime>
+      <noticeExpirationRequisitionerTime>0</noticeExpirationRequisitionerTime>
+      <noticeExpirationManagerTime>0</noticeExpirationManagerTime>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+      <executionType>0</executionType>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>14</sequence>
+      </processStatePK>
+      <stateName>Decisão</stateName>
+      <stateDescription>Decisão</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>370</positionX>
+      <positionY>200</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>19</sequence>
+      </processStatePK>
+      <stateName>Decisão</stateName>
+      <stateDescription>Decisão</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>580</positionX>
+      <positionY>184</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>24</sequence>
+      </processStatePK>
+      <stateName>Decisão</stateName>
+      <stateDescription>Decisão</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>860</positionX>
+      <positionY>184</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>28</sequence>
+      </processStatePK>
+      <stateName>Decisão</stateName>
+      <stateDescription>Decisão</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>1000</positionX>
+      <positionY>320</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>34</sequence>
+      </processStatePK>
+      <stateName>Decisão</stateName>
+      <stateDescription>Decisão</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>1150</positionX>
+      <positionY>420</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>39</sequence>
+      </processStatePK>
+      <stateName>Decisão</stateName>
+      <stateDescription>Decisão</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>1400</positionX>
+      <positionY>410</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>41</sequence>
+      </processStatePK>
+      <stateName>Decisão</stateName>
+      <stateDescription>Decisão</stateDescription>
+      <joint>false</joint>
+      <initialState>false</initialState>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <automatic>true</automatic>
+      <positionX>1680</positionX>
+      <positionY>410</positionY>
+      <inhibitTransfer>false</inhibitTransfer>
+      <stateType>1</stateType>
+      <bpmnType>120</bpmnType>
+      <signalId>0</signalId>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>9</sequence>
+      </processStatePK>
+      <stateName>Fim</stateName>
+      <stateDescription>Fim</stateDescription>
+      <instruction>Atividade final do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>420</positionX>
+      <positionY>320</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>6</stateType>
+      <bpmnType>60</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>45</sequence>
+      </processStatePK>
+      <stateName>Fim</stateName>
+      <stateDescription>Fim</stateDescription>
+      <instruction>Atividade final do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>1470</positionX>
+      <positionY>510</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>6</stateType>
+      <bpmnType>60</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>47</sequence>
+      </processStatePK>
+      <stateName>Fim</stateName>
+      <stateDescription>Fim</stateDescription>
+      <instruction>Atividade final do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>1760</positionX>
+      <positionY>510</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>6</stateType>
+      <bpmnType>60</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+    <ProcessState>
+      <processStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>49</sequence>
+      </processStatePK>
+      <stateName>Fim</stateName>
+      <stateDescription>Fim</stateDescription>
+      <instruction>Atividade final do processo</instruction>
+      <deadlineTime>0</deadlineTime>
+      <joint>false</joint>
+      <agreementPercentage>0</agreementPercentage>
+      <engineAllocationId></engineAllocationId>
+      <engineAllocationConfiguration></engineAllocationConfiguration>
+      <selectColleague>0</selectColleague>
+      <initialState>false</initialState>
+      <notifyAuthorityDelay>true</notifyAuthorityDelay>
+      <notifyRequisitionerDelay>false</notifyRequisitionerDelay>
+      <allowanceAuthorityTime>0</allowanceAuthorityTime>
+      <frequenceAuthorityTime>1</frequenceAuthorityTime>
+      <allowanceRequisitionerTime>0</allowanceRequisitionerTime>
+      <frequenceRequisitionerTime>0</frequenceRequisitionerTime>
+      <transferAttachments>false</transferAttachments>
+      <subProcessId></subProcessId>
+      <formFolder>0</formFolder>
+      <notifyAuthorityFollowUp>false</notifyAuthorityFollowUp>
+      <notifyRequisitionerFollowUp>false</notifyRequisitionerFollowUp>
+      <automatic>false</automatic>
+      <positionX>1220</positionX>
+      <positionY>520</positionY>
+      <forecastedEffortType>0</forecastedEffortType>
+      <forecastedEffort>0</forecastedEffort>
+      <notifyManagerFollowUp>false</notifyManagerFollowUp>
+      <notifyManagerDelay>false</notifyManagerDelay>
+      <allowanceManagerTime>0</allowanceManagerTime>
+      <frequenceManagerTime>0</frequenceManagerTime>
+      <inhibitTransfer>false</inhibitTransfer>
+      <periodId></periodId>
+      <stateType>6</stateType>
+      <bpmnType>60</bpmnType>
+      <signalId>0</signalId>
+      <counterSign>false</counterSign>
+      <openInstances>0</openInstances>
+      <destinationStates/>
+      <digitalSignature>false</digitalSignature>
+    </ProcessState>
+  </list>
+  <list>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>27</version>
+        <sequence>14</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;optAprovacao&quot;) == &quot;Aprovar&quot; &amp;&amp; hAPI.getCardValue(&quot;hiddenCNPJFornecedor&quot;).substring(0,11) != &quot;92.779.503/&quot;</condition>
+      <destinationSequenceId>17</destinationSequenceId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>27</version>
+        <sequence>14</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;optAprovacao&quot;) == &quot;Aprovar&quot; &amp;&amp; hAPI.getCardValue(&quot;hiddenCNPJFornecedor&quot;).substring(0,11) == &quot;92.779.503/&quot;</condition>
+      <destinationSequenceId>9</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>3</expressionOrder>
+        <version>27</version>
+        <sequence>14</sequence>
+      </conditionProcessStatePK>
+      <condition>false</condition>
+      <destinationSequenceId>4</destinationSequenceId>
+      <engineAllocationConfiguration>&lt;AssignmentController&gt;&lt;BaseActivity&gt;4&lt;/BaseActivity&gt;&lt;Returns&gt;Last&lt;/Returns&gt;&lt;/AssignmentController&gt;</engineAllocationConfiguration>
+      <engineAllocationId>Executor Atividade</engineAllocationId>
+      <conditionType>1</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>27</version>
+        <sequence>19</sequence>
+      </conditionProcessStatePK>
+      <condition>false</condition>
+      <destinationSequenceId>22</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>1</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>27</version>
+        <sequence>19</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;checkboxAssinaturaPendente&quot;) != &apos;on&apos; &amp;&amp; (hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) == &quot;41&quot; || hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) == &quot;40&quot;)</condition>
+      <destinationSequenceId>26</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>3</expressionOrder>
+        <version>27</version>
+        <sequence>19</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;checkboxAssinaturaPendente&quot;) != &apos;on&apos; &amp;&amp; (hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) != &quot;41&quot; &amp;&amp; hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) != &quot;40&quot;)</condition>
+      <destinationSequenceId>30</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>27</version>
+        <sequence>24</sequence>
+      </conditionProcessStatePK>
+      <condition>false</condition>
+      <destinationSequenceId>17</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>1</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>27</version>
+        <sequence>24</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;optAprovacao&quot;) == &quot;Aprovar&quot; &amp;&amp; (hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) == &quot;41&quot; || hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) == &quot;40&quot;)</condition>
+      <destinationSequenceId>26</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>3</expressionOrder>
+        <version>27</version>
+        <sequence>24</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;optAprovacao&quot;) == &quot;Aprovar&quot; &amp;&amp; (hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) != &quot;41&quot; &amp;&amp; hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) != &quot;40&quot;)</condition>
+      <destinationSequenceId>30</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>27</version>
+        <sequence>28</sequence>
+      </conditionProcessStatePK>
+      <condition>false</condition>
+      <destinationSequenceId>30</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>1</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>27</version>
+        <sequence>28</sequence>
+      </conditionProcessStatePK>
+      <condition>false</condition>
+      <destinationSequenceId>17</destinationSequenceId>
+      <engineAllocationId>mecanismoRecebeMedicoes</engineAllocationId>
+      <conditionType>1</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>27</version>
+        <sequence>34</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;optAprovacao&quot;) == &quot;Retornar&quot; &amp;&amp; (hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) == &quot;41&quot; || hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) == &quot;40&quot;)</condition>
+      <destinationSequenceId>26</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>27</version>
+        <sequence>34</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;optAprovacao&quot;) == &quot;Retornar&quot; &amp;&amp; (hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) != &quot;41&quot; &amp;&amp; hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) != &quot;40&quot;)</condition>
+      <destinationSequenceId>17</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>3</expressionOrder>
+        <version>27</version>
+        <sequence>34</sequence>
+      </conditionProcessStatePK>
+      <condition>false</condition>
+      <destinationSequenceId>37</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>1</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>4</expressionOrder>
+        <version>27</version>
+        <sequence>34</sequence>
+      </conditionProcessStatePK>
+      <condition>false</condition>
+      <destinationSequenceId>49</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>1</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>27</version>
+        <sequence>39</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;optAprovacao&quot;) == &quot;Retornar&quot; &amp;&amp; (hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) == &quot;41&quot; || hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) == &quot;40&quot;)</condition>
+      <destinationSequenceId>26</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>27</version>
+        <sequence>39</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;optAprovacao&quot;) == &quot;Retornar&quot; &amp;&amp; (hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) != &quot;41&quot; &amp;&amp; hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) != &quot;40&quot;)</condition>
+      <destinationSequenceId>17</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>3</expressionOrder>
+        <version>27</version>
+        <sequence>39</sequence>
+      </conditionProcessStatePK>
+      <condition>false</condition>
+      <destinationSequenceId>40</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>1</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>4</expressionOrder>
+        <version>27</version>
+        <sequence>39</sequence>
+      </conditionProcessStatePK>
+      <condition>false</condition>
+      <destinationSequenceId>45</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>1</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>1</expressionOrder>
+        <version>27</version>
+        <sequence>41</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;optAprovacao&quot;) == &quot;Retornar&quot; &amp;&amp; (hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) == &quot;41&quot; || hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) == &quot;40&quot;)</condition>
+      <destinationSequenceId>26</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>2</expressionOrder>
+        <version>27</version>
+        <sequence>41</sequence>
+      </conditionProcessStatePK>
+      <condition>hAPI.getCardValue(&quot;optAprovacao&quot;) == &quot;Retornar&quot; &amp;&amp; (hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) != &quot;41&quot; &amp;&amp; hAPI.getCardValue(&quot;produtoMedicao&quot;).substring(0,2) != &quot;40&quot;)</condition>
+      <destinationSequenceId>17</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>0</conditionType>
+    </ConditionProcessState>
+    <ConditionProcessState>
+      <conditionProcessStatePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <expressionOrder>3</expressionOrder>
+        <version>27</version>
+        <sequence>41</sequence>
+      </conditionProcessStatePK>
+      <condition>false</condition>
+      <destinationSequenceId>47</destinationSequenceId>
+      <engineAllocationId></engineAllocationId>
+      <conditionType>1</conditionType>
+    </ConditionProcessState>
+  </list>
+  <list>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>6</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>4</initialStateSequence>
+      <finalStateSequence>5</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>15</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>5</initialStateSequence>
+      <finalStateSequence>14</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>16</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>14</initialStateSequence>
+      <finalStateSequence>4</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>18</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>14</initialStateSequence>
+      <finalStateSequence>17</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>20</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>17</initialStateSequence>
+      <finalStateSequence>19</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>21</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>14</initialStateSequence>
+      <finalStateSequence>9</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>23</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>19</initialStateSequence>
+      <finalStateSequence>22</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>25</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>22</initialStateSequence>
+      <finalStateSequence>24</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>27</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>24</initialStateSequence>
+      <finalStateSequence>26</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>29</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>26</initialStateSequence>
+      <finalStateSequence>28</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>31</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>28</initialStateSequence>
+      <finalStateSequence>30</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>32</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>24</initialStateSequence>
+      <finalStateSequence>30</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>33</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>19</initialStateSequence>
+      <finalStateSequence>30</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>35</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>30</initialStateSequence>
+      <finalStateSequence>34</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>36</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>34</initialStateSequence>
+      <finalStateSequence>26</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>38</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>34</initialStateSequence>
+      <finalStateSequence>37</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>42</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>37</initialStateSequence>
+      <finalStateSequence>39</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>43</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>39</initialStateSequence>
+      <finalStateSequence>40</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>44</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>40</initialStateSequence>
+      <finalStateSequence>41</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>46</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>39</initialStateSequence>
+      <finalStateSequence>45</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>48</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>41</initialStateSequence>
+      <finalStateSequence>47</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>50</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>34</initialStateSequence>
+      <finalStateSequence>49</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>51</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>34</initialStateSequence>
+      <finalStateSequence>17</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>52</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>28</initialStateSequence>
+      <finalStateSequence>17</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>53</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>24</initialStateSequence>
+      <finalStateSequence>17</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>54</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>41</initialStateSequence>
+      <finalStateSequence>26</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>55</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>39</initialStateSequence>
+      <finalStateSequence>26</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>56</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>41</initialStateSequence>
+      <finalStateSequence>17</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>57</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>39</initialStateSequence>
+      <finalStateSequence>17</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <linkSequence>58</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>19</initialStateSequence>
+      <finalStateSequence>26</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+      <movementTitle></movementTitle>
+      <movementDescription></movementDescription>
+      <movementAccessLinkDescription></movementAccessLinkDescription>
+    </ProcessLink>
+  </list>
+  <list/>
+  <list>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>calculateAgreement</eventId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>/****** &#xd;
+** Enable customization script to change agreement calculation. &#xd;
+** Input: &#xd;
+**	stateId -&gt; Current state, whose agreement percentage is being calculated. &#xd;
+**	agreementData.get(&quot;currentPercentage&quot;) -&gt; Current percentage, calculated by the workflow engine&#xd;
+**	agreementData.get(&quot;currentDestState&quot;) -&gt; Current destination state. Zero, if process won&apos;t move&#xd;
+**	agreementData.get(&quot;currentDestUsers&quot;) -&gt; Current destination users. Empty if process won&apos;t move&#xd;
+**/&#xd;
+function calculateAgreement(currentState, agreementData) {&#xd;
+	agreementData.put(&quot;currentPercentage&quot;, 100);&#xd;
+	agreementData.put(&quot;currentDestState&quot;, 12);&#xd;
+	agreementData.put(&quot;currentDestUsers&quot;, &quot;System:Auto&quot;);&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>beforeCancelProcess</eventId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function beforeCancelProcess(colleagueId,processId){&#xd;
+	var c1 = DatasetFactory.createConstraint(&quot;OPERACAO&quot;, &quot;REMOVERMEDICAO&quot;, &quot;REMOVERMEDICAO&quot;, ConstraintType.MUST);&#xd;
+	var c2 = DatasetFactory.createConstraint(&quot;PROCESSOID&quot;, processId, processId, ConstraintType.MUST);&#xd;
+	var retorno = DatasetFactory.getDataset(&quot;dsMedicoes&quot;, null, [c1,c2], null);&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
+        <eventId>beforeTaskSave</eventId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function beforeTaskSave(colleagueId,nextSequenceId,userList){&#xd;
+    log.info(&quot;BeforeTaskSave: &quot; + getValue(&quot;WKNumProces&quot;));&#xd;
+    if (hAPI.getCardValue(&quot;countBeforeTaskSave&quot;) == 0) {&#xd;
+        hAPI.setCardValue(&quot;countBeforeTaskSave&quot;, 1);&#xd;
+        var atividade = getValue(&apos;WKNumState&apos;);&#xd;
+        var decisao = hAPI.getCardValue(&quot;optAprovacao&quot;);&#xd;
+        var engenheiro = hAPI.getCardValue(&quot;engenheiro&quot;);&#xd;
+        var superior = hAPI.getCardValue(&quot;superior&quot;);&#xd;
+        var diretoria = hAPI.getCardValue(&quot;diretoria&quot;);&#xd;
+        var medicaoID = hAPI.getCardValue(&quot;medicaoID&quot;);&#xd;
+&#xd;
+        if (atividade == 0 || atividade == 4 || atividade == 22 || atividade == 5) {//Se atividade inicio&#xd;
+            if (hAPI.getCardValue(&quot;idDocMedicao&quot;) != null &amp;&amp; hAPI.getCardValue(&quot;idDocMedicao&quot;) != &quot;&quot; &amp;&amp; hAPI.getCardValue(&quot;idDocMedicao&quot;) != 0) {&#xd;
+                AnexarDocumento(hAPI.getCardValue(&quot;idDocMedicao&quot;));//Anexa o boletim de medição na solicitação                &#xd;
+            }&#xd;
+        }&#xd;
+        &#xd;
+        if (atividade == 0 || atividade == 4){&#xd;
+            if (hAPI.getCardValue(&quot;idDocMemoCalculo&quot;) != null &amp;&amp; hAPI.getCardValue(&quot;idDocMemoCalculo&quot;) != &quot;&quot; &amp;&amp; hAPI.getCardValue(&quot;idDocMemoCalculo&quot;) != 0) {&#xd;
+                AnexarDocumento(hAPI.getCardValue(&quot;idDocMemoCalculo&quot;));//Anexa o boletim de medição na solicitação                &#xd;
+            }&#xd;
+            atualizaProcessoIDMedicao();&#xd;
+            atualizarStatusMedicao(4);&#xd;
+        }&#xd;
+    &#xd;
+        if (atividade == 17) {&#xd;
+            if (hAPI.getCardValue(&quot;idDocMedicao&quot;) != null &amp;&amp; hAPI.getCardValue(&quot;idDocMedicao&quot;) != &quot;&quot; &amp;&amp; hAPI.getCardValue(&quot;idDocMedicao&quot;) != 0) {&#xd;
+                AnexarDocumento(hAPI.getCardValue(&quot;idDocMedicao&quot;));//Anexa o boletim de medição na solicitação                &#xd;
+            }&#xd;
+        }&#xd;
+&#xd;
+&#xd;
+        if (atividade == 5 ) {&#xd;
+            if (decisao == &quot;Aprovar&quot;) {&#xd;
+                EnviaEmailInclusao();&#xd;
+            }&#xd;
+        }&#xd;
+    &#xd;
+&#xd;
+        if (atividade == 30 &amp;&amp; decisao ==  &quot;Aprovar&quot; &amp;&amp; (superior == &quot;&quot; || superior == null)) {//Se engenheiro aprova&#xd;
+            atualizarStatusMedicao(3);&#xd;
+            aprovaMov();&#xd;
+        }&#xd;
+        else if(atividade == 37 &amp;&amp; decisao == &quot;Aprovar&quot; &amp;&amp; (diretoria == &quot;&quot; || diretoria == null)){//Se superior aprova&#xd;
+            atualizarStatusMedicao(3);&#xd;
+            aprovaMov();&#xd;
+        }&#xd;
+        else if(atividade == 40 &amp;&amp; decisao == &quot;Aprovar&quot;){//Se diretor aprova&#xd;
+            atualizarStatusMedicao(3);&#xd;
+            aprovaMov();&#xd;
+        }&#xd;
+    &#xd;
+        if ((atividade == 5 || atividade == 30 || atividade == 26 || atividade == 37 || atividade == 40 || atividade == 22) &amp;&amp; (decisao != &quot;Aprovar&quot;)) {//Se não aprovou verifica se complemento foi incluido&#xd;
+            if (getValue(&quot;WKUserComment&quot;) == &quot;&quot;) {&#xd;
+                throw &quot;Obrigatório informar um Complemento com a alteração necessária.&quot;;&#xd;
+            }&#xd;
+        }&#xd;
+    }&#xd;
+}&#xd;
+&#xd;
+function aprovaMov() {&#xd;
+    log.info(&quot;inicia aprovMov&quot;);&#xd;
+    var values = hAPI.getCardValue(&quot;SalvarParametrosFormulario&quot;);&#xd;
+    if (typeof values !== &apos;object&apos;) {&#xd;
+        values = JSON.parse(values);&#xd;
+    }&#xd;
+    var IDMOV = hAPI.getCardValue(&quot;movimento&quot;);&#xd;
+    var coligada = hAPI.getCardValue(&quot;coligada&quot;);&#xd;
+    var processoFluig = getValue(&quot;WKNumProces&quot;);&#xd;
+    var usuarioAprovador = getValue(&quot;WKUser&quot;);&#xd;
+&#xd;
+    var c1 = DatasetFactory.createConstraint(&quot;pUsuario&quot;, usuarioAprovador, usuarioAprovador, ConstraintType.MUST);&#xd;
+    var dsUsuAprovador = DatasetFactory.getDataset(&quot;ConsultaUsuarioRM&quot;, null, [c1], null);&#xd;
+    usuarioAprovador = dsUsuAprovador.getValue(0, &quot;usuarioRM&quot;);&#xd;
+&#xd;
+	var c1 = DatasetFactory.createConstraint(&quot;pIdmov&quot;, IDMOV, IDMOV, ConstraintType.MUST);&#xd;
+	var c2 = DatasetFactory.createConstraint(&quot;pCodcoligada&quot;, coligada, coligada, ConstraintType.MUST);&#xd;
+	var c3 = DatasetFactory.createConstraint(&quot;pUsuarioRM&quot;, usuarioAprovador, usuarioAprovador, ConstraintType.MUST);&#xd;
+	var c4 = DatasetFactory.createConstraint(&quot;pCodtmv&quot;, &quot;1.1.99&quot;, &quot;1.1.99&quot;, ConstraintType.MUST);&#xd;
+	var c5 = DatasetFactory.createConstraint(&quot;pNumprocesso&quot;, processoFluig, processoFluig, ConstraintType.MUST);&#xd;
+	var retorno = DatasetFactory.getDataset(&quot;AprovaMovimentoRM&quot;, null, [c1,c2,c3,c4,c5], null);&#xd;
+	&#xd;
+	if (!retorno || retorno == &quot;&quot; || retorno == null) {&#xd;
+		throw &quot;Houve um erro na comunicação com o webservice. Tente novamente!&quot;;&#xd;
+	}&#xd;
+	else {&#xd;
+		if (retorno.values[0][0] == &quot;false&quot;){&#xd;
+			throw &quot;Erro na Aprovação. Favor entrar em contato com o administrador do sistema. Mensagem: &quot;+retorno.values[0][3];&#xd;
+		}&#xd;
+		else{	&#xd;
+            log.info(&quot;MOVIMENTO APROVADO = &quot; + IDMOV);&#xd;
+            EnviaEmailAprovacao();&#xd;
+        }&#xd;
+    }&#xd;
+    log.info(&quot;fim aprovMov&quot;);&#xd;
+}&#xd;
+&#xd;
+function FormataMoeda(valor) {&#xd;
+    var numero = parseFloat(valor);&#xd;
+    numero = numero.toFixed(2).split(&apos;.&apos;);&#xd;
+    numero[0] = &quot;R$ &quot; + numero[0].split(/(?=(?:...)*$)/).join(&apos;.&apos;);&#xd;
+    return numero.join(&apos;,&apos;);&#xd;
+}&#xd;
+&#xd;
+function BuscaNomeUsuario(id){&#xd;
+    var ds1 = DatasetFactory.getDataset(&quot;colleague&quot;, null, [DatasetFactory.createConstraint(&quot;colleagueId&quot;, id, id, ConstraintType.MUST)], null);&#xd;
+    return ds1.getValue(0, &quot;colleagueName&quot;);&#xd;
+}&#xd;
+&#xd;
+function atualizaProcessoIDMedicao() {&#xd;
+    var processoID = getValue(&quot;WKNumProces&quot;);&#xd;
+    var medicaoID = hAPI.getCardValue(&quot;medicaoID&quot;);&#xd;
+       &#xd;
+    var c1 = DatasetFactory.createConstraint(&quot;OPERACAO&quot;, &quot;INSERIRPROCESSOID&quot;, &quot;INSERIRPROCESSOID&quot;, ConstraintType.MUST);&#xd;
+    var c2 = DatasetFactory.createConstraint(&quot;MEDICAOID&quot;, medicaoID, medicaoID, ConstraintType.MUST);&#xd;
+    var c3 = DatasetFactory.createConstraint(&quot;PROCESSOID&quot;, processoID, processoID, ConstraintType.MUST);&#xd;
+    var retorno = DatasetFactory.getDataset(&quot;dsMedicoes&quot;, null, [c1,c2,c3], null);&#xd;
+}&#xd;
+&#xd;
+function atualizarStatusMedicao(statusID) {&#xd;
+    var medicaoID = hAPI.getCardValue(&quot;medicaoID&quot;);&#xd;
+    var c1 = DatasetFactory.createConstraint(&quot;OPERACAO&quot;, &quot;ATUALIZARSTATUS&quot;, &quot;ATUALIZARSTATUS&quot;, ConstraintType.MUST);&#xd;
+    var c2 = DatasetFactory.createConstraint(&quot;MEDICAOID&quot;, medicaoID, medicaoID, ConstraintType.MUST);&#xd;
+    var c3 = DatasetFactory.createConstraint(&quot;STATUSID&quot;, statusID, statusID, ConstraintType.MUST);&#xd;
+    var retorno = DatasetFactory.getDataset(&quot;dsMedicoes&quot;, null, [c1,c2,c3], null);&#xd;
+}&#xd;
+&#xd;
+function AnexarDocumento(id) {&#xd;
+    var attachments = hAPI.listAttachments();&#xd;
+    var isAnexado = false;&#xd;
+&#xd;
+    for (var i = 0; i &lt; attachments.size(); i++) {&#xd;
+        if (id == attachments.get(i).getDocumentId()) {&#xd;
+            isAnexado = true;&#xd;
+        }&#xd;
+    }&#xd;
+&#xd;
+    if (!isAnexado) {&#xd;
+        hAPI.attachDocument(id);&#xd;
+    }&#xd;
+}&#xd;
+&#xd;
+function BuscaColigada(CODCOLIGADA) {&#xd;
+    var constraints = [];&#xd;
+&#xd;
+    if (CODCOLIGADA != null) {&#xd;
+        constraints.push(DatasetFactory.createConstraint(&quot;CODCOLIGADA&quot;, CODCOLIGADA, CODCOLIGADA, ConstraintType.MUST));&#xd;
+    }&#xd;
+    var ds = DatasetFactory.getDataset(&quot;Coligadas&quot;, null, constraints, null);&#xd;
+    return ds;&#xd;
+}&#xd;
+&#xd;
+function BuscaRemetentes(obra){&#xd;
+	var nmRole = &quot;solicitaAprovacaoMedicao&quot; + obra.split(&quot; &quot;).join(&quot;&quot;);&#xd;
+    var listRemetentes = &quot;&quot;;&#xd;
+&#xd;
+	var listRole = DatasetFactory.getDataset(&quot;workflowColleagueRole&quot;, null, [DatasetFactory.createConstraint(&quot;roleId&quot;, nmRole, nmRole, ConstraintType.MUST)], null);&#xd;
+	if (listRole.values.length &gt; 0) {&#xd;
+        for (var i = 0; i &lt; listRole.values.length; i++) {&#xd;
+            listRemetentes += BuscaEmailUsuario(listRole.getValue(i, &quot;workflowColleagueRolePK.colleagueId&quot;)) + &quot;; &quot;;&#xd;
+        }&#xd;
+	}&#xd;
+	else{&#xd;
+        var listUsersObra = DatasetFactory.getDataset(&quot;colleagueGroup&quot;, [&quot;colleagueGroupPK.colleagueId&quot;], [DatasetFactory.createConstraint(&quot;groupId&quot;, obra, obra, ConstraintType.MUST)],  [&quot;colleagueGroupPK.colleagueId&quot;]);&#xd;
+        var listUsersRole = DatasetFactory.getDataset(&quot;workflowColleagueRole&quot;, [&quot;workflowColleagueRolePK.colleagueId&quot;], [DatasetFactory.createConstraint(&quot;roleId&quot;, &quot;medicoes&quot;, &quot;medicoes&quot;, ConstraintType.MUST)],  [&quot;workflowColleagueRolePK.colleagueId&quot;]);&#xd;
+&#xd;
+        var j = 0;&#xd;
+        for (var i = 0; i &lt; listUsersObra.values.length; i++) {&#xd;
+            for (var x = j;  x &lt; listUsersRole.values.length; x++) {&#xd;
+                if (listUsersObra.getValue(i, &quot;colleagueGroupPK.colleagueId&quot;) == listUsersRole.getValue(x, &quot;workflowColleagueRolePK.colleagueId&quot;)) {&#xd;
+                    listRemetentes += BuscaEmailUsuario(listUsersObra.getValue(i, &quot;colleagueGroupPK.colleagueId&quot;)) + &quot;; &quot;;&#xd;
+                    j = x;&#xd;
+                    x = listUsersRole.length;&#xd;
+                }&#xd;
+            }&#xd;
+        }&#xd;
+	}&#xd;
+&#xd;
+    log.info(&quot;ListRemetentes: &quot; + listRemetentes.substring(0, listRemetentes.length - 2));&#xd;
+    return listRemetentes.substring(0, listRemetentes.length - 2);&#xd;
+}&#xd;
+&#xd;
+function BuscaEmailUsuario(usuario) {&#xd;
+    var ds = DatasetFactory.getDataset(&quot;colleague&quot;, null, [DatasetFactory.createConstraint(&quot;colleagueId&quot;, usuario, usuario, ConstraintType.MUST)], null);&#xd;
+    return ds.getValue(0, &quot;mail&quot;);&#xd;
+}&#xd;
+&#xd;
+function EnviaEmailAprovacao(){&#xd;
+    try{&#xd;
+        //var serverUrl = &quot;homologacao.castilho.com.br:2020&quot;;//Homolog&#xd;
+        var serverUrl = &quot;fluig.castilho.com.br:1010&quot;;//Prod&#xd;
+        var ObjContrato = JSON.parse(hAPI.getCardValue(&quot;ObjContrato&quot;));&#xd;
+        var ObjMedicao = JSON.parse(hAPI.getCardValue(&quot;ObjMedicao&quot;));&#xd;
+        var valorRetencao = hAPI.getCardValue(&quot;valorRetencao&quot;);&#xd;
+&#xd;
+        var coligada = BuscaColigada(hAPI.getCardValue(&quot;coligada&quot;));&#xd;
+        coligada = coligada.getValue(0, &quot;CODCOLIGADA&quot;) + &quot; - &quot; + coligada.getValue(0, &quot;NOMEFANTASIA&quot;);&#xd;
+&#xd;
+        var html = &#xd;
+        &quot;&lt;div&gt;\&#xd;
+            &lt;p&gt; A solicitação de aprovação de medição foi &lt;font color=&apos;green&apos;&gt;&lt;b&gt;aprovada&lt;/b&gt;&lt;/font&gt; pelo usuário &lt;b&gt;&quot;+BuscaNomeUsuario(getValue(&quot;WKUser&quot;))+&quot;.&lt;/b&gt;&lt;/p&gt;\&#xd;
+        &lt;/div&gt;\&#xd;
+        &lt;div&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Coligada: &lt;/b&gt;\&#xd;
+                &lt;span&gt;&quot; + coligada + &quot;&lt;/span&gt;\&#xd;
+            &lt;/div&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Obra: &lt;/b&gt;\&#xd;
+                &lt;span&gt;&quot; + hAPI.getCardValue(&quot;ccusto&quot;) + &quot; - &quot; + hAPI.getCardValue(&quot;obra&quot;) + &quot;&lt;/span&gt;\&#xd;
+            &lt;/div&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Contrato: &lt;/b&gt;\&#xd;
+                &lt;span&gt;&quot; + hAPI.getCardValue(&quot;CodigoContrato&quot;) + &quot;&lt;/span&gt;\&#xd;
+            &lt;/div&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Descrição: &lt;/b&gt;\&#xd;
+                &lt;span&gt;&quot; + ObjContrato.CONTRATO + &quot;&lt;/span&gt;\&#xd;
+            &lt;/div&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Fornecedor: &lt;/b&gt;\&#xd;
+                &lt;span&gt;&quot; + ObjContrato.FORNECEDOR + &quot;&lt;/span&gt;\&#xd;
+            &lt;/div&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Competência: &lt;/b&gt;\&#xd;
+                &lt;span&gt;&quot; + ObjMedicao[0].DATACOMPETENCIA + &quot;&lt;/span&gt;\&#xd;
+            &lt;/div&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Valor: &lt;/b&gt;\&#xd;
+                &lt;span&gt;&quot; + FormataMoeda(ObjMedicao[0].VALORBRUTO) + &quot;&lt;/span&gt;\&#xd;
+            &lt;/div&gt;&quot;;&#xd;
+            if (valorRetencao != null &amp;&amp; valorRetencao != &quot;&quot;) {&#xd;
+                html+=  &#xd;
+                &quot;&lt;div&gt;\&#xd;
+                    &lt;b&gt;Retenção: &lt;/b&gt;\&#xd;
+                    &lt;span&gt;&quot; + FormataMoeda(valorRetencao) + &quot;&lt;/span&gt;\&#xd;
+                &lt;/div&gt;&quot;;&#xd;
+            }&#xd;
+        html+=&quot;\&#xd;
+        &lt;/div&gt;&quot;;&#xd;
+&#xd;
+&#xd;
+        var linkDocMedicao = BuscaLinkDocMedicao();&#xd;
+        if (linkDocMedicao != false) {&#xd;
+            html+=&#xd;
+            &quot;&lt;br&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Anexos:&lt;/b&gt;\&#xd;
+                &lt;br&gt;\&#xd;
+                &quot; + linkDocMedicao + &quot;\&#xd;
+            &lt;/div&gt;\&#xd;
+            &lt;br&gt;&quot;;&#xd;
+        }&#xd;
+&#xd;
+        var param = {&#xd;
+            &quot;CORPO&quot;: html,&#xd;
+            &quot;SERVER_URL&quot;: serverUrl&#xd;
+        };&#xd;
+&#xd;
+        var clientService = fluigAPI.getAuthorizeClientService();&#xd;
+&#xd;
+        var data = {                                                   &#xd;
+            companyId : getValue(&quot;WKCompany&quot;).toString(),&#xd;
+            serviceCode : &apos;ServicoFluig&apos;,                     &#xd;
+            endpoint : &apos;/api/public/alert/customEmailSender&apos;,  &#xd;
+            method : &apos;post&apos;,                              &#xd;
+            timeoutService: &apos;100&apos;,&#xd;
+            params:{&#xd;
+                to: BuscaRemetentes(hAPI.getCardValue(&quot;obra&quot;)),&#xd;
+                //from: &quot;no-reply@construtoracastilho.com.br&quot;, //Homolog&#xd;
+                from: &quot;fluig@construtoracastilho.com.br&quot;, //Prod&#xd;
+                subject: &quot;[FLUIG] Solicitação de medição aprovada!&quot;,&#xd;
+                templateId: &quot;TPL_APROVACAO_MEDICOES&quot;,&#xd;
+                dialectId: &quot;pt_BR&quot;,&#xd;
+                param:param&#xd;
+            }&#xd;
+        }&#xd;
+&#xd;
+        var vo = clientService.invoke(JSONUtil.toJSON(data));&#xd;
+ &#xd;
+        if(vo.getResult()== null || vo.getResult().isEmpty()){&#xd;
+            throw &quot;Retorno está vazio&quot;;&#xd;
+        }else{&#xd;
+            log.info(vo.getResult());&#xd;
+        }&#xd;
+    } catch(err) {&#xd;
+        throw err;&#xd;
+    }&#xd;
+}&#xd;
+&#xd;
+function EnviaEmailInclusao(){&#xd;
+    try{&#xd;
+        //var serverUrl = &quot;homologacao.castilho.com.br:2020&quot;;//Homolog&#xd;
+        var serverUrl = &quot;fluig.castilho.com.br:1010&quot;;//Prod&#xd;
+&#xd;
+        var ObjMedicao = JSON.parse(hAPI.getCardValue(&quot;ObjMedicao&quot;));&#xd;
+        var ObjContrato = JSON.parse(hAPI.getCardValue(&quot;ObjContrato&quot;));&#xd;
+        var coligada = BuscaColigada(hAPI.getCardValue(&quot;coligada&quot;));&#xd;
+        coligada = coligada.getValue(0, &quot;CODCOLIGADA&quot;) + &quot; - &quot; + coligada.getValue(0, &quot;NOMEFANTASIA&quot;);&#xd;
+        var valorRetencao = hAPI.getCardValue(&quot;valorRetencao&quot;);&#xd;
+    &#xd;
+        var html = &#xd;
+        &quot;&lt;p&gt;\&#xd;
+            A &lt;b&gt;Solicitação de Medição&lt;/b&gt;\&#xd;
+            &lt;a href=&apos;http://&quot; + serverUrl + &quot;/portal/p/1/pageworkflowview?app_ecm_workflowview_detailsProcessInstanceID=&quot; + getValue(&quot;WKNumProces&quot;) + &quot;&apos;&gt;&quot; + getValue(&quot;WKNumProces&quot;) + &quot;&lt;/a&gt;\&#xd;
+            do contrato &quot; + hAPI.getCardValue(&quot;CodigoContrato&quot;) + &quot; foi &lt;b&gt;incluída&lt;/b&gt; no sistema e está &lt;b&gt;disponível para aprovação&lt;/b&gt;!\&#xd;
+        &lt;/p&gt;\&#xd;
+        &lt;div&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Coligada: &lt;/b&gt;\&#xd;
+                &lt;span&gt;&quot; + coligada + &quot;&lt;/span&gt;\&#xd;
+            &lt;/div&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Obra: &lt;/b&gt;\&#xd;
+                &lt;span&gt;&quot; + hAPI.getCardValue(&quot;ccusto&quot;) + &quot; - &quot; + hAPI.getCardValue(&quot;obra&quot;) + &quot;&lt;/span&gt;\&#xd;
+            &lt;/div&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Contrato: &lt;/b&gt;\&#xd;
+                &lt;span&gt;&quot; + hAPI.getCardValue(&quot;CodigoContrato&quot;) + &quot;&lt;/span&gt;\&#xd;
+            &lt;/div&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Descrição: &lt;/b&gt;\&#xd;
+                &lt;span&gt;&quot; + ObjContrato.CONTRATO + &quot;&lt;/span&gt;\&#xd;
+            &lt;/div&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Fornecedor: &lt;/b&gt;\&#xd;
+                &lt;span&gt;&quot; + ObjContrato.FORNECEDOR + &quot;&lt;/span&gt;\&#xd;
+            &lt;/div&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Competência: &lt;/b&gt;\&#xd;
+                &lt;span&gt;&quot; + ObjMedicao[0].DATACOMPETENCIA + &quot;&lt;/span&gt;\&#xd;
+            &lt;/div&gt;\&#xd;
+            &lt;div&gt;\&#xd;
+                &lt;b&gt;Valor: &lt;/b&gt;\&#xd;
+                &lt;span&gt;&quot; + FormataMoeda(ObjMedicao[0].VALORBRUTO) + &quot;&lt;/span&gt;\&#xd;
+            &lt;/div&gt;&quot;;&#xd;
+    &#xd;
+            if (valorRetencao != null &amp;&amp; valorRetencao != &quot;&quot;) {&#xd;
+                html+=  &#xd;
+                &quot;&lt;div&gt;\&#xd;
+                    &lt;b&gt;Retenção: &lt;/b&gt;\&#xd;
+                    &lt;span&gt;&quot; + FormataMoeda(valorRetencao) + &quot;&lt;/span&gt;\&#xd;
+                &lt;/div&gt;&quot;;&#xd;
+            }&#xd;
+    &#xd;
+        html+=&#xd;
+        &quot;&lt;/div&gt;\&#xd;
+        &lt;br&gt;&quot;;&#xd;
+&#xd;
+        var linkDocMedicao = BuscaLinkDocMedicao();&#xd;
+        if (linkDocMedicao != false) {&#xd;
+            html+=&#xd;
+            &quot;&lt;div&gt;\&#xd;
+                &lt;b&gt;Anexos:&lt;/b&gt;\&#xd;
+                &lt;br&gt;\&#xd;
+                &quot; + linkDocMedicao + &quot;\&#xd;
+            &lt;/div&gt;\&#xd;
+            &lt;br&gt;&quot;;&#xd;
+        }&#xd;
+&#xd;
+        &#xd;
+        html+=&quot;&lt;div class=&apos;DescrMsgForum actions&apos;&gt;\&#xd;
+            &lt;p class=&apos;DescrMsgForum&apos;&gt; Para mais detalhes, &lt;a href=&apos;http://&quot; + serverUrl + &quot;/portal/p/1/pageworkflowview?app_ecm_workflowview_detailsProcessInstanceID=&quot; + getValue(&quot;WKNumProces&quot;) + &quot;&apos; target=&apos;_blank&apos;&gt;clique aqui&lt;/a&gt; ou verifique as informações adicionais nos campos complementares no RM.&lt;/p&gt;\&#xd;
+        &lt;/div&gt;&quot;;&#xd;
+&#xd;
+        var param = {&#xd;
+            &quot;CORPO&quot;: html,&#xd;
+            &quot;SERVER_URL&quot;: serverUrl&#xd;
+        };&#xd;
+        var clientService = fluigAPI.getAuthorizeClientService();&#xd;
+&#xd;
+        var data = {                                                   &#xd;
+            companyId : getValue(&quot;WKCompany&quot;).toString(),&#xd;
+            serviceCode : &apos;ServicoFluig&apos;,                     &#xd;
+            endpoint : &apos;/api/public/alert/customEmailSender&apos;,  &#xd;
+            method : &apos;post&apos;, // &apos;delete&apos;, &apos;patch&apos;, &apos;post&apos;, &apos;get&apos;                                        &#xd;
+            timeoutService: &apos;100&apos;, // segundos&#xd;
+            params:{&#xd;
+                to: BuscaRemetentes(hAPI.getCardValue(&quot;obra&quot;)),&#xd;
+                from: &quot;fluig@construtoracastilho.com.br&quot;, //Prod&#xd;
+                //from: &quot;no-reply@construtoracastilho.com.br&quot;, //Homolog&#xd;
+                subject: &quot;[Fluig] Medição incluída no RM!&quot;,&#xd;
+                templateId: &quot;TPL_MEDICAO_CADASTRADA&quot;,&#xd;
+                dialectId: &quot;pt_BR&quot;,&#xd;
+                param:param&#xd;
+            }&#xd;
+        }&#xd;
+        var vo = clientService.invoke(JSONUtil.toJSON(data));&#xd;
+ &#xd;
+        if(vo.getResult()== null || vo.getResult().isEmpty()){&#xd;
+            throw &quot;Retorno está vazio&quot;;&#xd;
+        }else{&#xd;
+            log.info(vo.getResult());&#xd;
+        }&#xd;
+    } catch(err) {&#xd;
+        log.error(err);&#xd;
+        throw err;&#xd;
+    }&#xd;
+}&#xd;
+&#xd;
+function BuscaLinkDocMedicao(){&#xd;
+    var retorno = false;&#xd;
+    var docs = hAPI.listAttachments();&#xd;
+&#xd;
+    for (var i = 0; i &lt; docs.size(); i++) {&#xd;
+        var doc = docs.get(i);&#xd;
+        if (hAPI.getCardValue(&quot;idDocMedicao&quot;).toString() == doc.getDocumentId()) {&#xd;
+            retorno = &quot;&lt;a href=&apos;&quot; + fluigAPI.getDocumentService().getDownloadURL(doc.getDocumentId()) + &quot;&apos;&gt;&quot; + doc.getDocumentDescription() + &quot;&lt;/a&gt;&quot;&#xd;
+        }&#xd;
+    }&#xd;
+&#xd;
+    return retorno;&#xd;
+}</eventDescription>
+    </WorkflowProcessEvent>
+  </list>
+  <list/>
+  <list>
+    <SwimLane>
+      <color>d0daae</color>
+      <height>273</height>
+      <width>1841</width>
+      <positionX>0</positionX>
+      <positionY>298</positionY>
+      <stateName>Aprovação</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>1</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>adc9ac</color>
+      <height>145</height>
+      <width>1841</width>
+      <positionX>0</positionX>
+      <positionY>154</positionY>
+      <stateName>Controladoria</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>2</sequence>
+      </swimLanePK>
+    </SwimLane>
+    <SwimLane>
+      <color>82b0b7</color>
+      <height>145</height>
+      <width>1841</width>
+      <positionX>0</positionX>
+      <positionY>10</positionY>
+      <stateName>Obra</stateName>
+      <type>2</type>
+      <parentSequence>0</parentSequence>
+      <swimLanePK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>1</version>
+        <sequence>3</sequence>
+      </swimLanePK>
+    </SwimLane>
+  </list>
+  <list/>
+  <list/>
+  <list>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>6</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>167</positionX>
+      <positionY>235</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>16</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>400</positionX>
+      <positionY>99</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>18</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>482</positionX>
+      <positionY>243</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>18</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>482</positionX>
+      <positionY>178</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>18</linkSequence>
+        <bendSequence>3</bendSequence>
+      </processLinkBendPK>
+      <positionX>482</positionX>
+      <positionY>134</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>20</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>512</positionX>
+      <positionY>228</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>21</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>398</positionX>
+      <positionY>336</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>29</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>1029</positionX>
+      <positionY>260</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>31</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>1032</positionX>
+      <positionY>408</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>32</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>888</positionX>
+      <positionY>454</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>32</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>958</positionX>
+      <positionY>454</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>33</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>608</positionX>
+      <positionY>464</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>36</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>1180</positionX>
+      <positionY>284</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>36</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>1095</positionX>
+      <positionY>284</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>46</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>1430</positionX>
+      <positionY>526</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>48</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>1710</positionX>
+      <positionY>526</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>50</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>1180</positionX>
+      <positionY>536</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>51</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>1192</positionX>
+      <positionY>392</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>51</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>1192</positionX>
+      <positionY>120</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>51</linkSequence>
+        <bendSequence>3</bendSequence>
+      </processLinkBendPK>
+      <positionX>624</positionX>
+      <positionY>120</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>52</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>547</positionX>
+      <positionY>362</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>52</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>546</positionX>
+      <positionY>128</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>53</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>888</positionX>
+      <positionY>136</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>53</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>609</positionX>
+      <positionY>136</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>54</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>1690</positionX>
+      <positionY>409</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>54</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>1688</positionX>
+      <positionY>318</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>54</linkSequence>
+        <bendSequence>3</bendSequence>
+      </processLinkBendPK>
+      <positionX>1688</positionX>
+      <positionY>225</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>55</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>1430</positionX>
+      <positionY>257</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>55</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>1120</positionX>
+      <positionY>257</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>56</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>1708</positionX>
+      <positionY>84</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>57</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>1438</positionX>
+      <positionY>390</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>57</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>1438</positionX>
+      <positionY>104</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>57</linkSequence>
+        <bendSequence>3</bendSequence>
+      </processLinkBendPK>
+      <positionX>608</positionX>
+      <positionY>104</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>58</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>656</positionX>
+      <positionY>170</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <version>27</version>
+        <linkSequence>58</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>1032</positionX>
+      <positionY>170</positionY>
+    </ProcessLinkBend>
+  </list>
+  <list/>
+  <list/>
+  <list>
+    <ProcessFormField>
+      <processFormFieldPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <fieldId>coligada</fieldId>
+      </processFormFieldPK>
+      <fieldDescription>coligada</fieldDescription>
+      <slotId>1</slotId>
+    </ProcessFormField>
+    <ProcessFormField>
+      <processFormFieldPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <fieldId>ccusto</fieldId>
+      </processFormFieldPK>
+      <fieldDescription>ccusto</fieldDescription>
+      <slotId>2</slotId>
+    </ProcessFormField>
+    <ProcessFormField>
+      <processFormFieldPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <fieldId>obra</fieldId>
+      </processFormFieldPK>
+      <fieldDescription>obra</fieldDescription>
+      <slotId>3</slotId>
+    </ProcessFormField>
+    <ProcessFormField>
+      <processFormFieldPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <fieldId>CodigoContrato</fieldId>
+      </processFormFieldPK>
+      <fieldDescription>CodigoContrato</fieldDescription>
+      <slotId>4</slotId>
+    </ProcessFormField>
+    <ProcessFormField>
+      <processFormFieldPK>
+        <companyId>1</companyId>
+        <processId>Solicitação de Medição NOVO</processId>
+        <fieldId>produtoMedicao</fieldId>
+      </processFormFieldPK>
+      <fieldDescription>produtoMedicao</fieldDescription>
+      <slotId>5</slotId>
+    </ProcessFormField>
+  </list>
+  <list/>
+  <list/>
+  <list/>
+  <list/>
+  <list>
+    <ConditionProcessAutomaticRules>
+      <sequence>14</sequence>
+      <expressionOrder>3</expressionOrder>
+      <ruleOrder>1</ruleOrder>
+      <field>optAprovacao</field>
+      <value>Retornar</value>
+      <operator>1</operator>
+      <valueType>1</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>19</sequence>
+      <expressionOrder>1</expressionOrder>
+      <ruleOrder>1</ruleOrder>
+      <field>checkboxAssinaturaPendente</field>
+      <value>on</value>
+      <operator>1</operator>
+      <valueType>1</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>24</sequence>
+      <expressionOrder>1</expressionOrder>
+      <ruleOrder>1</ruleOrder>
+      <field>optAprovacao</field>
+      <value>Retornar</value>
+      <operator>1</operator>
+      <valueType>1</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>28</sequence>
+      <expressionOrder>1</expressionOrder>
+      <ruleOrder>1</ruleOrder>
+      <field>optAprovacao</field>
+      <value>Aprovar</value>
+      <operator>1</operator>
+      <valueType>1</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>28</sequence>
+      <expressionOrder>2</expressionOrder>
+      <ruleOrder>1</ruleOrder>
+      <field>optAprovacao</field>
+      <value>Retornar</value>
+      <operator>1</operator>
+      <valueType>1</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>34</sequence>
+      <expressionOrder>3</expressionOrder>
+      <ruleOrder>1</ruleOrder>
+      <field>optAprovacao</field>
+      <value>Aprovar</value>
+      <operator>1</operator>
+      <valueType>1</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>34</sequence>
+      <expressionOrder>3</expressionOrder>
+      <ruleOrder>2</ruleOrder>
+      <field>superior</field>
+      <value></value>
+      <operator>9</operator>
+      <valueType>0</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>34</sequence>
+      <expressionOrder>4</expressionOrder>
+      <ruleOrder>1</ruleOrder>
+      <field>optAprovacao</field>
+      <value>Aprovar</value>
+      <operator>1</operator>
+      <valueType>1</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>34</sequence>
+      <expressionOrder>4</expressionOrder>
+      <ruleOrder>2</ruleOrder>
+      <field>superior</field>
+      <value></value>
+      <operator>0</operator>
+      <valueType>0</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>39</sequence>
+      <expressionOrder>3</expressionOrder>
+      <ruleOrder>1</ruleOrder>
+      <field>optAprovacao</field>
+      <value>Aprovar</value>
+      <operator>1</operator>
+      <valueType>1</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>39</sequence>
+      <expressionOrder>3</expressionOrder>
+      <ruleOrder>2</ruleOrder>
+      <field>diretoria</field>
+      <value></value>
+      <operator>9</operator>
+      <valueType>0</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>39</sequence>
+      <expressionOrder>4</expressionOrder>
+      <ruleOrder>1</ruleOrder>
+      <field>optAprovacao</field>
+      <value>Aprovar</value>
+      <operator>1</operator>
+      <valueType>1</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>39</sequence>
+      <expressionOrder>4</expressionOrder>
+      <ruleOrder>2</ruleOrder>
+      <field>diretoria</field>
+      <value></value>
+      <operator>0</operator>
+      <valueType>0</valueType>
+    </ConditionProcessAutomaticRules>
+    <ConditionProcessAutomaticRules>
+      <sequence>41</sequence>
+      <expressionOrder>3</expressionOrder>
+      <ruleOrder>1</ruleOrder>
+      <field>optAprovacao</field>
+      <value>Aprovar</value>
+      <operator>1</operator>
+      <valueType>1</valueType>
+    </ConditionProcessAutomaticRules>
+  </list>
+</list>

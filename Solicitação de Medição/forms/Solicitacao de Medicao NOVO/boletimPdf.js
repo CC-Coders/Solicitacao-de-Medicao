@@ -549,7 +549,7 @@ function gerarPDF(medicao) {
 						[
 							{
 								colSpan: 6,
-								rowSpan: 2 + (medicao.POSSUIRETENCAO ? 2 : 0) + (medicao.POSSUIREIDI ? 1 : 0),
+								rowSpan: 3 + (medicao.POSSUIRETENCAO ? 2 : 0) + (medicao.POSSUIREIDI ? 1 : 0),
 								border: [true, true, true, true],
 								text: 'VALOR LIQUIDO DA MEDIÇÃO\n' + numeroPorExtenso((Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL)) * (1 - percentualRetencao)),
 								alignment: 'center',
@@ -587,6 +587,50 @@ function gerarPDF(medicao) {
 								border: [true, true, true, true],
 								fillColor: '#eeeeee',
 								text: toCurrency(arredondar(Number(medicao.DESCONTOANTERIOR) + Number(medicao.DESCONTOATUAL),2)),
+								alignment: 'center',
+								style: 'fontCustomTable'
+							},
+						],
+						[
+							{
+								colSpan: 6,
+								border: [true, true, true, true],
+								text: '',
+								alignment: 'center',
+								style: 'fontCustomTable'
+							},
+							'',
+							'',
+							'',
+							'',
+							'',
+							{
+								colSpan: 2,
+								border: [true, true, true, true],
+								fillColor: '#eeeeee',
+								text: 'DESCONTOS EXTRA',
+								alignment: 'center',
+								style: 'fontCustomTable'
+							},
+							'',
+							{
+								border: [true, true, true, true],
+								fillColor: '#eeeeee',
+								text: toCurrency(arredondar(Number(medicao.ACUMULADOANTERIOR) - Number(medicao.DESCONTOANTERIOR), 2)),
+								alignment: 'center',
+								style: 'fontCustomTable'
+							},
+							{
+								border: [true, true, true, true],
+								fillColor: '#eeeeee',
+								text: toCurrency(arredondar(Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL), 2)),
+								alignment: 'center',
+								style: 'fontCustomTable'
+							},
+							{
+								border: [true, true, true, true],
+								fillColor: '#eeeeee',
+								text: toCurrency(arredondar(Number(medicao.ACUMULADOATUAL) - (Number(medicao.DESCONTOANTERIOR) + Number(medicao.DESCONTOATUAL)),2)),
 								alignment: 'center',
 								style: 'fontCustomTable'
 							},

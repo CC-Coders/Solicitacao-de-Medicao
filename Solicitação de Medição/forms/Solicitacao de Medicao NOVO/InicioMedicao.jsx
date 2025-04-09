@@ -5,11 +5,13 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
     const [Medicao, setMedicao] = useState(null);
     const [DescontosSisma, setDescontosSisma] = useState(null);
     const [itensRemover, setItensRemover] = useState([]);
+    const [valorDescontoExtra, setvalorDescontoExtra] = useState("");
+
 
     async function handleNovaMedicao() {
         var dsEquipamentos = await ExecutaDataset(
             "CadastroDeEquipamentos",
-            ["IDSOLICITACAO", "DESCRICAO", "FABRICANTE", "MODELO", "ANO", "PLACA", "PREFIXO", "VALORLOCACAO", "UNIDADE","ACUMULADOFINANCEIROANT","ACUMULADOFISICOANT"],
+            ["IDSOLICITACAO", "DESCRICAO", "FABRICANTE", "MODELO", "ANO", "PLACA", "PREFIXO", "VALORLOCACAO", "UNIDADE", "ACUMULADOFINANCEIROANT", "ACUMULADOFISICOANT"],
             [
                 DatasetFactory.createConstraint("OPERACAO", "SELECTWHERECONTRATOEOBRA", "SELECTWHERECONTRATOEOBRA", ConstraintType.SHOULD),
                 DatasetFactory.createConstraint("CODCCUSTO", CCUSTO.CODCCUSTO, CCUSTO.CODCCUSTO, ConstraintType.SHOULD),
@@ -20,7 +22,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
 
         var dsContratoItens = await ExecutaDataset(
             "CadastroDeEquipamentos",
-            ["CONTRATOITEMID", "CONTRATO", "PREFIXO", "TIPOITEM", "CHASSI", "PLACA", "DESCRICAO", "UNIDADE", "VALOR","ACUMULADOATUAL","ACUMULADOFISICO"],
+            ["CONTRATOITEMID", "CONTRATO", "PREFIXO", "TIPOITEM", "CHASSI", "PLACA", "DESCRICAO", "UNIDADE", "VALOR", "ACUMULADOATUAL", "ACUMULADOFISICO"],
             [
                 DatasetFactory.createConstraint("OPERACAO", "SELECTITEMWHERECONTRATO", "SELECTITEMWHERECONTRATO", ConstraintType.SHOULD),
                 DatasetFactory.createConstraint("CODCONTRATO", Contrato.CODIGOCONTRATO, Contrato.CODIGOCONTRATO, ConstraintType.SHOULD),
@@ -28,7 +30,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
             null
         );
 
-        var dsUltimaMedicao =  await ExecutaDataset(
+        var dsUltimaMedicao = await ExecutaDataset(
             "dsMedicoes",
             null,
             [
@@ -41,7 +43,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
 
         var ultimaMedicao = null;
         var contratoDesconto = null;
-        if (dsUltimaMedicao.length > 0){
+        if (dsUltimaMedicao.length > 0) {
             ultimaMedicao = dsUltimaMedicao[0];
         } else {
             let dsContratoDesconto = await ExecutaDataset(
@@ -53,12 +55,12 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
                 ],
                 null
             );
-            if (dsContratoDesconto.length > 0){
+            if (dsContratoDesconto.length > 0) {
                 contratoDesconto = dsContratoDesconto[0];
             }
         }
 
-        var ultimaMedicoesItens =  await ExecutaDataset(
+        var ultimaMedicoesItens = await ExecutaDataset(
             "dsMedicoes",
             null,
             [
@@ -78,8 +80,8 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
         dsEquipamentos.forEach((equipamento) => {
             const valorFinanceiroAnterior = Number(equipamento.ACUMULADOFINANCEIROANT ?? 0);
             const valorFisicoAnterior = Number(equipamento.ACUMULADOFISICOANT ?? 0);
-            if (equipamento.EXTRA == "true"){
-                var descricaoExibicao =  `${equipamento.PREFIXO} - ${equipamento.DESCRICAO}`;
+            if (equipamento.EXTRA == "true") {
+                var descricaoExibicao = `${equipamento.PREFIXO} - ${equipamento.DESCRICAO}`;
             } else {
                 var descricaoExibicao = `${equipamento.DESCRICAO}, MARCA: ${equipamento.FABRICANTE}, Modelo: ${equipamento.MODELO}, ANO: ${equipamento.ANO}, PLACA: ${equipamento.PLACA}, PREFIXO: ${equipamento.PREFIXO}`;
             }
@@ -90,12 +92,12 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
                 NSEQ: numeroSequencia,
                 DESCRICAO: (descricaoExibicao ?? equipamento.DESCRICAO),
                 DESCRICAOEXIBICAO: (descricaoExibicao ?? equipamento.DESCRICAO),
-                CODUNIDADE:"",
+                CODUNIDADE: "",
                 VALORUNITARIO: equipamento.VALORLOCACAO,
-                QUANTIDADE:"",
+                QUANTIDADE: "",
                 UNIDADE: equipamento.UNIDADE,
                 UNIDADEPREENCHIDA: equipamento.UNIDADE != "" ? true : false,
-                DIASTRABALHADOS:"0",
+                DIASTRABALHADOS: "0",
                 ACUMULADOFINANCEIROANT: valorFinanceiroAnterior,
                 ACUMULADOFISICOANT: valorFisicoAnterior,
                 ACUMULADOFISICOPREENCHIDO: valorFisicoAnterior > 0 ? true : false,
@@ -104,19 +106,19 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
                 ACUMULADOFISICOATUAL: valorFisicoAnterior,
                 PRESENTEFISICO: 0,
                 PRESENTEFINANCEIRO: 0,
-                HORASTRAB:"",
-                PermiteExcluir:"",
-                Ativo:"",
-                HORAMINIMA:"",
+                HORASTRAB: "",
+                PermiteExcluir: "",
+                Ativo: "",
+                HORAMINIMA: "",
                 EXTRA: equipamento.EXTRA
             });
-            numeroSequencia ++;
+            numeroSequencia++;
             prefixos.push(equipamento.PREFIXO);
         });
 
 
         dsContratoItens.forEach((item) => {
-            var descricaoExibicao =  item.PREFIXO ? `${item.PREFIXO} - ${item.DESCRICAO}` : item.DESCRICAO;
+            var descricaoExibicao = item.PREFIXO ? `${item.PREFIXO} - ${item.DESCRICAO}` : item.DESCRICAO;
             itens.push({
                 ID: item.CONTRATOITEMID,
                 CONTRATOITEMID: item.CONTRATOITEMID,
@@ -124,12 +126,12 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
                 NSEQ: numeroSequencia,
                 DESCRICAO: descricaoExibicao,
                 DESCRICAOEXIBICAO: descricaoExibicao,
-                CODUNIDADE:"",
+                CODUNIDADE: "",
                 VALORUNITARIO: item.VALOR,
-                QUANTIDADE:"",
+                QUANTIDADE: "",
                 UNIDADE: item.UNIDADE,
                 UNIDADEPREENCHIDA: item.UNIDADE != "" ? true : false,
-                DIASTRABALHADOS:"0",
+                DIASTRABALHADOS: "0",
                 ACUMULADOFINANCEIROANT: item.ACUMULADOATUAL > 0 ? arredondar(Number(item.ACUMULADOATUAL), 2) : 0,
                 ACUMULADOFISICOANT: item.ACUMULADOFISICO > 0 ? Number(item.ACUMULADOFISICO) : 0,
                 ACUMULADOFISICOPREENCHIDO: item.ACUMULADOFISICO > 0 ? true : false,
@@ -138,29 +140,29 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
                 ACUMULADOFISICOATUAL: item.ACUMULADOFISICO > 0 ? Number(item.ACUMULADOFISICO) : 0,
                 PRESENTEFISICO: 0,
                 PRESENTEFINANCEIRO: 0,
-                HORASTRAB:"",
-                PermiteExcluir:"",
-                Ativo:"",
-                HORAMINIMA:"",
+                HORASTRAB: "",
+                PermiteExcluir: "",
+                Ativo: "",
+                HORAMINIMA: "",
                 EXTRA: 1
             });
-            numeroSequencia ++;
+            numeroSequencia++;
             prefixos.push(item.PREFIXO);
         });
 
-        if (ultimaMedicoesItens.length > 0){
+        if (ultimaMedicoesItens.length > 0) {
             ultimaMedicoesItens.forEach((medicao) => {
-                if (medicao.EQUIPLOCID > 0){
+                if (medicao.EQUIPLOCID > 0) {
                     var item = itens.filter(a => a.EQUIPLOCID == medicao.EQUIPLOCID);
                 } else {
                     var item = itens.filter(a => a.PREFIXO == medicao.PREFIXO);
                 }
-                
-                if (!item && (!medicao.prefixo || medicao.prefixo == "")){
+
+                if (!item && (!medicao.prefixo || medicao.prefixo == "")) {
                     item = itens.filter(a => a.DESCRICAO == medicao.DESCRICAO);
                 }
-                
-                if (item.length > 0){
+
+                if (item.length > 0) {
                     item[0].ACUMULADOFISICOANT = medicao.ACUMULADOFISICOATUAL;
                     item[0].ACUMULADOFINANCEIROANT = medicao.ACUMULADOFINANCEIROATUAL;
                     item[0].ACUMULADOFISICOATUAL = medicao.ACUMULADOFISICOATUAL;
@@ -172,7 +174,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
         }
 
         prefixos = [...new Set(prefixos.filter(a => a != "" && a != null))];
-        
+
         var dsDescontosSisma = await ExecutaDataset(
             "dsMedicoes",
             null,
@@ -184,17 +186,17 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
             null
         );
 
-        let periodoInicial = FormataData(moment(ultimaMedicao?.PERIODOFINAL).add(1,'days'));
-        let periodoFinal = FormataData(moment(ultimaMedicao?.PERIODOFINAL).add(1,'days').endOf('month'));
+        let periodoInicial = FormataData(moment(ultimaMedicao?.PERIODOFINAL).add(1, 'days'));
+        let periodoFinal = FormataData(moment(ultimaMedicao?.PERIODOFINAL).add(1, 'days').endOf('month'));
 
         let descontosSismaFiltrados = [];
         let descontoAtual = 0;
-        if (prefixos.length > 0){
-            var prefixosQuery = prefixos.reduce((accum,cur) => accum + "'" + cur + "',", "(");
+        if (prefixos.length > 0) {
+            var prefixosQuery = prefixos.reduce((accum, cur) => accum + "'" + cur + "',", "(");
             var prefixosQuery = prefixosQuery.slice(0, -1) + ")";
             descontosSismaFiltrados = dsDescontosSisma
-            .filter(a => prefixos.includes(a.num_equipamento) 
-                    && a.dt_ordem >= FormataDataISO(periodoInicial) 
+                .filter(a => prefixos.includes(a.num_equipamento)
+                    && a.dt_ordem >= FormataDataISO(periodoInicial)
                     && a.dt_ordem <= FormataDataISO(periodoFinal)
                 );
             descontoAtual = descontosSismaFiltrados.reduce((acumulado, item) => acumulado + Number(item.vlr_total), 0);
@@ -204,10 +206,10 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
 
         var totalAcumulado = itens.reduce((acumulador, item) => acumulador + (item.ACUMULADOFINANCEIROANT > 0 ? Number(item.ACUMULADOFINANCEIROANT) : 0), 0);
 
-        let contratoAtual = {...Contrato};
+        let contratoAtual = { ...Contrato };
         contratoAtual.medicoes = [];
 
-        let descontoAnterior = contratoDesconto?.VALORDESCONTO ?? 
+        let descontoAnterior = contratoDesconto?.VALORDESCONTO ??
             (Number(ultimaMedicao?.DESCONTOANTERIOR ?? 0) + Number(ultimaMedicao?.DESCONTOATUAL ?? 0));
 
         var novaMedicao = {
@@ -254,7 +256,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
         setMedicao(novaMedicao)
     }
 
-    async function handleEditarMedicao(){
+    async function handleEditarMedicao() {
         let dsMedicoes = await ExecutaDataset(
             "dsMedicoes",
             [],
@@ -286,9 +288,9 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
                 NSEQ: numeroSequencia,
                 DESCRICAO: item.DESCRICAO,
                 DESCRICAOEXIBICAO: item.DESCRICAO,
-                CODUNIDADE:"",
+                CODUNIDADE: "",
                 VALORUNITARIO: item.VALORUNITARIO,
-                QUANTIDADE:"",
+                QUANTIDADE: "",
                 UNIDADE: item.UNIDADE,
                 UNIDADEPREENCHIDA: item.UNIDADE != "" ? true : false,
                 DIASTRABALHADOS: item.DIASTRABALHADOS,
@@ -300,19 +302,19 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
                 ACUMULADOFINANCEIROPREENCHIDO: valorFinanceiroAnterior > 0 ? true : false,
                 PRESENTEFISICO: item.PRESENTEFISICO,
                 PRESENTEFINANCEIRO: item.PRESENTEFINANCEIRO,
-                HORASTRAB:"",
-                PermiteExcluir:"",
-                Ativo:"",
-                HORAMINIMA:""
+                HORASTRAB: "",
+                PermiteExcluir: "",
+                Ativo: "",
+                HORAMINIMA: ""
             });
-            numeroSequencia ++;
+            numeroSequencia++;
             prefixos.push(item.PREFIXO);
         });
 
         var totalAcumulado = itens.reduce((acumulador, item) => acumulador + (item.ACUMULADOFINANCEIROANT > 0 ? Number(item.ACUMULADOFINANCEIROANT) : 0), 0);
 
         prefixos = [...new Set(prefixos.filter(a => a != "" && a != null))];
-        
+
         var dsDescontosSisma = await ExecutaDataset(
             "dsMedicoes",
             null,
@@ -326,19 +328,19 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
 
         let descontosSismaFiltrados = [];
         let descontoAtual = 0;
-        if (prefixos.length > 0){
-            var prefixosQuery = prefixos.reduce((accum,cur) => accum + "'" + cur + "',", "(");
+        if (prefixos.length > 0) {
+            var prefixosQuery = prefixos.reduce((accum, cur) => accum + "'" + cur + "',", "(");
             var prefixosQuery = prefixosQuery.slice(0, -1) + ")";
             descontosSismaFiltrados = dsDescontosSisma
-            .filter(a => prefixos.includes(a.num_equipamento) 
-                    && a.dt_ordem >= FormataDataISO(medicaoFormatada.PERIODOINICIAL) 
+                .filter(a => prefixos.includes(a.num_equipamento)
+                    && a.dt_ordem >= FormataDataISO(medicaoFormatada.PERIODOINICIAL)
                     && a.dt_ordem <= FormataDataISO(medicaoFormatada.PERIODOFINAL)
                 );
         }
 
         setDescontosSisma(dsDescontosSisma);
 
-        let contratoAtual = {...Contrato};
+        let contratoAtual = { ...Contrato };
         contratoAtual.medicoes = [];
         var novaMedicao = {
             fornecedor: Fornecedor,
@@ -383,11 +385,11 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
         setMedicao(novaMedicao)
     }
 
-    function validarFormulario(medicaoOriginal){
-        let medicao = {...medicaoOriginal};
-        if (!(validarData(medicao.DATACOMPETENCIA,"DD/MM/YYYY") && validarData(medicao.PERIODOINICIAL,"DD/MM/YYYY") && validarData(medicao.PERIODOFINAL,"DD/MM/YYYY"))){
+    function validarFormulario(medicaoOriginal) {
+        let medicao = { ...medicaoOriginal };
+        if (!(validarData(medicao.DATACOMPETENCIA, "DD/MM/YYYY") && validarData(medicao.PERIODOINICIAL, "DD/MM/YYYY") && validarData(medicao.PERIODOFINAL, "DD/MM/YYYY"))) {
             FLUIGC.toast({
-                title: "Verificar data não preenchida ou inválida",
+                title: "Verificar data nï¿½o preenchida ou invï¿½lida",
                 message: "",
                 type: "warning"
             });
@@ -396,8 +398,8 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
 
         let itensSemMedicao = medicao.Itens.filter(a => !(a.DIASTRABALHADOS > 0));
 
-        if (itensSemMedicao.length > 0){
-            if(!confirm("Existem itens sem medição. Deseja prosseguir com medição zerada?")){
+        if (itensSemMedicao.length > 0) {
+            if (!confirm("Existem itens sem mediï¿½ï¿½o. Deseja prosseguir com mediï¿½ï¿½o zerada?")) {
                 return false;
             }
             itensSemMedicao.forEach(item => {
@@ -406,18 +408,18 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
             })
         }
 
-        if(!(medicao.NUMEROMEDICAO > 0)){
+        if (!(medicao.NUMEROMEDICAO > 0)) {
             FLUIGC.toast({
-                title: "Numero da medição não informado",
+                title: "Numero da mediï¿½ï¿½o nï¿½o informado",
                 message: "",
                 type: "warning"
             });
             return false;
         }
 
-        if(!(Medicao.CATEGORIAPRODUTOID > 0)){
+        if (!(Medicao.CATEGORIAPRODUTOID > 0)) {
             FLUIGC.toast({
-                title: "Categoria de serviço/produto não informada",
+                title: "Categoria de serviï¿½o/produto nï¿½o informada",
                 message: "",
                 type: "warning"
             });
@@ -427,12 +429,12 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
         return true;
     }
 
-    async function handleSalvarMedicao(){
-        var medicao = {...Medicao};
+    async function handleSalvarMedicao() {
+        var medicao = { ...Medicao };
         totalizarValores(medicao);
         setMedicao(medicao);
 
-        if (!validarFormulario(medicao)){
+        if (!validarFormulario(medicao)) {
             return;
         }
 
@@ -463,20 +465,20 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
                 null
             );
 
-            if (!dsMedicoesAtualizadas || dsMedicoesAtualizadas.length == 0){
+            if (!dsMedicoesAtualizadas || dsMedicoesAtualizadas.length == 0) {
                 FLUIGC.toast({
-                    title: "Data Erro ao salvar medição!",
+                    title: "Data Erro ao salvar mediï¿½ï¿½o!",
                     message: "",
                     type: "error"
                 });
                 return;
             }
-            
+
             let dsMedicaoInsert = formatarObjetoMedicao(dsMedicoesAtualizadas);
 
-            if (!(dsMedicaoInsert.MEDICAOID > 0)){
+            if (!(dsMedicaoInsert.MEDICAOID > 0)) {
                 FLUIGC.toast({
-                    title: "Erro ao salvar medição!",
+                    title: "Erro ao salvar mediï¿½ï¿½o!",
                     message: "",
                     type: "error"
                 });
@@ -487,7 +489,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
             medicao.Itens = dsMedicaoInsert.Itens;
         }
 
-        if (dsMedicoesAtualizadas){
+        if (dsMedicoesAtualizadas) {
             var medicaoFormatada = formatarObjetoMedicao(dsMedicoesAtualizadas);
             $("#medicaoID").val(medicaoFormatada.MEDICAOID);
             medicaoFormatada.fornecedor = medicao.fornecedor;
@@ -504,27 +506,27 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
         retornarSelecaoInicial();
     }
 
-    function totalizarValores(medicao){
+    function totalizarValores(medicao) {
         medicao.ACUMULADOANTERIOR = medicao.Itens.reduce((acumulador, item) => acumulador + (item.ACUMULADOFINANCEIROANT > 0 ? Number(item.ACUMULADOFINANCEIROANT) : 0), 0);
         medicao.PRESENTEMEDICAO = medicao.Itens.reduce((acumulador, item) => acumulador + (item.PRESENTEFINANCEIRO > 0 ? Number(item.PRESENTEFINANCEIRO) : 0), 0);
         medicao.ACUMULADOATUAL = medicao.ACUMULADOANTERIOR + medicao.PRESENTEMEDICAO;
-        medicao.RETENCAOATUAL = Number(Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL)) *(medicao.POSSUIRETENCAO ? medicao.PERCENTUALRETENCAO : 0);
+        medicao.RETENCAOATUAL = Number(Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL)) * (medicao.POSSUIRETENCAO ? medicao.PERCENTUALRETENCAO : 0);
         medicao.REIDIATUAL = Number(medicao.PRESENTEMEDICAO - medicao.RETENCAOATUAL - Number(medicao.DESCONTOATUAL)) * Number(medicao.TAXAREIDI) / 100;
     }
-    
+
     function updateDescontoSisma(medicao) {
-        let medicaoTemp = medicao ? medicao : {...Medicao};
+        let medicaoTemp = medicao ? medicao : { ...Medicao };
         let prefixos = medicaoTemp.Itens.map(a => a.PREFIXO);
 
         prefixos = [...new Set(prefixos.filter(a => a != "" && a != null))];
 
-        if (prefixos.length > 0){
+        if (prefixos.length > 0) {
             let dataInicial = FormataDataISO(medicaoTemp.PERIODOINICIAL);
             let dataFinal = FormataDataISO(medicaoTemp.PERIODOFINAL);
             let descontosSismaFiltrados = DescontosSisma
-            .filter(a => prefixos.includes(a.num_equipamento) 
-                && moment(a.dt_ordem) >= moment(dataInicial) 
-                && moment(a.dt_ordem) <= moment(dataFinal)
+                .filter(a => prefixos.includes(a.num_equipamento)
+                    && moment(a.dt_ordem) >= moment(dataInicial)
+                    && moment(a.dt_ordem) <= moment(dataFinal)
                 );
             var descontoAtual = descontosSismaFiltrados.reduce((acumulado, item) => acumulado + Number(item.vlr_total), 0);
 
@@ -535,8 +537,8 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
         return medicaoTemp;
     }
 
-    function onChangeMedicao(e){
-        if (e.atualizadoDescontoSisma){
+    function onChangeMedicao(e) {
+        if (e.atualizadoDescontoSisma) {
             e = updateDescontoSisma(e);
         }
         var MedicaoTemp = { ...Medicao, ...e };
@@ -545,16 +547,16 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
 
     async function onRemoverItem(id) {
         var MedicaoTemp = { ...Medicao };
-        var itensRemoverTemp = [ ...itensRemover ];
-        if(!confirm("Confirma a remoção deste item?")){
+        var itensRemoverTemp = [...itensRemover];
+        if (!confirm("Confirma a remoï¿½ï¿½o deste item?")) {
             return
         }
         let itemRemover = MedicaoTemp.Itens.filter(a => a.ID == id);
-        if (itemRemover && itemRemover.length > 0){
+        if (itemRemover && itemRemover.length > 0) {
             itensRemoverTemp.push(itemRemover[0]);
         }
         var novaListaItens = MedicaoTemp.Itens.filter(a => a.ID != id);
-        for (i = 0; i < novaListaItens.length; i++){
+        for (i = 0; i < novaListaItens.length; i++) {
             novaListaItens[i].NSEQ = i + 1;
         }
 
@@ -575,27 +577,56 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
             </button>}
             <br />
             {Medicao &&
-            <BoletimMedicao
-                Contrato={Contrato}
-                Medicao={Medicao}
-                CCUSTO={CCUSTO}
-                Fornecedor={Fornecedor}
-                onChangeMedicao={onChangeMedicao}
-                onRemoverItem={onRemoverItem}
-                totalizarValores={totalizarValores} />}
+                <BoletimMedicao
+                    Contrato={Contrato}
+                    Medicao={Medicao}
+                    CCUSTO={CCUSTO}
+                    Fornecedor={Fornecedor}
+                    onChangeMedicao={onChangeMedicao}
+                    onRemoverItem={onRemoverItem}
+                    totalizarValores={totalizarValores} />}
             <br />
             {Medicao &&
-            <FormularioNovoItem
-                Medicao={Medicao}
-                onChangeMedicao={onChangeMedicao} />}
+                <FormularioNovoItem
+                    Medicao={Medicao}
+                    onChangeMedicao={onChangeMedicao} />}
             <br />
             {Medicao &&
-            <div className="col-md-offset-10">
-                <button className="btn btn-success" onClick={handleSalvarMedicao}>
-                    Salvar Medição
-                </button>
-            </div>
+                <DescontoExtra valorDescontoExtra={valorDescontoExtra} setvalorDescontoExtra={setvalorDescontoExtra} />
+            }
+            {Medicao &&
+                <div className="col-md-offset-10">
+                    <button className="btn btn-success" onClick={handleSalvarMedicao}>
+                        Salvar MediÃ§Ã£o
+                    </button>
+                </div>
             }
         </>
     );
+}
+
+function DescontoExtra({ valorDescontoExtra, setvalorDescontoExtra }) {
+    return (
+        <>
+
+            <div className="panel panel-primary">
+                <div className="panel-heading">
+                    <h3 className="panel-title">Desconto Extra</h3>
+                </div>
+                <div className="panel-body">
+                    <label htmlFor="valorDescontoExtra">Valor Desconto</label>
+                    <MoneyInput
+                        textAlign={"left"}
+                        value={valorDescontoExtra}
+                        onChange={(valor) => setvalorDescontoExtra(valor)}>
+                    </MoneyInput>
+                    <br />
+                    <label htmlFor="">Justificativa</label>
+                    <textarea name="justificativaDescontoExtra" id="justificativaDescontoExtra" className="form-control" ></textarea>
+                </div>
+            </div>
+
+        </>
+    )
+
 }
