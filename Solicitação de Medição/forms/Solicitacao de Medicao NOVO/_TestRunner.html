@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <!-- React -->
+        <script src="babel.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.14.0/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.14.0/umd/react-dom.development.js"></script>
+
+        <!-- Antd -->
+        <script src="antd.min.js"></script>
+        <link rel="stylesheet" href="antd.min.css" />
+        <script src="moment.min.js"></script>
+
+        <!-- Jasmine TDD -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.0.0/jasmine.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.0.0/jasmine.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.0.0/jasmine-html.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.0.0/boot0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/5.0.0/boot1.min.js"></script>
+
+        <!-- Fluig -->
+        <link type="text/css" rel="stylesheet" href="style-guide/css/fluig-style-guide.min.css" />
+        <script type="text/javascript" src="portal/resources/js/jquery/jquery.js"></script>
+        <script type="text/javascript" src="portal/resources/js/jquery/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="portal/resources/js/mustache/mustache-min.js"></script>
+        <script type="text/javascript" src="style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+        <script src="/webdesk/vcXMLRPC.js"></script>
+
+        <!--Funcionalidades-->
+        <link rel="stylesheet" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" />
+        <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+        <!-- Processo -->
+        <script src="Classes.js"></script>
+        <script src="Functions.js" type="text/babel"></script>
+        <script src="ReactComponentes.jsx" type="text/babel"></script>
+        <link rel="stylesheet" href="Style.css" />
+    </head>
+    <body>
+        <div class="fluig-style-guide">
+            <!-- <form name="form" role="form"> -->
+            <!-- ReactContainer -->
+            <div id="AppRoot"></div>
+
+            <!-- Hidden Fields -->
+            <div style="display: hidden">
+                <input type="hidden" name="userCode" id="userCode" />
+            </div>
+            <!-- </form> -->
+        </div>
+    </body>
+
+    <script type="text/babel">
+        // Inicializa o React
+        $(document).ready(function () {
+            PrototipaNumeroPorExtenso();
+        });
+    </script>
+    <script src="_test.js"></script>
+</html>

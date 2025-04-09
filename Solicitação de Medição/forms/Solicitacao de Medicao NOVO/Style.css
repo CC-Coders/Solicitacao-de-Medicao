@@ -1,0 +1,287 @@
+#divImageColigada{
+    text-align: center;
+}
+
+.textAlignCenter{
+    text-align: center !important;
+}
+
+.bg-gray {
+    background-color: #eeeeee !important;
+    color: black !important;
+}
+
+.pd-l-0 {
+    padding-left: 0px !important;
+}
+
+.scrooltrable-medicoes {
+    overflow: auto !important;
+    max-height: 25em !important;
+    padding-top: 0px !important;
+    margin-top: 24px !important;
+}
+
+.scrolltable-medicoes {
+    overflow-x: auto;
+}
+
+.table-wrapper {
+    position: relative;
+}
+
+.table-wrapper table {
+    width: 100%;
+}
+
+.table-wrapper thead {
+    position: sticky;
+    top: 0;
+    background-color: white; /* Altere a cor de fundo conforme necessÃ¡rio */
+    z-index: 1; /* Certifique-se de que o cabeÃ§alho fique acima do conteÃºdo da tabela */
+}
+
+.table-wrapper th {
+    text-align: left; /* Ajuste o alinhamento do texto conforme necessÃ¡rio */
+}
+
+.table-wrapper th,
+.table-wrapper td {
+    padding: 8px; /* Ajuste o preenchimento conforme necessÃ¡rio */
+}
+
+.table-wrapper th:first-child,
+.table-wrapper td:first-child {
+    padding-left: 20px; /* Adicione preenchimento extra para o primeiro cabeÃ§alho e cÃ©lula da tabela, se necessÃ¡rio */
+}
+
+.table-wrapper th:last-child,
+.table-wrapper td:last-child {
+    padding-right: 20px; /* Adicione preenchimento extra para o Ãºltimo cabeÃ§alho e cÃ©lula da tabela, se necessÃ¡rio */
+}
+
+
+.table-boletim th{
+    text-align: center !important;
+    vertical-align: middle !important;
+    border: 1px solid black !important;
+    padding: 1px !important;
+
+}
+
+.table-boletim td{
+    text-align: center !important;
+    border: 1px solid black !important;
+    padding: 1px !important;
+    vertical-align: middle !important;
+
+}
+
+
+.semPadding{
+    padding: 0px !important;
+}
+
+.hide{
+    display: none;
+}
+
+
+textarea{
+    resize: both !important;
+}
+
+
+.table-boletim input {
+    padding: 3px 6px !important;
+}
+
+.table-boletim select{
+    width: auto !important;
+    padding-left: 3px !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    padding-right: 30px !important;
+}
+
+
+.btnPaginacao{
+    margin-left: 1px !important;
+    margin-right: 1px !important;
+
+}
+
+
+.HoverCollumn{
+    background-color: #58595b !important;
+    color: white !important;
+}
+
+.alignCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#pdfBoletimMedicao{
+    min-height:100vh;
+    width:100%;
+}
+
+#pdfBoletimMedicaoGerada{
+    min-height:60vh;
+    width:100%;
+}
+
+.panel-heading {
+    padding: 3px !important;
+}
+
+.tab{ 
+    border: black 1px solid !important;
+    border-radius: 4px 4px 0 0 !important;
+}
+
+.fluig-style-guide .nav-tabs.nav-justified>li.in>a {
+    background-color: #58595b;
+    color: #fff;
+}
+
+.tab-content{
+    border: black solid 1px; 
+    width: fit-content; 
+    min-width: 100%;
+}
+
+#tabChecklist>ol>li>label{
+    display: contents;
+}
+#tabChecklist>ol>li>label>input{
+    margin-right: 3px;
+}
+
+td.details-control {
+    background: url('images/details_open.png') no-repeat center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('images/details_close.png') no-repeat center;
+}
+
+#tableContratos>tbody>tr.odd, #tableContratos>tbody>tr.even{
+    background-color: #f5f5f5;
+}
+
+#divAvisoStatusContrato{
+    color: red;
+    text-align: center;
+    border: 1px red solid;
+}
+
+#popoverRetencaoAcumulada{
+    width: fit-content;
+}
+
+#divImageColigada{
+    text-align: center;
+}
+
+.has-error{
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+    display: inline-block;
+    border: 1px red solid !important;
+    color: black !important;
+}
+
+.div-alert{
+    border: 1px solid red;
+    color: red;
+    padding: 10px;
+    width: fit-content;
+    margin: auto;
+}
+
+.text-center th {
+    text-align: center !important;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 120em;
+    width: 100%;
+}
+
+.close-button {
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.table-container {
+    width: 100%;
+    max-height: 400px; /* Defina a altura máxima do contêiner */
+    overflow-y: auto;
+    margin: 0 auto;
+}
+
+.fixed-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.fixed-table thead, .fixed-table tfoot {
+    background-color: #f2f2f2;
+    position: sticky;
+    z-index: 1;
+}
+
+.fixed-table thead {
+    top: 0;
+}
+
+.fixed-table tfoot {
+    bottom: 0;
+}
+
+.fixed-table th, .fixed-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.fixed-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.modal-descontos {
+    height: 34em !important;
+    max-width: 60em !important;
+    width: 80% !important;
+}
+
+.fixed-table th, 
+.fixed-table td {
+    text-align: center;
+}
