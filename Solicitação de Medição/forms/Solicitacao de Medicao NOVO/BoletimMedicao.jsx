@@ -32,7 +32,7 @@ function BoletimMedicao({ Contrato, Medicao, CCUSTO, Fornecedor, onChangeMedicao
         const BISEXTO = moment(Medicao.PERIODOINICIAL, "YYYY-MM-DD").isLeapYear();
         let diasReferencia = 30;
         let itemEditado = MedicaoTemp.Itens[itemIndex];
-        const unidadesDia = ["MÊS","DIA"];
+        const unidadesDia = ["Mï¿½S","DIA"];
 
         if (itemIndex !== -1) {
             itemEditado[columnName] = newValue;
@@ -44,7 +44,7 @@ function BoletimMedicao({ Contrato, Medicao, CCUSTO, Fornecedor, onChangeMedicao
                 obterTotalDiasMedicao();
                 if (columnName == "DIASTRABALHADOS" && unidadesDia.includes(itemEditado.UNIDADE.toUpperCase()) && Medicao.TOTALDIASMEDICAO < newValue){
                     FLUIGC.toast({
-                        title: "Os dias trabalhos não devem ser maior que a quantidade de dias no intervalo medido",
+                        title: "Os dias trabalhos nï¿½o devem ser maior que a quantidade de dias no intervalo medido",
                         message: "",
                         type: "warning"
                     });
@@ -70,13 +70,13 @@ function BoletimMedicao({ Contrato, Medicao, CCUSTO, Fornecedor, onChangeMedicao
                 }
 
                 let VALORFISICO = columnName == "DIASTRABALHADOS" ? newValue: itemEditado["DIASTRABALHADOS"];
-                if (itemEditado.UNIDADE == "MÊS" && columnName == "DIASTRABALHADOS"){
+                if (itemEditado.UNIDADE == "Mï¿½S" && columnName == "DIASTRABALHADOS"){
                     if (Number(newValue) == 31 && Medicao.TOTALDIASMEDICAO == 31){
                         VALORFISICO = 1.00;
                     } else {
                         VALORFISICO = (newValue / diasReferencia).toFixed(15);
                     }
-                } else if (itemEditado.UNIDADE == "MÊS"){
+                } else if (itemEditado.UNIDADE == "Mï¿½S"){
                     VALORFISICO = (itemEditado.DIASTRABALHADOS / diasReferencia).toFixed(15);
                 } else {
                     VALORFISICO = itemEditado.DIASTRABALHADOS;
@@ -97,7 +97,7 @@ function BoletimMedicao({ Contrato, Medicao, CCUSTO, Fornecedor, onChangeMedicao
         const TOTALDIASMEDICAO = obterDiferencaDias(Medicao.PERIODOINICIAL, Medicao.PERIODOFINAL) + 1;
         if (!TOTALDIASMEDICAO > 0){
             FLUIGC.toast({
-                    title: "Data do intervalo de medição não preenchida!",
+                    title: "Data do intervalo de mediï¿½ï¿½o nï¿½o preenchida!",
                     message: "",
                     type: "warning"
                 });
@@ -106,10 +106,10 @@ function BoletimMedicao({ Contrato, Medicao, CCUSTO, Fornecedor, onChangeMedicao
     }
 
     function alterarValorFinanceiro(item) {
-        if (item.UNIDADE.includes("MÊS")){
+        if (item.UNIDADE.includes("Mï¿½S")){
             if (Medicao.TOTALDIASMEDICAO < item.DIASTRABALHADOS){
                 FLUIGC.toast({
-                    title: "A quantidade de dias trabalhados é menor que o período selecionado na medição!",
+                    title: "A quantidade de dias trabalhados ï¿½ menor que o perï¿½odo selecionado na mediï¿½ï¿½o!",
                     message: "",
                     type: "warning"
                 });
@@ -132,7 +132,7 @@ function BoletimMedicao({ Contrato, Medicao, CCUSTO, Fornecedor, onChangeMedicao
             const TOTALDIASMEDICAO = obterDiferencaDias(medicaoTemp.PERIODOINICIAL, medicaoTemp.PERIODOFINAL) + 1;
             if (TOTALDIASMEDICAO <= 0){
                 FLUIGC.toast({
-                    title: "Verificar o período da medição!",
+                    title: "Verificar o perï¿½odo da mediï¿½ï¿½o!",
                     message: "",
                     type: "warning"
                 });
@@ -141,7 +141,7 @@ function BoletimMedicao({ Contrato, Medicao, CCUSTO, Fornecedor, onChangeMedicao
             if (TOTALDIASMEDICAO > 31){
                 medicaoTemp.PERIODOFINAL = obterDataFinalLimite(medicaoTemp.PERIODOINICIAL);
                 FLUIGC.toast({
-                    title: "Período da medição maior que o limite máximo (31 dias)!",
+                    title: "Perï¿½odo da mediï¿½ï¿½o maior que o limite mï¿½ximo (31 dias)!",
                     message: "",
                     type: "warning"
                 });
@@ -232,7 +232,7 @@ function BoletimMedicaoHead({ Contrato, Medicao, CCUSTO, Fornecedor, IsViewMode,
                 <tr>
                     <th style={{ verticalAlign: "middle" }} colSpan={4}>
                         <img src="https://www.castilho.com.br/logo-castilho.png" alt="" height="30px" align="left" style={{ margin: "10px" }} />
-                        <h3 style={{ display: "inline-flex", margin: "10px" }}>Boletim de Medição</h3>
+                        <h3 style={{ display: "inline-flex", margin: "10px" }}>Boletim de Mediï¿½ï¿½o</h3>
                     </th>
                     <th colSpan={1} style={{ verticalAlign: "middle" }}>
                         <select name="" id="" className="form-control" style={{ width: "fit-content", display: "inline-block" }}>
@@ -248,7 +248,7 @@ function BoletimMedicaoHead({ Contrato, Medicao, CCUSTO, Fornecedor, IsViewMode,
                         {CCUSTO.CODCCUSTO} - {CCUSTO.NOME}
                     </th>
                     <th className="textAlignCenter">
-                        <b>Código RM</b>
+                        <b>Cï¿½digo RM</b>
                         <br />
                         {Fornecedor.CODCFO}
                     </th>
@@ -280,10 +280,10 @@ function BoletimMedicaoHead({ Contrato, Medicao, CCUSTO, Fornecedor, IsViewMode,
                     <th className="textAlignCenter">
                         <b>Simples Nacional</b>
                         <br />
-                        {Medicao.OPTANTEPELOSIMPLES == true ? "Sim" : "Não"}
+                        {Medicao.OPTANTEPELOSIMPLES == true ? "Sim" : "Nï¿½o"}
                     </th>
                     <th>
-                        <b>Período</b>
+                        <b>Perï¿½odo</b>
                         <br />
                         <div>
                             {!IsViewMode ? (
@@ -319,7 +319,7 @@ function BoletimMedicaoHead({ Contrato, Medicao, CCUSTO, Fornecedor, IsViewMode,
                 <tr className="text-center">
                     <th colSpan={3}>
                         <div style={{ display: "inline-flex", margin: "auto", padding: "8px", verticalAlign: "middle" }}>
-                            <b style={{ whiteSpace: "nowrap", padding: "inherit" }}>Tipo de Serviço/Produto:</b>
+                            <b style={{ whiteSpace: "nowrap", padding: "inherit" }}>Tipo de Serviï¿½o/Produto:</b>
                             <select
                                 name="categoriasProdutoMedicao"
                                 id="categoriasProdutoMedicao"
@@ -364,7 +364,7 @@ function BoletimMedicaoHead({ Contrato, Medicao, CCUSTO, Fornecedor, IsViewMode,
                         )}
                     </th>
                     <th>
-                        <b>Retenção</b>
+                        <b>Retenï¿½ï¿½o</b>
                         <br/>
                         <div className="switch switch-primary">
                             <input
@@ -373,7 +373,7 @@ function BoletimMedicaoHead({ Contrato, Medicao, CCUSTO, Fornecedor, IsViewMode,
                                 id="switch-1-1"
                                 checked={Medicao.POSSUIRETENCAO}
                                 onChange={() => onChangePropMedicao("POSSUIRETENCAO", !(Medicao.POSSUIRETENCAO ?? false))}/>
-                            <label className="switch-button" htmlFor="switch-1-1">Retenção</label>
+                            <label className="switch-button" htmlFor="switch-1-1">Retenï¿½ï¿½o</label>
                         </div>
                     </th>
                 </tr>
@@ -395,7 +395,7 @@ function BoletimDeMedicaoBody({
     let contemItemExclusao = Medicao.Itens?.filter(a => a.PERMITEEXCLUSAO).length > 0;
 
     function validarValorInputDias(item, valor) {
-        if (["DIA","MÊS"].includes(item.UNIDADE)){
+        if (["DIA","Mï¿½S"].includes(item.UNIDADE)){
             valor = valor > Medicao.TOTALDIASMEDICAO ? Medicao.TOTALDIASMEDICAO : valor;
             onChangeItem(item.NSEQ, "DIASTRABALHADOS", valor);
         } else if (item.UNIDADE == "HORA"){
@@ -428,9 +428,9 @@ function BoletimDeMedicaoBody({
                 <thead>
                     <tr>
                         <th rowSpan={2} className="bg-gray">Item</th>
-                        <th rowSpan={2} className="bg-gray">Descrição dos Serviços</th>
+                        <th rowSpan={2} className="bg-gray">Descriï¿½ï¿½o dos Serviï¿½os</th>
                         <th rowSpan={2} className="bg-gray">UNID.</th>
-                        <th rowSpan={2} className="bg-gray">PREÇO UNIT (R$)</th>
+                        <th rowSpan={2} className="bg-gray">PREï¿½O UNIT (R$)</th>
                         <th colSpan={4 - (MostraColunasDeTempo ? 0 : 3) - (MostraColunasAcumulado ? 0 : 2)}className="semPadding bg-gray">
                             FISICO
                         </th>
@@ -442,10 +442,10 @@ function BoletimDeMedicaoBody({
                         {MostraColunasAcumulado && <th className={HoverColunasAcumulado ? "HoverCollumn bg-gray" : "bg-gray"}>ACUMULADO ANTERIOR</th>}
 
                         {MostraColunasDeTempo && (
-                            <th className="bg-gray">MEDIÇÃO</th>
+                            <th className="bg-gray">MEDIï¿½ï¿½O</th>
                         )}
 
-                        <th className="bg-gray">PRESENTE MEDIÇÃO</th>
+                        <th className="bg-gray">PRESENTE MEDIï¿½ï¿½O</th>
                         {MostraColunasAcumulado && (
                             <>
                                 <th className={HoverColunasAcumulado ? "HoverCollumn bg-gray" : "bg-gray"}>ACUMULADO ATUAL</th>
@@ -453,7 +453,7 @@ function BoletimDeMedicaoBody({
                             </>
                         )}
 
-                        <th className="bg-gray">PRESENTE MEDIÇÃO</th>
+                        <th className="bg-gray">PRESENTE MEDIï¿½ï¿½O</th>
 
                         {MostraColunasAcumulado && <th className={HoverColunasAcumulado ? "HoverCollumn bg-gray" : "bg-gray"}>ACUMULADO ATUAL</th>}
                         {contemItemExclusao && (<th className="bg-gray"><i className={"flaticon flaticon-trash icon-md"}></i></th>)}
@@ -473,12 +473,12 @@ function BoletimDeMedicaoBody({
                                         value={Item.UNIDADE}
                                         onChange={(e) => onChangeItem(Item.NSEQ, "UNIDADE", e.target.value)}>
                                             <option value=""></option>
-                                            <option value="MÊS">MÊS</option>
+                                            <option value="Mï¿½S">Mï¿½S</option>
                                             <option value="DIA">DIA</option>
                                             <option value="HORA">HORA</option>
                                             <option value="M">M</option>
-                                            <option value="M²">M²</option>
-                                            <option value="M³">M³</option>
+                                            <option value="Mï¿½">Mï¿½</option>
+                                            <option value="Mï¿½">Mï¿½</option>
                                             <option value="KM">KM</option>
                                             <option value="UN">UN</option>
                                             <option value="VB">VB</option>
@@ -508,7 +508,7 @@ function BoletimDeMedicaoBody({
                             {MostraColunasDeTempo && (
                                 <>
                                     <td>
-                                        {Item.UNIDADE != 'MÊS' && (
+                                        {Item.UNIDADE != 'Mï¿½S' && (
                                             <NumberInput
                                                 value={Item.DIASTRABALHADOS}
                                                 min="0"
@@ -519,7 +519,7 @@ function BoletimDeMedicaoBody({
                                                 readOnly={IsViewMode}
                                             />
                                         )}
-                                        {Item.UNIDADE == 'MÊS' && (
+                                        {Item.UNIDADE == 'Mï¿½S' && (
                                             <NumberInput
                                                 value={Item.DIASTRABALHADOS}
                                                 min="0"
@@ -571,7 +571,7 @@ function BoletimDeMedicaoBody({
                 <tfoot>
                     <tr>
                         <th colSpan={6}></th>
-                        <th colSpan={2} className="bg-gray">VALOR BRUTO MEDIÇÃO</th>
+                        <th colSpan={2} className="bg-gray">VALOR BRUTO MEDIï¿½ï¿½O</th>
                         <th colSpan={1} className="bg-gray"><MoneySpan value={Medicao.ACUMULADOANTERIOR}></MoneySpan></th>
                         <th colSpan={1} className="bg-gray"><MoneySpan value={Medicao.PRESENTEMEDICAO}></MoneySpan></th>
                         <th colSpan={1} className="bg-gray"><MoneySpan value={Medicao.ACUMULADOATUAL}></MoneySpan></th>
@@ -580,12 +580,12 @@ function BoletimDeMedicaoBody({
                     <tr>
                         <th colSpan={6}
                         rowSpan={
-                            Medicao.POSSUIRETENCAO && Medicao.POSSUIREIDI ? 5 :
-                                (Medicao.POSSUIRETENCAO ? 4 :
-                                    (Medicao.POSSUIREIDI ? 3 : 2)
+                            Medicao.POSSUIRETENCAO && Medicao.POSSUIREIDI ? 6 :
+                                (Medicao.POSSUIRETENCAO ? 5 :
+                                    (Medicao.POSSUIREIDI ? 4 : 3)
                                 )
                         }>
-                            <span>VALOR LIQUIDO DA MEDIÇÃO</span>
+                            <span>VALOR LIQUIDO DA MEDIï¿½ï¿½O</span>
                             <br/>
                         {!Medicao.POSSUIRETENCAO && (
                             <span>{numeroPorExtenso(Number(Medicao.PRESENTEMEDICAO) - Number(Medicao.DESCONTOATUAL))}</span>
@@ -617,21 +617,36 @@ function BoletimDeMedicaoBody({
                         <th className="bg-gray"><MoneySpan value={Number(Medicao.DESCONTOANTERIOR) + Number(Medicao.DESCONTOATUAL)}></MoneySpan></th>
                         {contemItemExclusao && (<th className="bg-gray"></th>)}
                     </tr>
+                    <tr>
+                        <th colSpan={2} className="bg-gray">DESCONTOS EXTRA</th>
+                        <th className="bg-gray">
+                            <MoneySpan value={Number(Medicao.ACUMULADOVALORDESCONTOEXTRA)}></MoneySpan>
+                        </th>
+                        <th className="bg-gray">
+                            <MoneyInput
+                                    value={Medicao.VALORDESCONTOEXTRA}
+                                    onChange={(newValue) => onChangePropMedicao("VALORDESCONTOEXTRA", newValue)}>
+                            </MoneyInput>
+                        </th>
+                        <th className="bg-gray">
+                        <MoneySpan value={Number(Medicao.ACUMULADOVALORDESCONTOEXTRA) + Number(Medicao.VALORDESCONTOEXTRA)}></MoneySpan>
+                        </th>
+                    </tr>
                     {Medicao.POSSUIRETENCAO && (<tr>
                         <th colSpan={2} className="bg-gray">TOTAL LIQUIDO</th>
                         <th className="bg-gray">
-                            <MoneySpan value={Number(Medicao.ACUMULADOANTERIOR) - Number(Medicao.DESCONTOANTERIOR)}></MoneySpan>
+                            <MoneySpan value={Number(Medicao.ACUMULADOANTERIOR) - Number(Medicao.DESCONTOANTERIOR) - Number(Medicao.ACUMULADOVALORDESCONTOEXTRA)}></MoneySpan>
                         </th>
                         <th className="bg-gray">
-                            <MoneySpan value={Number(Medicao.PRESENTEMEDICAO) - Number(Medicao.DESCONTOATUAL)}></MoneySpan>
+                            <MoneySpan value={Number(Medicao.PRESENTEMEDICAO) - Number(Medicao.DESCONTOATUAL) - Number(Medicao.VALORDESCONTOEXTRA)}></MoneySpan>
                         </th>
                         <th className="bg-gray">
-                            <MoneySpan value={Number(Medicao.ACUMULADOATUAL) - (Number(Medicao.DESCONTOANTERIOR) + Number(Medicao.DESCONTOATUAL))}></MoneySpan>
+                            <MoneySpan value={Number(Medicao.ACUMULADOATUAL) - (Number(Medicao.DESCONTOANTERIOR) + Number(Medicao.DESCONTOATUAL) + Number(Medicao.ACUMULADOVALORDESCONTOEXTRA) +Number(Medicao.VALORDESCONTOEXTRA))}></MoneySpan>
                         </th>
                         {contemItemExclusao && (<th className="bg-gray"></th>)}
                     </tr>)}
                     {Medicao.POSSUIRETENCAO && (<tr>
-                        <th colSpan={2} className="bg-gray">RETENÇÃO</th>
+                        <th colSpan={2} className="bg-gray">RETENï¿½ï¿½O</th>
                         <th className="bg-gray">
                             {Medicao.primeiraMedicao && (
                                 <MoneyInput
@@ -685,6 +700,7 @@ function BoletimDeMedicaoBody({
                                     Number(
                                         Number(Medicao.ACUMULADOANTERIOR)
                                         - Number(Medicao.DESCONTOANTERIOR)
+                                        - Number(Medicao.ACUMULADOVALORDESCONTOEXTRA)
                                         - (Medicao.POSSUIRETENCAO ? Number(Medicao.RETENCAOANTERIOR) : 0)
                                         - (Medicao.POSSUIREIDI ? Number(Medicao.REIDIANTERIOR) : 0)
                                     )
@@ -697,6 +713,7 @@ function BoletimDeMedicaoBody({
                                     Number(
                                         Number(Medicao.PRESENTEMEDICAO)
                                         - Number(Medicao.DESCONTOATUAL)
+                                        - Number(Medicao.VALORDESCONTOEXTRA)
                                         - (Medicao.POSSUIRETENCAO ? Number(Medicao.RETENCAOATUAL) : 0)
                                         - (Medicao.POSSUIREIDI ? Number(Medicao.REIDIATUAL) : 0)
                                     )
@@ -710,6 +727,7 @@ function BoletimDeMedicaoBody({
                                     Number(Medicao.ACUMULADOATUAL)
                                     - (Number(Medicao.DESCONTOANTERIOR)
                                         + Number(Medicao.DESCONTOATUAL)
+                                    -( Number(Medicao.ACUMULADOVALORDESCONTOEXTRA)+ Number(Medicao.VALORDESCONTOEXTRA))
                                     )
                                     - (Medicao.POSSUIRETENCAO ? (Number(Medicao.RETENCAOANTERIOR) + Number(Medicao.RETENCAOATUAL)) : 0)
                                     - (Medicao.POSSUIREIDI ? (Number(Medicao.REIDIANTERIOR) + Number(Medicao.REIDIATUAL)) : 0)
@@ -721,7 +739,7 @@ function BoletimDeMedicaoBody({
                     </tr>
                     {Medicao.TOTALDIASMEDICAO > 0 && (
                         <tr>
-                            <td colSpan={12}><span className="text-info text-left">*Valor máximo para medição de item com unidade MêS ou DIA corresponde ao total de dias da medição.</span></td>
+                            <td colSpan={12}><span className="text-info text-left">*Valor mï¿½ximo para mediï¿½ï¿½o de item com unidade Mï¿½S ou DIA corresponde ao total de dias da mediï¿½ï¿½o.</span></td>
                         </tr>
                     )}
                 </tfoot>

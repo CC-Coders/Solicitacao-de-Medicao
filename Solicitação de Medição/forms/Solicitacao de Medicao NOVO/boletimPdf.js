@@ -551,7 +551,7 @@ function gerarPDF(medicao) {
 								colSpan: 6,
 								rowSpan: 3 + (medicao.POSSUIRETENCAO ? 2 : 0) + (medicao.POSSUIREIDI ? 1 : 0),
 								border: [true, true, true, true],
-								text: 'VALOR LIQUIDO DA MEDIÇÃO\n' + numeroPorExtenso((Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL)) * (1 - percentualRetencao)),
+								text: 'VALOR LIQUIDO DA MEDIÇÃO\n' + numeroPorExtenso((Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL) - Number(medicao.DESCONTOS_EXTRA)) * (1 - percentualRetencao)),
 								alignment: 'center',
 								style: 'fontCustomTable'
 							},
@@ -616,21 +616,21 @@ function gerarPDF(medicao) {
 							{
 								border: [true, true, true, true],
 								fillColor: '#eeeeee',
-								text: toCurrency(arredondar(Number(medicao.ACUMULADOANTERIOR) - Number(medicao.DESCONTOANTERIOR), 2)),
+								text: toCurrency(arredondar(Number(medicao.ACUMULADOVALORDESCONTOEXTRA), 2)),
 								alignment: 'center',
 								style: 'fontCustomTable'
 							},
 							{
 								border: [true, true, true, true],
 								fillColor: '#eeeeee',
-								text: toCurrency(arredondar(Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL), 2)),
+								text: toCurrency(arredondar(Number(medicao.DESCONTOS_EXTRA), 2)),
 								alignment: 'center',
 								style: 'fontCustomTable'
 							},
 							{
 								border: [true, true, true, true],
 								fillColor: '#eeeeee',
-								text: toCurrency(arredondar(Number(medicao.ACUMULADOATUAL) - (Number(medicao.DESCONTOANTERIOR) + Number(medicao.DESCONTOATUAL)),2)),
+								text: toCurrency(arredondar(Number(medicao.ACUMULADOVALORDESCONTOEXTRA) + Number(medicao.DESCONTOS_EXTRA),2)),
 								alignment: 'center',
 								style: 'fontCustomTable'
 							},
@@ -660,21 +660,21 @@ function gerarPDF(medicao) {
 							{
 								border: [true, true, true, true],
 								fillColor: '#eeeeee',
-								text: toCurrency(arredondar(Number(medicao.ACUMULADOANTERIOR) - Number(medicao.DESCONTOANTERIOR), 2)),
+								text: toCurrency(arredondar(Number(medicao.ACUMULADOANTERIOR) - Number(medicao.DESCONTOANTERIOR) - Number(medicao.ACUMULADOVALORDESCONTOEXTRA), 2)),
 								alignment: 'center',
 								style: 'fontCustomTable'
 							},
 							{
 								border: [true, true, true, true],
 								fillColor: '#eeeeee',
-								text: toCurrency(arredondar(Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL), 2)),
+								text: toCurrency(arredondar(Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL) - Number(medicao.DESCONTOS_EXTRA), 2)),
 								alignment: 'center',
 								style: 'fontCustomTable'
 							},
 							{
 								border: [true, true, true, true],
 								fillColor: '#eeeeee',
-								text: toCurrency(arredondar(Number(medicao.ACUMULADOATUAL) - (Number(medicao.DESCONTOANTERIOR) + Number(medicao.DESCONTOATUAL)),2)),
+								text: toCurrency(arredondar(Number(medicao.ACUMULADOATUAL) - (Number(medicao.DESCONTOANTERIOR) + Number(medicao.DESCONTOATUAL)) - (Number(medicao.ACUMULADOVALORDESCONTOEXTRA)+ Number(medicao.DESCONTOS_EXTRA)),2)),
 								alignment: 'center',
 								style: 'fontCustomTable'
 							},

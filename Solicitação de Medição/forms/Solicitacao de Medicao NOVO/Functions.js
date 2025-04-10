@@ -1251,6 +1251,8 @@ function formatarObjetoMedicao(registros){
             REIDIANTERIOR: registros[0]?.REIDIANTERIOR > 0 ? registros[0]?.REIDIANTERIOR : 0,
             REIDIATUAL: registros[0]?.REIDIATUAL > 0 ? registros[0]?.REIDIATUAL : 0,
             OPTANTEPELOSIMPLES: (registros[0]?.OPTANTEPELOSIMPLES == "true" ? true : false),
+            DESCONTOS_EXTRA: (registros[0]?.DESCONTOS_EXTRA),
+            ACUMULADOVALORDESCONTOEXTRA: (registros[0]?.ACUMULADO_DESCONTOS_EXTRA),
             Itens: []
 	}
     

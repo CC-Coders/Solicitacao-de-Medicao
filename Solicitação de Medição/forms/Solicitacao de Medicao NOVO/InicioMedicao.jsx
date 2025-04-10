@@ -5,7 +5,6 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
     const [Medicao, setMedicao] = useState(null);
     const [DescontosSisma, setDescontosSisma] = useState(null);
     const [itensRemover, setItensRemover] = useState([]);
-    const [valorDescontoExtra, setvalorDescontoExtra] = useState("");
 
 
     async function handleNovaMedicao() {
@@ -248,7 +247,9 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
             TAXAREIDI: ultimaMedicao?.TAXAREIDI > 0 ? ultimaMedicao?.TAXAREIDI : 0,
             REIDIANTERIOR: Number(ultimaMedicao?.REIDIANTERIOR ?? 0) + Number(ultimaMedicao?.REIDIATUAL ?? 0),
             REIDIATUAL: 0,
-            OPTANTEPELOSIMPLES: (Fornecedor.OPTANTEPELOSIMPLES == "1" ? true : false)
+            OPTANTEPELOSIMPLES: (Fornecedor.OPTANTEPELOSIMPLES == "1" ? true : false),
+            VALORDESCONTOEXTRA:0,
+            ACUMULADOVALORDESCONTOEXTRA:ultimaMedicao?.ACUMULADO_DESCONTOS_EXTRA ?? 0,
         };
 
         totalizarValores(novaMedicao);
@@ -378,7 +379,9 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
             TAXAREIDI: medicaoFormatada.TAXAREIDI,
             REIDIANTERIOR: medicaoFormatada.REIDIANTERIOR,
             REIDIATUAL: medicaoFormatada.REIDIATUAL,
-            OPTANTEPELOSIMPLES: (Fornecedor.OPTANTEPELOSIMPLES == "1" ? true : false)
+            OPTANTEPELOSIMPLES: (Fornecedor.OPTANTEPELOSIMPLES == "1" ? true : false),
+            VALORDESCONTOEXTRA: medicaoFormatada.DESCONTOS_EXTRA,
+            ACUMULADOVALORDESCONTOEXTRA: medicaoFormatada.ACUMULADOVALORDESCONTOEXTRA,
         };
 
         totalizarValores(novaMedicao);
@@ -510,8 +513,8 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
         medicao.ACUMULADOANTERIOR = medicao.Itens.reduce((acumulador, item) => acumulador + (item.ACUMULADOFINANCEIROANT > 0 ? Number(item.ACUMULADOFINANCEIROANT) : 0), 0);
         medicao.PRESENTEMEDICAO = medicao.Itens.reduce((acumulador, item) => acumulador + (item.PRESENTEFINANCEIRO > 0 ? Number(item.PRESENTEFINANCEIRO) : 0), 0);
         medicao.ACUMULADOATUAL = medicao.ACUMULADOANTERIOR + medicao.PRESENTEMEDICAO;
-        medicao.RETENCAOATUAL = Number(Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL)) * (medicao.POSSUIRETENCAO ? medicao.PERCENTUALRETENCAO : 0);
-        medicao.REIDIATUAL = Number(medicao.PRESENTEMEDICAO - medicao.RETENCAOATUAL - Number(medicao.DESCONTOATUAL)) * Number(medicao.TAXAREIDI) / 100;
+        medicao.RETENCAOATUAL = Number(Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL) - Number(medicao.DESCONTOS_EXTRA))  * (medicao.POSSUIRETENCAO ? medicao.PERCENTUALRETENCAO : 0);
+        medicao.REIDIATUAL = Number(medicao.PRESENTEMEDICAO - medicao.RETENCAOATUAL - Number(medicao.DESCONTOATUAL) - Number(medicao.DESCONTOS_EXTRA)) * Number(medicao.TAXAREIDI) / 100;
     }
 
     function updateDescontoSisma(medicao) {
@@ -592,7 +595,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
                     onChangeMedicao={onChangeMedicao} />}
             <br />
             {Medicao &&
-                <DescontoExtra valorDescontoExtra={valorDescontoExtra} setvalorDescontoExtra={setvalorDescontoExtra} />
+                <DescontoExtra onChangeMedicao={onChangeMedicao}  Medicao={Medicao} />
             }
             {Medicao &&
                 <div className="col-md-offset-10">
@@ -605,7 +608,12 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
     );
 }
 
-function DescontoExtra({ valorDescontoExtra, setvalorDescontoExtra }) {
+function DescontoExtra({Medicao, onChangeMedicao}) {
+    function changeValorDesconto(valor){
+        Medicao.VALORDESCONTOEXTRA = valor;
+        onChangeMedicao(Medicao);
+    }
+
     return (
         <>
 
@@ -614,14 +622,10 @@ function DescontoExtra({ valorDescontoExtra, setvalorDescontoExtra }) {
                     <h3 className="panel-title">Desconto Extra</h3>
                 </div>
                 <div className="panel-body">
-                    <label htmlFor="valorDescontoExtra">Valor Desconto</label>
-                    <MoneyInput
-                        textAlign={"left"}
-                        value={valorDescontoExtra}
-                        onChange={(valor) => setvalorDescontoExtra(valor)}>
-                    </MoneyInput>
-                    <br />
-                    <label htmlFor="">Justificativa</label>
+                    <label htmlFor="valorDescontoExtra">Valor Desconto:</label><br/>
+                    <MoneySpan value={Medicao.VALORDESCONTOEXTRA} />
+                    <br /><br />
+                    <label htmlFor="">Justificativa:</label>
                     <textarea name="justificativaDescontoExtra" id="justificativaDescontoExtra" className="form-control" ></textarea>
                 </div>
             </div>
