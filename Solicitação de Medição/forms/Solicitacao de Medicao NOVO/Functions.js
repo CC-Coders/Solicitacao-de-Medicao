@@ -335,8 +335,7 @@ function SalvarNumeroUltimoPDF(docID){
 function BuscaUrlDoc(id) {
     return new Promise(function (resolve, reject) {
         $.ajax({
-            url: "http://fluig.castilho.com.br:1010" + "/api/public/2.0/documents/getDownloadURL/" + id,//Prod
-            //url: "http://homologacao.castilho.com.br:2020" + "/api/public/2.0/documents/getDownloadURL/" + id,//Homolog
+            url: parent.WCMAPI.serverURL + "/api/public/2.0/documents/getDownloadURL/" + id,
             contentType: "application/json",
             method: "GET",
             error: function (x, e) {
@@ -650,6 +649,13 @@ function ValidaAntesDeEnviarAtividade() {
             },700);
             throw "Memória de Cálculo não anexada!";
         }
+        if ($("#medicaoTemDescontoExtra").val() == "true" && $("#textJustificativaDescontos").val() == "") {
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#textJustificativaDescontos").offset().top - (screen.height * 0.15)
+            },700);
+            throw "Necessário informar a Justificativa dos Descontos!";
+        }
+
     }
     else if (formMode == "MOD") {
         if (atividade == 4) {//Se atividade inicio
@@ -791,6 +797,15 @@ function entregarAssinado(medicaoID) {
     clicarBotao("btnMostrarWorkFlow");
     VerificaSeInfomacoesTerceiro();
     exibirMedicaoGerada();
+
+    var temDescontoExtra = verificaSeTemDescontosExtras();
+    if (temDescontoExtra) {
+        $("#medicaoTemDescontoExtra").val("true");
+        $("#divJustificativaDescontoExtra").show();
+    }else{
+        $("#medicaoTemDescontoExtra").val("false");
+        $("#divJustificativaDescontoExtra").hide();
+    }
 }
 
 function exibirMedicaoGerada(){
@@ -808,6 +823,22 @@ function exibirMedicaoGerada(){
     });
     
     $("#divBoletimMedicaoGerada").show();
+}
+
+function verificaSeTemDescontosExtras(){
+    var medicaoID = $("#medicaoID").val();
+
+    var ds = DatasetFactory.getDataset("dsMedicoes", null,[
+        DatasetFactory.createConstraint("OPERACAO", "SELECTWHEREMEDICAOID", "SELECTWHEREMEDICAOID", ConstraintType.MUST),
+        DatasetFactory.createConstraint("MEDICAOID", medicaoID, medicaoID, ConstraintType.MUST),
+    ],null);
+
+    if (ds.values[0]?.DESCONTOS_EXTRA != null && parseFloat(ds.values[0]?.DESCONTOS_EXTRA) > 0) {
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 async function removerMedicao(medicaoID){
@@ -944,8 +975,7 @@ function VerificaSeInfomacoesTerceiro(){
 function BuscaInfoDoc(id){
     return new Promise(function (resolve, reject) {
         $.ajax({
-            url: "http://fluig.castilho.com.br:1010" + "/api/public/ecm/document/activedocument/" + id,//Prod
-            //url: "http://homologacao.castilho.com.br:2020" + "/api/public/ecm/document/activedocument/" + id,//Homolog
+            url: parent.WCMAPI.serverURL + "/api/public/ecm/document/activedocument/" + id,
             contentType: "application/json",
             method: "GET",
             error: function (x, e) {
@@ -1429,3 +1459,5 @@ function localePtBR() {
         ordinal: '%dº'
     });
 }
+
+

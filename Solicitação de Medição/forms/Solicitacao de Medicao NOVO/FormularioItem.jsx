@@ -79,7 +79,7 @@ function FormularioNovoItem({
         if (tipoInclusao == "EQUIPAMENTO"){
             if(!NovoItem.prefixo || NovoItem.prefixo == ""){
                 FLUIGC.toast({
-                    title: "Prefixo n�o informado",
+                    title: "Prefixo não informado",
                     message: "",
                     type: "warning"
                 });
@@ -87,7 +87,7 @@ function FormularioNovoItem({
                 return false;
             } else if(!NovoItem.valorEquipamento || NovoItem.valorEquipamento == ""){
                 FLUIGC.toast({
-                    title: "Valor n�o informado",
+                    title: "Valor não informado",
                     message: "",
                     type: "warning"
                 });
@@ -95,7 +95,7 @@ function FormularioNovoItem({
                 return false;
             } else if((!NovoItem.valorExtra || NovoItem.valorExtra == "") && NovoItem.extra){
                 FLUIGC.toast({
-                    title: "Valor da hora extra n�o informado",
+                    title: "Valor da hora extra não informado",
                     message: "",
                     type: "warning"
                 });
@@ -103,7 +103,7 @@ function FormularioNovoItem({
                 return false;
             } else if(!NovoItem.marca || NovoItem.marca == ""){
                 FLUIGC.toast({
-                    title: "Marca n�o informada",
+                    title: "Marca não informada",
                     message: "",
                     type: "warning"
                 });
@@ -111,7 +111,7 @@ function FormularioNovoItem({
                 return false;
             } else if(!NovoItem.modelo || NovoItem.modelo == ""){
                 FLUIGC.toast({
-                    title: "Modelo n�o informado",
+                    title: "Modelo não informado",
                     message: "",
                     type: "warning"
                 });
@@ -119,7 +119,7 @@ function FormularioNovoItem({
                 return false;
             } else if(!NovoItem.ano || NovoItem.ano == ""){
                 FLUIGC.toast({
-                    title: "Ano n�o informado",
+                    title: "Ano não informado",
                     message: "",
                     type: "warning"
                 });
@@ -127,7 +127,7 @@ function FormularioNovoItem({
                 return false;
             } else if(!NovoItem.chassi || NovoItem.chassi == ""){
                 FLUIGC.toast({
-                    title: "Chassi n�o informado",
+                    title: "Chassi não informado",
                     message: "",
                     type: "warning"
                 });
@@ -135,7 +135,7 @@ function FormularioNovoItem({
                 return false;
             } else if(!NovoItem.placa || NovoItem.placa == ""){
                 FLUIGC.toast({
-                    title: "Placa ou s�rie n�o informado",
+                    title: "Placa ou série não informado",
                     message: "",
                     type: "warning"
                 });
@@ -147,14 +147,14 @@ function FormularioNovoItem({
         if (!NovoItem.equipamento || NovoItem.equipamento == ""){
             if (tipoInclusao == "OUTROS"){
                 FLUIGC.toast({
-                    title: "Item sem descri��o",
+                    title: "Item sem descrição",
                     message: "",
                     type: "warning"
                 });
                 focarCampo("novoItemDescricao");
             } else {
                 FLUIGC.toast({
-                    title: "Equipamento n�o informado",
+                    title: "Equipamento não informado",
                     message: "",
                     type: "warning"
                 });
@@ -163,7 +163,7 @@ function FormularioNovoItem({
             return false;
         } else if(!NovoItem.unidade || NovoItem.unidade == ""){
             FLUIGC.toast({
-                title: "Unidade n�o informada",
+                title: "Unidade não informada",
                 message: "",
                 type: "warning"
             });
@@ -171,7 +171,7 @@ function FormularioNovoItem({
             return false;
         } else if(!NovoItem.valor || NovoItem.valor == ""){
             FLUIGC.toast({
-                title: "Valor n�o informado",
+                title: "Valor não informado",
                 message: "",
                 type: "warning"
             });
@@ -185,7 +185,7 @@ function FormularioNovoItem({
     async function incluirItem(medicaoTemp){
         if (Medicao.Itens.filter(a => a.PREFIXO.includes(NovoItem.prefixo) && !a.EXTRA).length > 0 && tipoInclusao == "EQUIPAMENTO"){
             FLUIGC.toast({
-                title: "Prefixo j� adicionado como equipamento. Pode ser adicionado como EXTRA!",
+                title: "Prefixo já adicionado como equipamento. Pode ser adicionado como EXTRA!",
                 message: "",
                 type: "warning"
             });
@@ -196,7 +196,7 @@ function FormularioNovoItem({
 
         if (Medicao.Itens.filter(a => a.DESCRICAO.includes(descricaoItem)).length > 0){
             FLUIGC.toast({
-                title: "J� existe um item cadastrado com estes dados na medi��o",
+                title: "Já existe um item cadastrado com estes dados na medição",
                 message: "",
                 type: "warning"
             });
@@ -276,11 +276,11 @@ function FormularioNovoItem({
 
         if (Medicao.Itens.filter(a => a.DESCRICAO.includes(descricaoItem)).length > 0){
             FLUIGC.toast({
-                title: "N�o foi possivel incluir. J� existe um item cadastrado com estes dados na medi��o!",
+                title: "Não foi possivel incluir. Já existe um item cadastrado com estes dados na medição!",
                 message: "",
                 type: "warning"
             });
-            throw "Erro -- Descri��o j� existente";
+            throw "Erro -- Descrição já existente";
         }
 
         var numeroSequencia = medicaoTemp.Itens.length + 1;
@@ -332,7 +332,7 @@ function FormularioNovoItem({
         if (campo) {
             campo.focus();
         } else {
-            console.error("Campo n�o encontrado com o ID:", idDoCampo);
+            console.error("Campo não encontrado com o ID:", idDoCampo);
         }
     }
 
@@ -414,12 +414,12 @@ function FormularioNovoItem({
                                     value={NovoItem.unidade} 
                                     onChange={(e) => handleChange("unidade",e.target.value)}>
                                         <option value=""></option>
-                                        <option value="M�S">M�S</option>
+                                        <option value="MÊS">MÊS</option>
                                         <option value="DIA">DIA</option>
                                         <option value="HORA">HORA</option>
                                         <option value="M">M</option>
-                                        <option value="M�">M�</option>
-                                        <option value="M�">M�</option>
+                                        <option value="M²">M²</option>
+                                        <option value="M³">M³</option>
                                         <option value="KM">KM</option>
                                         <option value="UN">UN</option>
                                         <option value="TONELADA">TONELADA</option>
@@ -504,7 +504,7 @@ function FormularioNovoItem({
                                 />
                             </div>
                             <div className={"form-group col-md-2 col-lg-2"}>
-                                <label htmlFor={"novoItemValor"}>Valor Loca��o</label>
+                                <label htmlFor={"novoItemValor"}>Valor Locação</label>
                                 <NumberInput 
                                     id={"novoItemValor"}
                                     name={"novoItemValor"}
@@ -544,7 +544,7 @@ function FormularioNovoItem({
                                     value={NovoItem.prefixo}
                                     onChange={(e) => handleChange("prefixo",e.target.value)}
                                 />
-                                <span className="text-info">*N�o obrigat�rio</span>
+                                <span className="text-info">*Não obrigatório</span>
                             </div>
                         </div>
                         <div className={"form-group col-md-3 col-lg-3"}>
@@ -568,12 +568,12 @@ function FormularioNovoItem({
                                 value={NovoItem.unidade} 
                                 onChange={(e) => handleChange("unidade",e.target.value)}>
                                 <option value=""></option>
-                                <option value="M�S">M�S</option>
+                                <option value="MÊS">MÊS</option>
                                 <option value="DIA">DIA</option>
                                 <option value="HORA">HORA</option>
                                 <option value="M">M</option>
-                                <option value="M�">M�</option>
-                                <option value="M�">M�</option>
+                                <option value="M²">M²</option>
+                                <option value="M³">M³</option>
                                 <option value="UN">UN</option>
                                 <option value="TONELADA">TONELADA</option>
                                 <option value="VB">VB</option>
@@ -581,7 +581,7 @@ function FormularioNovoItem({
                             </select>
                         </div>
                         <div className={"form-group col-md-2 col-lg-2"}>
-                            <label htmlFor={"novoItemValor"}>Valor Loca��o</label>
+                            <label htmlFor={"novoItemValor"}>Valor Locação</label>
                             <NumberInput 
                                 id={"novoItemValor"}
                                 name={"novoItemValor"}

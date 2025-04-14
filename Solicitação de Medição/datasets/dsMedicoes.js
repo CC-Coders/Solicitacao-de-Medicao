@@ -535,6 +535,7 @@ function createDataset(fields, constraints, sortFields) {
             + ", REIDIANTERIOR = " + (JSONMEDICAO.REIDIANTERIOR)
             + ", REIDIATUAL = " + (JSONMEDICAO.REIDIATUAL)
             + ", OPTANTEPELOSIMPLES = " + (JSONMEDICAO.OPTANTEPELOSIMPLES ? 1 : 0)
+            + ", DESCONTOS_EXTRA = " + JSONMEDICAO.VALORDESCONTOEXTRA
             + " WHERE MEDICAOID = " + JSONMEDICAO.MEDICAOID + ";";
         log.info(myQuery);
 

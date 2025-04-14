@@ -184,6 +184,13 @@
                                 </div>
                             </div>
 
+                            <div id="divJustificativaDescontoExtra">
+                                <br>
+                                <label for="textJustificativaDescontos">Justificativa Descontos:</label>
+                                <textarea name="textJustificativaDescontos" id="textJustificativaDescontos" class="form-control" rows="4"></textarea>
+                            </div>
+
+
                             <div id="divMedicao">
                                 <h3>Medição <button class="btn btn-primary" id="btnAtualizarMedicao">Atualizar Medição</button> <button id="btnBuscarMedicoes" class="btn btn-primary">Buscar Medicoes</button></h3>
                                 <div id="divInfoMedicao">
@@ -570,6 +577,8 @@
                     <input type="hidden" name="countBeforeTaskSave" id="countBeforeTaskSave">
 
                     <input type="hidden" name="idDocMedicaoGerada" id="idDocMedicaoGerada">
+
+                    <input type="hidden" name="medicaoTemDescontoExtra" id="medicaoTemDescontoExtra">
                 </div>
                 <script>
                     var beforeSendValidate = function (numState, nextState) {

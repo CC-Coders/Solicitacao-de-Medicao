@@ -392,7 +392,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
         let medicao = { ...medicaoOriginal };
         if (!(validarData(medicao.DATACOMPETENCIA, "DD/MM/YYYY") && validarData(medicao.PERIODOINICIAL, "DD/MM/YYYY") && validarData(medicao.PERIODOFINAL, "DD/MM/YYYY"))) {
             FLUIGC.toast({
-                title: "Verificar data n�o preenchida ou inv�lida",
+                title: "Verificar data não preenchida ou inválida",
                 message: "",
                 type: "warning"
             });
@@ -402,7 +402,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
         let itensSemMedicao = medicao.Itens.filter(a => !(a.DIASTRABALHADOS > 0));
 
         if (itensSemMedicao.length > 0) {
-            if (!confirm("Existem itens sem medi��o. Deseja prosseguir com medi��o zerada?")) {
+            if (!confirm("Existem itens sem medição. Deseja prosseguir com medição zerada?")) {
                 return false;
             }
             itensSemMedicao.forEach(item => {
@@ -413,7 +413,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
 
         if (!(medicao.NUMEROMEDICAO > 0)) {
             FLUIGC.toast({
-                title: "Numero da medi��o n�o informado",
+                title: "Numero da medição não informado",
                 message: "",
                 type: "warning"
             });
@@ -422,7 +422,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
 
         if (!(Medicao.CATEGORIAPRODUTOID > 0)) {
             FLUIGC.toast({
-                title: "Categoria de servi�o/produto n�o informada",
+                title: "Categoria de serviço/produto não informada",
                 message: "",
                 type: "warning"
             });
@@ -470,7 +470,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
 
             if (!dsMedicoesAtualizadas || dsMedicoesAtualizadas.length == 0) {
                 FLUIGC.toast({
-                    title: "Data Erro ao salvar medi��o!",
+                    title: "Data Erro ao salvar medição!",
                     message: "",
                     type: "error"
                 });
@@ -481,7 +481,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
 
             if (!(dsMedicaoInsert.MEDICAOID > 0)) {
                 FLUIGC.toast({
-                    title: "Erro ao salvar medi��o!",
+                    title: "Erro ao salvar medição!",
                     message: "",
                     type: "error"
                 });
@@ -551,7 +551,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
     async function onRemoverItem(id) {
         var MedicaoTemp = { ...Medicao };
         var itensRemoverTemp = [...itensRemover];
-        if (!confirm("Confirma a remo��o deste item?")) {
+        if (!confirm("Confirma a remoção deste item?")) {
             return
         }
         let itemRemover = MedicaoTemp.Itens.filter(a => a.ID == id);
@@ -595,9 +595,6 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
                     onChangeMedicao={onChangeMedicao} />}
             <br />
             {Medicao &&
-                <DescontoExtra onChangeMedicao={onChangeMedicao}  Medicao={Medicao} />
-            }
-            {Medicao &&
                 <div className="col-md-offset-10">
                     <button className="btn btn-success" onClick={handleSalvarMedicao}>
                         Salvar Medição
@@ -606,31 +603,4 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
             }
         </>
     );
-}
-
-function DescontoExtra({Medicao, onChangeMedicao}) {
-    function changeValorDesconto(valor){
-        Medicao.VALORDESCONTOEXTRA = valor;
-        onChangeMedicao(Medicao);
-    }
-
-    return (
-        <>
-
-            <div className="panel panel-primary">
-                <div className="panel-heading">
-                    <h3 className="panel-title">Desconto Extra</h3>
-                </div>
-                <div className="panel-body">
-                    <label htmlFor="valorDescontoExtra">Valor Desconto:</label><br/>
-                    <MoneySpan value={Medicao.VALORDESCONTOEXTRA} />
-                    <br /><br />
-                    <label htmlFor="">Justificativa:</label>
-                    <textarea name="justificativaDescontoExtra" id="justificativaDescontoExtra" className="form-control" ></textarea>
-                </div>
-            </div>
-
-        </>
-    )
-
 }
