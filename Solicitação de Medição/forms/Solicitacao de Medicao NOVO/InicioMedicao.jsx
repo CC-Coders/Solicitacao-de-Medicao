@@ -513,8 +513,8 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
         medicao.ACUMULADOANTERIOR = medicao.Itens.reduce((acumulador, item) => acumulador + (item.ACUMULADOFINANCEIROANT > 0 ? Number(item.ACUMULADOFINANCEIROANT) : 0), 0);
         medicao.PRESENTEMEDICAO = medicao.Itens.reduce((acumulador, item) => acumulador + (item.PRESENTEFINANCEIRO > 0 ? Number(item.PRESENTEFINANCEIRO) : 0), 0);
         medicao.ACUMULADOATUAL = medicao.ACUMULADOANTERIOR + medicao.PRESENTEMEDICAO;
-        medicao.RETENCAOATUAL = Number(Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL) - Number(medicao.DESCONTOS_EXTRA))  * (medicao.POSSUIRETENCAO ? medicao.PERCENTUALRETENCAO : 0);
-        medicao.REIDIATUAL = Number(medicao.PRESENTEMEDICAO - medicao.RETENCAOATUAL - Number(medicao.DESCONTOATUAL) - Number(medicao.DESCONTOS_EXTRA)) * Number(medicao.TAXAREIDI) / 100;
+        medicao.RETENCAOATUAL = Number(Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL) - Number(medicao.VALORDESCONTOEXTRA))  * (medicao.POSSUIRETENCAO ? medicao.PERCENTUALRETENCAO : 0);
+        medicao.REIDIATUAL = Number(medicao.PRESENTEMEDICAO - medicao.RETENCAOATUAL - Number(medicao.DESCONTOATUAL) - Number(medicao.VALORDESCONTOEXTRA)) * Number(medicao.TAXAREIDI) / 100;
     }
 
     function updateDescontoSisma(medicao) {

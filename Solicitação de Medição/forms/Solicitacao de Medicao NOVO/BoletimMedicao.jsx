@@ -638,7 +638,7 @@ function BoletimDeMedicaoBody({
                             <MoneySpan value={Number(Medicao.ACUMULADOANTERIOR) - Number(Medicao.DESCONTOANTERIOR) - Number(Medicao.ACUMULADOVALORDESCONTOEXTRA)}></MoneySpan>
                         </th>
                         <th className="bg-gray">
-                            <MoneySpan value={Number(Medicao.PRESENTEMEDICAO) - Number(Medicao.DESCONTOATUAL) - Number(Medicao.VALORDESCONTOEXTRA)}></MoneySpan>
+                            <MoneySpan value={Number(Medicao.PRESENTEMEDICAO) - (Number(Medicao.DESCONTOATUAL) + Number(Medicao.VALORDESCONTOEXTRA))}></MoneySpan>
                         </th>
                         <th className="bg-gray">
                             <MoneySpan value={Number(Medicao.ACUMULADOATUAL) - (Number(Medicao.DESCONTOANTERIOR) + Number(Medicao.DESCONTOATUAL) + Number(Medicao.ACUMULADOVALORDESCONTOEXTRA) +Number(Medicao.VALORDESCONTOEXTRA))}></MoneySpan>

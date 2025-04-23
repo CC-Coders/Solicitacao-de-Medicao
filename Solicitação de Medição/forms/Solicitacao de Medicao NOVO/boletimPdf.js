@@ -139,6 +139,7 @@ function gerarPDF(medicao) {
 							Number(
 								Number(medicao.ACUMULADOANTERIOR) 
 								- Number(medicao.DESCONTOANTERIOR)
+								- Number(medicao.ACUMULADOVALORDESCONTOEXTRA)
                                 - (medicao.POSSUIRETENCAO ? (medicao.RETENCAOANTERIOR) : 0)
                                 - (medicao.POSSUIREIDI ? (medicao.REIDIANTERIOR) : 0)
 							)
@@ -155,6 +156,7 @@ function gerarPDF(medicao) {
 							Number(
 								Number(medicao.PRESENTEMEDICAO) 
 								- Number(medicao.DESCONTOATUAL)
+								- Number(medicao.DESCONTOS_EXTRA)
                                 - (medicao.POSSUIRETENCAO ? Number(medicao.RETENCAOATUAL) : 0)
                                 - (medicao.POSSUIREIDI ? Number(medicao.REIDIATUAL) : 0)
 							)
@@ -173,6 +175,9 @@ function gerarPDF(medicao) {
 								- (Number(medicao.DESCONTOANTERIOR) 
 									+ Number(medicao.DESCONTOATUAL)
 								) 
+								- (
+									Number(medicao.DESCONTOS_EXTRA + Number(medicao.ACUMULADOVALORDESCONTOEXTRA))
+								)
                                 - (medicao.POSSUIRETENCAO ? (Number(medicao.RETENCAOANTERIOR) + Number(medicao.RETENCAOATUAL)) : 0)
                                 - (medicao.POSSUIREIDI ? (Number(medicao.REIDIANTERIOR) + Number(medicao.REIDIATUAL)) : 0))
 							, 2)
