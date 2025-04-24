@@ -9,7 +9,7 @@
  * @param  {float} QUANTIDADE 
  * @param  {string} USUARIO 
  * @param  {Date} DATA 
- * @returns {Dataset} {STATUS, MENSAGEM}
+ * @returns {Dataset} {STATUS, MENSAGEM, RESULT}
 */
 
 // Exemplo de Chamada
@@ -34,19 +34,9 @@ function createDataset(fields, constraints, sortFields) {
         insereMedicaoNaTabelaTITMCNTMEDICAO(constraints);
 
         FaturaMedicao(constraints);
+        var dadosDoMovimento = buscaIDMOV(constraints);
 
-
-        // Fatura a Medição por Webservice gerando o 1.1.99
-
-
-
-
-
-        // Busca o ID do Movimento gerado
-
-
-
-        return returnDataset("SUCESSO", "Medição inserida!");
+        return returnDataset("SUCESSO", "Medição inserida!", JSONUtil.toJSON(dadosDoMovimento));
 
     } catch (error) {
         if (typeof error == "object") {
@@ -56,14 +46,12 @@ function createDataset(fields, constraints, sortFields) {
                 mensagem.push(keys[i] + ": " + error[keys[i]]);
             }
 
-            return returnDataset("ERRO", mensagem.join(" - "));
+            return returnDataset("ERRO", mensagem.join(" - "), null);
         } else {
-            return returnDataset("ERRO", error);
+            return returnDataset("ERRO", error, null);
         }
     }
 }
-
-
 
 // Insere Medicao
 function insereMedicaoNaTabelaTITMCNTMEDICAO(constraints) {
@@ -75,33 +63,19 @@ function insereMedicaoNaTabelaTITMCNTMEDICAO(constraints) {
         var conn = ds.getConnection();
         var stmt = conn.prepareStatement(myQuery);
 
-        log.info("dsInsereMedicaoEmItemDeContratoEFaturaMedicao setInt 1");
         stmt.setInt(1, constraints.CODCOLIGADA);//CODCOLIGADA
-        log.info("dsInsereMedicaoEmItemDeContratoEFaturaMedicao setInt 2");
         stmt.setInt(2, constraints.IDCNT);//IDCNT
-        log.info("dsInsereMedicaoEmItemDeContratoEFaturaMedicao setInt 3");
         stmt.setInt(3, constraints.NSEQITMCNT);//NSEQITMCNT
-        log.info("dsInsereMedicaoEmItemDeContratoEFaturaMedicao setInt 4");
         stmt.setInt(4, constraints.NSEQITEMMEDICAO);//NSEQMEDICAO
-        log.info("dsInsereMedicaoEmItemDeContratoEFaturaMedicao setInt 5");
         stmt.setInt(5, 0);//STATUS
-        log.info("dsInsereMedicaoEmItemDeContratoEFaturaMedicao setInt 6");
         stmt.setString(6, constraints.DATA);//DATA
-        log.info("dsInsereMedicaoEmItemDeContratoEFaturaMedicao setInt 7");
         stmt.setFloat(7, constraints.VALOR);//VALOR
-        log.info("dsInsereMedicaoEmItemDeContratoEFaturaMedicao setInt 8");
         stmt.setFloat(8, constraints.QUANTIDADE);//QUANTIDADE
-        log.info("dsInsereMedicaoEmItemDeContratoEFaturaMedicao setInt 9");
         stmt.setString(9, constraints.DATA);//DATAEXECUCAO
-        log.info("dsInsereMedicaoEmItemDeContratoEFaturaMedicao setInt 10");
         stmt.setString(10, constraints.USUARIO);//RECCREATEDBY
         //RECCREATEDON cria como SYSDATETIME()
 
-
-        log.info("dsInsereMedicaoEmItemDeContratoEFaturaMedicao execute");
-
         var rowCount = stmt.executeUpdate();
-        log.info("dsInsereMedicaoEmItemDeContratoEFaturaMedicao rowCount? " + rowCount);
         if (rowCount > 0) {
             return true;
         }
@@ -119,7 +93,6 @@ function insereMedicaoNaTabelaTITMCNTMEDICAO(constraints) {
         }
     }
 }
-
 function FaturaMedicao(constraints) {
     var xml = MontaXML_FaturarMedicao(constraints);
 
@@ -128,116 +101,166 @@ function FaturaMedicao(constraints) {
     var serviceLocator = service.instantiate("com.totvs.WsProcess");
     var wsObj = serviceLocator.getRMIwsProcess();
     log.info("teste xml strXml: " + xml);
-   
+
 
     var pUsuario = "fluig";
     var pPassword = "flu!g@cc#2018";
-    var authService = serviceHelper.getBasicAuthenticatedClient(wsObj, "com.totvs.IwsProcess", pUsuario, pPassword);			    	 
-    var ret = authService.executeWithParams('CTRFATURAMENTOMEDICAOPROCDATA',xml);
+    var authService = serviceHelper.getBasicAuthenticatedClient(wsObj, "com.totvs.IwsProcess", pUsuario, pPassword);
+    var ret = authService.executeWithXmlParams('CTRFATURAMENTOMEDICAOPROCDATA', xml);
     log.info("ret");
     log.dir(ret);
-
-
-
 }
 function MontaXML_FaturarMedicao(constraints) {
     try {
         var xml = "";
-        xml += '<?xml version="1.0" encoding="utf-16"?>';
-        xml += '<CtrFaturamentoMedicaoProcParams xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="i1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://www.totvs.com.br/RM/">';
-        xml += '  <Context xmlns:d2p1="http://www.totvs.com.br/RM/" z:Id="i2" xmlns="http://www.totvs.com/">';
-        xml += '    <d2p1:_params xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">';
-        xml += '      <d3p1:KeyValueOfanyTypeanyType>';
-        xml += '        <d3p1:Key xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">$EXERCICIOFISCAL</d3p1:Key>';
-        xml += '        <d3p1:Value xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:int">8</d3p1:Value>';
-        xml += '      </d3p1:KeyValueOfanyTypeanyType>';
-        xml += '      <d3p1:KeyValueOfanyTypeanyType>';
-        xml += '        <d3p1:Key xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">$CODLOCPRT</d3p1:Key>';
-        xml += '        <d3p1:Value xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:int">-1</d3p1:Value>';
-        xml += '      </d3p1:KeyValueOfanyTypeanyType>';
-        xml += '      <d3p1:KeyValueOfanyTypeanyType>';
-        xml += '        <d3p1:Key xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">$CODTIPOCURSO</d3p1:Key>';
-        xml += '        <d3p1:Value xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:int">-1</d3p1:Value>';
-        xml += '      </d3p1:KeyValueOfanyTypeanyType>';
-        xml += '      <d3p1:KeyValueOfanyTypeanyType>';
-        xml += '        <d3p1:Key xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">$EDUTIPOUSR</d3p1:Key>';
-        xml += '        <d3p1:Value xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">-1</d3p1:Value>';
-        xml += '      </d3p1:KeyValueOfanyTypeanyType>';
-        xml += '      <d3p1:KeyValueOfanyTypeanyType>';
-        xml += '        <d3p1:Key xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">$CODUNIDADEBIB</d3p1:Key>';
-        xml += '        <d3p1:Value xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:int">-1</d3p1:Value>';
-        xml += '      </d3p1:KeyValueOfanyTypeanyType>';
-        xml += '      <d3p1:KeyValueOfanyTypeanyType>';
-        xml += '        <d3p1:Key xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">$CODCOLIGADA</d3p1:Key>';
-        xml += '        <d3p1:Value xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:int">1</d3p1:Value>';
-        xml += '      </d3p1:KeyValueOfanyTypeanyType>';
-        xml += '      <d3p1:KeyValueOfanyTypeanyType>';
-        xml += '        <d3p1:Key xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">$RHTIPOUSR</d3p1:Key>';
-        xml += '        <d3p1:Value xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">-1</d3p1:Value>';
-        xml += '      </d3p1:KeyValueOfanyTypeanyType>';
-        xml += '      <d3p1:KeyValueOfanyTypeanyType>';
-        xml += '        <d3p1:Key xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">$CODIGOEXTERNO</d3p1:Key>';
-        xml += '        <d3p1:Value xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">-1</d3p1:Value>';
-        xml += '      </d3p1:KeyValueOfanyTypeanyType>';
-        xml += '      <d3p1:KeyValueOfanyTypeanyType>';
-        xml += '        <d3p1:Key xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">$CODSISTEMA</d3p1:Key>';
-        xml += '        <d3p1:Value xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">T</d3p1:Value>';
-        xml += '      </d3p1:KeyValueOfanyTypeanyType>';
-        xml += '      <d3p1:KeyValueOfanyTypeanyType>';
-        xml += '        <d3p1:Key xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">$CODUSUARIOSERVICO</d3p1:Key>';
-        xml += '        <d3p1:Value xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string"></d3p1:Value>';
-        xml += '      </d3p1:KeyValueOfanyTypeanyType>';
-        xml += '      <d3p1:KeyValueOfanyTypeanyType>';
-        xml += '        <d3p1:Key xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">$IDPRJ</d3p1:Key>';
-        xml += '        <d3p1:Value xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:int">-1</d3p1:Value>';
-        xml += '      </d3p1:KeyValueOfanyTypeanyType>';
-        xml += '      <d3p1:KeyValueOfanyTypeanyType>';
-        xml += '        <d3p1:Key xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">$CHAPAFUNCIONARIO</d3p1:Key>';
-        xml += '        <d3p1:Value xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">-1</d3p1:Value>';
-        xml += '      </d3p1:KeyValueOfanyTypeanyType>';
-        xml += '      <d3p1:KeyValueOfanyTypeanyType>';
-        xml += '        <d3p1:Key xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:string">$CODFILIAL</d3p1:Key>';
-        xml += '        <d3p1:Value xmlns:d5p1="http://www.w3.org/2001/XMLSchema" i:type="d5p1:int">1</d3p1:Value>';
-        xml += '      </d3p1:KeyValueOfanyTypeanyType>';
-        xml += '    </d2p1:_params>';
-        xml += '    <d2p1:Environment>WebServices</d2p1:Environment>';
-        xml += '  </Context>';
-        xml += '  <PrimaryKeyList xmlns:d2p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns="http://www.totvs.com/">';
-        xml += '    <d2p1:ArrayOfanyType>';
-        xml += '      <d2p1:anyType xmlns:d4p1="http://www.w3.org/2001/XMLSchema" i:type="d4p1:int">0</d2p1:anyType>';
-        xml += '    </d2p1:ArrayOfanyType>';
-        xml += '    <d2p1:ArrayOfanyType>';
-        xml += '      <d2p1:anyType xmlns:d4p1="http://www.w3.org/2001/XMLSchema" i:type="d4p1:decimal">0</d2p1:anyType>';
-        xml += '    </d2p1:ArrayOfanyType>';
-        xml += '    <d2p1:ArrayOfanyType>';
-        xml += '      <d2p1:anyType xmlns:d4p1="http://www.w3.org/2001/XMLSchema" i:type="d4p1:string">TEXTO</d2p1:anyType>';
-        xml += '    </d2p1:ArrayOfanyType>';
-        xml += '    <d2p1:ArrayOfanyType>';
-        xml += '      <d2p1:anyType xmlns:d4p1="http://www.w3.org/2001/XMLSchema" i:type="d4p1:dateTime">2025-04-23T00:00:00-03:00</d2p1:anyType>';
-        xml += '    </d2p1:ArrayOfanyType>';
-        xml += '  </PrimaryKeyList>';
-        xml += '  <PrimaryKeyNames xmlns:d2p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns="http://www.totvs.com/">';
-        xml += '    <d2p1:string>COLUNAPK</d2p1:string>';
-        xml += '  </PrimaryKeyNames>';
-        xml += '  <CtrFaturamento>';
-        xml += '    <CtrFaturamentoMedicaoPar z:Id="i3">';
-        xml += '      <InternalId i:nil="true" xmlns="http://www.totvs.com/" />';
-        xml += '      <CodColigada>' + constraints.CODCOLIGADA + '</CodColigada>';
-        xml += '      <CodSistemaLogado i:nil="true" />';
-        xml += '      <CodTmvCompra i:nil="true" />';
-        xml += '      <CodTmvVenda i:nil="true" />';
-        xml += '      <CodUsuarioLogado i:nil="true" />';
-        xml += '      <IdCnt>' + constraints.IDCNT + '</IdCnt>';
-        xml += '      <NumeroMovCompra i:nil="true" />';
-        xml += '      <NumeroMovVenda i:nil="true" />';
-        xml += '      <SerieCompra i:nil="true" />';
-        xml += '      <SerieVenda i:nil="true" />';
-        xml += '      <Data>' + constraints.DATA + '</Data>';
-        xml += '      <NSeqItmCnt>' + constraints.NSEQITMCNT + '</NSeqItmCnt>';
-        xml += '      <NSeqMedicao>' + constraints.NSEQITEMMEDICAO + '</NSeqMedicao>';
-        xml += '    </CtrFaturamentoMedicaoPar>';
-        xml += '  </CtrFaturamento>';
+        xml += '<CtrFaturamentoMedicaoProcParams z:Id="i1" xmlns="http://www.totvs.com.br/RM/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/">';
+        xml += '    <ActionModule xmlns="http://www.totvs.com/">T</ActionModule>';
+        xml += '    <ActionName xmlns="http://www.totvs.com/">CtrFaturamentoMedicaoProcAction</ActionName>';
+        xml += '    <CanParallelize xmlns="http://www.totvs.com/">true</CanParallelize>';
+        xml += '    <CanSendMail xmlns="http://www.totvs.com/">false</CanSendMail>';
+        xml += '    <CanWaitSchedule xmlns="http://www.totvs.com/">false</CanWaitSchedule>';
+        xml += '    <CodUsuario xmlns="http://www.totvs.com/">Gabriel.Persike</CodUsuario>';
+        xml += '    <ConnectionId i:nil="true" xmlns="http://www.totvs.com/" />';
+        xml += '    <ConnectionString i:nil="true" xmlns="http://www.totvs.com/" />';
+        xml += '    <Context z:Id="i2" xmlns="http://www.totvs.com/" xmlns:a="http://www.totvs.com.br/RM/">';
+        xml += '        <a:_params xmlns:b="http://schemas.microsoft.com/2003/10/Serialization/Arrays">';
+        xml += '            <b:KeyValueOfanyTypeanyType>';
+        xml += '                <b:Key i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">$EXERCICIOFISCAL</b:Key>';
+        xml += '                <b:Value i:type="c:int" xmlns:c="http://www.w3.org/2001/XMLSchema">8</b:Value>';
+        xml += '            </b:KeyValueOfanyTypeanyType>';
+        xml += '            <b:KeyValueOfanyTypeanyType>';
+        xml += '                <b:Key i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">$CODLOCPRT</b:Key>';
+        xml += '                <b:Value i:type="c:int" xmlns:c="http://www.w3.org/2001/XMLSchema">-1</b:Value>';
+        xml += '            </b:KeyValueOfanyTypeanyType>';
+        xml += '            <b:KeyValueOfanyTypeanyType>';
+        xml += '                <b:Key i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">$CODTIPOCURSO</b:Key>';
+        xml += '                <b:Value i:type="c:int" xmlns:c="http://www.w3.org/2001/XMLSchema">-1</b:Value>';
+        xml += '            </b:KeyValueOfanyTypeanyType>';
+        xml += '            <b:KeyValueOfanyTypeanyType>';
+        xml += '                <b:Key i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">$EDUTIPOUSR</b:Key>';
+        xml += '                <b:Value i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">-1</b:Value>';
+        xml += '            </b:KeyValueOfanyTypeanyType>';
+        xml += '            <b:KeyValueOfanyTypeanyType>';
+        xml += '                <b:Key i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">$CODUNIDADEBIB</b:Key>';
+        xml += '                <b:Value i:type="c:int" xmlns:c="http://www.w3.org/2001/XMLSchema">-1</b:Value>';
+        xml += '            </b:KeyValueOfanyTypeanyType>';
+        xml += '            <b:KeyValueOfanyTypeanyType>';
+        xml += '                <b:Key i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">$CODCOLIGADA</b:Key>';
+        xml += '                <b:Value i:type="c:int" xmlns:c="http://www.w3.org/2001/XMLSchema">1</b:Value>';
+        xml += '            </b:KeyValueOfanyTypeanyType>';
+        xml += '            <b:KeyValueOfanyTypeanyType>';
+        xml += '                <b:Key i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">$RHTIPOUSR</b:Key>';
+        xml += '                <b:Value i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">-1</b:Value>';
+        xml += '            </b:KeyValueOfanyTypeanyType>';
+        xml += '            <b:KeyValueOfanyTypeanyType>';
+        xml += '                <b:Key i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">$CODIGOEXTERNO</b:Key>';
+        xml += '                <b:Value i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">-1</b:Value>';
+        xml += '            </b:KeyValueOfanyTypeanyType>';
+        xml += '            <b:KeyValueOfanyTypeanyType>';
+        xml += '                <b:Key i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">$CODSISTEMA</b:Key>';
+        xml += '                <b:Value i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">T</b:Value>';
+        xml += '            </b:KeyValueOfanyTypeanyType>';
+        xml += '            <b:KeyValueOfanyTypeanyType>';
+        xml += '                <b:Key i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">$CODUSUARIOSERVICO</b:Key>';
+        xml += '                <b:Value i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema" />';
+        xml += '            </b:KeyValueOfanyTypeanyType>';
+        xml += '            <b:KeyValueOfanyTypeanyType>';
+        xml += '                <b:Key i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">$CODUSUARIO</b:Key>';
+        xml += '                <b:Value i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">Gabriel.Persike</b:Value>';
+        xml += '            </b:KeyValueOfanyTypeanyType>';
+        xml += '            <b:KeyValueOfanyTypeanyType>';
+        xml += '                <b:Key i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">$IDPRJ</b:Key>';
+        xml += '                <b:Value i:type="c:int" xmlns:c="http://www.w3.org/2001/XMLSchema">-1</b:Value>';
+        xml += '            </b:KeyValueOfanyTypeanyType>';
+        xml += '            <b:KeyValueOfanyTypeanyType>';
+        xml += '                <b:Key i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">$CHAPAFUNCIONARIO</b:Key>';
+        xml += '                <b:Value i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">-1</b:Value>';
+        xml += '            </b:KeyValueOfanyTypeanyType>';
+        xml += '            <b:KeyValueOfanyTypeanyType>';
+        xml += '                <b:Key i:type="c:string" xmlns:c="http://www.w3.org/2001/XMLSchema">$CODFILIAL</b:Key>';
+        xml += '                <b:Value i:type="c:int" xmlns:c="http://www.w3.org/2001/XMLSchema">1</b:Value>';
+        xml += '            </b:KeyValueOfanyTypeanyType>';
+        xml += '        </a:_params>';
+        xml += '        <a:Environment>DotNet</a:Environment>';
+        xml += '    </Context>';
+        xml += '    <CustomData i:nil="true" xmlns="http://www.totvs.com/" />';
+        xml += '    <DisableIsolateProcess xmlns="http://www.totvs.com/">false</DisableIsolateProcess>';
+        xml += '    <DriverType i:nil="true" xmlns="http://www.totvs.com/" />';
+        xml += '    <ExecutionId xmlns="http://www.totvs.com/">568083be-269a-4cf8-9928-c7757155500d</ExecutionId>';
+        xml += '    <FailureMessage xmlns="http://www.totvs.com/">Falha na execução do processo</FailureMessage>';
+        xml += '    <FriendlyLogs i:nil="true" xmlns="http://www.totvs.com/" />';
+        xml += '    <HideProgressDialog xmlns="http://www.totvs.com/">false</HideProgressDialog>';
+        xml += '    <HostName xmlns="http://www.totvs.com/">HOMOLOGACAO</HostName>';
+        xml += '    <Initialized xmlns="http://www.totvs.com/">true</Initialized>';
+        xml += '    <Ip xmlns="http://www.totvs.com/">172.17.0.31</Ip>';
+        xml += '    <IsolateProcess xmlns="http://www.totvs.com/">false</IsolateProcess>';
+        xml += '    <JobID xmlns="http://www.totvs.com/">';
+        xml += '        <Children />';
+        xml += '        <ExecID>1</ExecID>';
+        xml += '        <ID>2470310</ID>';
+        xml += '        <IsPriorityJob>false</IsPriorityJob>';
+        xml += '    </JobID>';
+        xml += '    <JobServerHostName xmlns="http://www.totvs.com/">HOMOLOGACAO</JobServerHostName>';
+        xml += '    <MasterActionName xmlns="http://www.totvs.com/">CtrItmMedicaoCntAction</MasterActionName>';
+        xml += '    <MaximumQuantityOfPrimaryKeysPerProcess xmlns="http://www.totvs.com/">1000</MaximumQuantityOfPrimaryKeysPerProcess>';
+        xml += '    <MinimumQuantityOfPrimaryKeysPerProcess xmlns="http://www.totvs.com/">1</MinimumQuantityOfPrimaryKeysPerProcess>';
+        xml += '    <NetworkUser xmlns="http://www.totvs.com/">gabriel.persike</NetworkUser>';
+        xml += '    <NotifyEmail xmlns="http://www.totvs.com/">false</NotifyEmail>';
+        xml += '    <NotifyEmailList i:nil="true" xmlns="http://www.totvs.com/" xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />';
+        xml += '    <NotifyFluig xmlns="http://www.totvs.com/">false</NotifyFluig>';
+        xml += '    <OnlineMode xmlns="http://www.totvs.com/">false</OnlineMode>';
+        xml += '    <PrimaryKeyList xmlns="http://www.totvs.com/" xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays">';
+        xml += '        <a:ArrayOfanyType>';
+        xml += '            <a:anyType i:type="b:short" xmlns:b="http://www.w3.org/2001/XMLSchema">1</a:anyType>';
+        xml += '            <a:anyType i:type="b:int" xmlns:b="http://www.w3.org/2001/XMLSchema">8833</a:anyType>';
+        xml += '            <a:anyType i:type="b:short" xmlns:b="http://www.w3.org/2001/XMLSchema">1</a:anyType>';
+        xml += '            <a:anyType i:type="b:short" xmlns:b="http://www.w3.org/2001/XMLSchema">9</a:anyType>';
+        xml += '        </a:ArrayOfanyType>';
+        xml += '    </PrimaryKeyList>';
+        xml += '    <PrimaryKeyNames xmlns="http://www.totvs.com/" xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays">';
+        xml += '        <a:string>CODCOLIGADA</a:string>';
+        xml += '        <a:string>IDCNT</a:string>';
+        xml += '        <a:string>NSEQITMCNT</a:string>';
+        xml += '        <a:string>NSEQMEDICAO</a:string>';
+        xml += '    </PrimaryKeyNames>';
+        xml += '    <PrimaryKeyTableName xmlns="http://www.totvs.com/">TITMCNTMEDICAO</PrimaryKeyTableName>';
+        xml += '    <ProcessName xmlns="http://www.totvs.com/">Faturamento Medição</ProcessName>';
+        xml += '    <QuantityOfSplits xmlns="http://www.totvs.com/">0</QuantityOfSplits>';
+        xml += '    <SaveLogInDatabase xmlns="http://www.totvs.com/">true</SaveLogInDatabase>';
+        xml += '    <SaveParamsExecution xmlns="http://www.totvs.com/">false</SaveParamsExecution>';
+        xml += '    <ScheduleDateTime xmlns="http://www.totvs.com/">2025-04-23T14:26:08.9605565-03:00</ScheduleDateTime>';
+        xml += '    <Scheduler xmlns="http://www.totvs.com/">JobMonitor</Scheduler>';
+        xml += '    <SendMail xmlns="http://www.totvs.com/">false</SendMail>';
+        xml += '    <ServerName xmlns="http://www.totvs.com/">CtrFaturamentoMedicaoProcData</ServerName>';
+        xml += '    <ServiceInterface i:nil="true" xmlns="http://www.totvs.com/" xmlns:a="http://schemas.datacontract.org/2004/07/System" />';
+        xml += '    <ShouldParallelize xmlns="http://www.totvs.com/">false</ShouldParallelize>';
+        xml += '    <ShowReExecuteButton xmlns="http://www.totvs.com/">true</ShowReExecuteButton>';
+        xml += '    <StatusMessage i:nil="true" xmlns="http://www.totvs.com/" />';
+        xml += '    <SuccessMessage xmlns="http://www.totvs.com/">Processo executado com sucesso</SuccessMessage>';
+        xml += '    <SyncExecution xmlns="http://www.totvs.com/">false</SyncExecution>';
+        xml += '    <UseJobMonitor xmlns="http://www.totvs.com/">true</UseJobMonitor>';
+        xml += '    <UserName xmlns="http://www.totvs.com/">Gabriel.Persike</UserName>';
+        xml += '    <WaitSchedule xmlns="http://www.totvs.com/">false</WaitSchedule>';
+        xml += '    <CtrFaturamento>';
+        xml += '        <CtrFaturamentoMedicaoPar z:Id="i3">';
+        xml += '            <InternalId i:nil="true" xmlns="http://www.totvs.com/" />';
+        xml += '            <CodColigada>' + constraints.CODCOLIGADA + '</CodColigada>';
+        xml += '            <CodSistemaLogado>T</CodSistemaLogado>';
+        xml += '            <CodTmvCompra>1.1.99</CodTmvCompra>';
+        xml += '            <CodTmvVenda i:nil="true" />';
+        xml += '            <CodUsuarioLogado>' + constraints.USUARIO + '</CodUsuarioLogado>';
+        xml += '            <IdCnt>' + constraints.IDCNT + '</IdCnt>';
+        xml += '            <NumeroMovCompra i:nil="true" />';
+        xml += '            <NumeroMovVenda i:nil="true" />';
+        xml += '            <SerieCompra>OC</SerieCompra>';
+        xml += '            <SerieVenda i:nil="true" />';
+        xml += '            <Data>2025-04-24T00:00:00</Data>';
+        xml += '            <NSeqItmCnt>' + constraints.NSEQITMCNT + '</NSeqItmCnt>';
+        xml += '            <NSeqMedicao>' + constraints.NSEQITEMMEDICAO + '</NSeqMedicao>';
+        xml += '        </CtrFaturamentoMedicaoPar>';
+        xml += '    </CtrFaturamento>';
         xml += '</CtrFaturamentoMedicaoProcParams>';
+
 
         return xml;
 
@@ -245,8 +268,47 @@ function MontaXML_FaturarMedicao(constraints) {
         throw error;
     }
 }
+function buscaIDMOV(constraints) {
+    try {
+        var dataSource = "/jdbc/RM";
+        var ic = new javax.naming.InitialContext();
+        var ds = ic.lookup(dataSource);
 
+        var query = "SELECT CODCOLIGADA, IDMOV ";
+        query += "FROM TITMMOV ";
+        query += "WHERE CODCOLIGADA = ? AND IDCNT = ? AND NSEQITMMOV = 1 AND NSEQITMCNTMEDICAO = ?";
 
+        var conn = ds.getConnection();
+        var stmt = conn.prepareStatement(query);
+
+        stmt.setInt(1, constraints.CODCOLIGADA);//CODCOLIGADA
+        stmt.setInt(2, constraints.IDCNT);//IDCNT
+        stmt.setInt(3, constraints.NSEQITEMMEDICAO);//NSEQMEDICAO
+
+        var rs = stmt.executeQuery();
+
+        var retorno = [];
+        var columnCount = rs.getMetaData().getColumnCount();
+
+        while (rs.next()) {
+            var linha = {};
+            for (var i = 1; i <= columnCount; i++) {
+                linha[rs.getMetaData().getColumnName(i)] = rs.getObject(rs.getMetaData().getColumnName(i)).toString();
+            }
+            retorno.push(linha);
+        }
+        return retorno;
+    } catch (e) {
+        throw e;
+    } finally {
+        if (stmt != null) {
+            stmt.close();
+        }
+        if (conn != null) {
+            conn.close();
+        }
+    }
+}
 
 // Utils
 function getConstraints(constraints) {
@@ -279,10 +341,11 @@ function lancaErroSeConstraintsObrigatoriasNaoInformadas(constraints, listConstr
         throw error;
     }
 }
-function returnDataset(STATUS, MENSAGEM) {
+function returnDataset(STATUS, MENSAGEM, RESULT) {
     var dataset = DatasetBuilder.newDataset();
     dataset.addColumn("STATUS");
     dataset.addColumn("MENSAGEM");
-    dataset.addRow([STATUS, MENSAGEM]);
+    dataset.addColumn("RESULT");
+    dataset.addRow([STATUS, MENSAGEM, RESULT]);
     return dataset;
 }
