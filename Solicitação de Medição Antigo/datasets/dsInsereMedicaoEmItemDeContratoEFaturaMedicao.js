@@ -33,8 +33,8 @@ function createDataset(fields, constraints, sortFields) {
 
         insereMedicaoNaTabelaTITMCNTMEDICAO(constraints);
 
-        FaturaMedicao(constraints);
-        var dadosDoMovimento = buscaIDMOV(constraints);
+        FaturaMedicaoEGeraMovimento(constraints);
+        var dadosDoMovimento = buscaCodColigada_IDMovDoMovimentoGerado(constraints);
 
         return returnDataset("SUCESSO", "Medição inserida!", JSONUtil.toJSON(dadosDoMovimento));
 
@@ -93,22 +93,29 @@ function insereMedicaoNaTabelaTITMCNTMEDICAO(constraints) {
         }
     }
 }
-function FaturaMedicao(constraints) {
-    var xml = MontaXML_FaturarMedicao(constraints);
+function FaturaMedicaoEGeraMovimento(constraints) {
+    try {
+        var xml = MontaXML_FaturarMedicao(constraints);
 
-    var service = ServiceManager.getService("ProcessRM");
-    var serviceHelper = service.getBean();
-    var serviceLocator = service.instantiate("com.totvs.WsProcess");
-    var wsObj = serviceLocator.getRMIwsProcess();
-    log.info("teste xml strXml: " + xml);
+        var service = ServiceManager.getService("ProcessRM");
+        var serviceHelper = service.getBean();
+        var serviceLocator = service.instantiate("com.totvs.WsProcess");
+        var wsObj = serviceLocator.getRMIwsProcess();
+        log.info("teste xml strXml: " + xml);
 
 
-    var pUsuario = "fluig";
-    var pPassword = "flu!g@cc#2018";
-    var authService = serviceHelper.getBasicAuthenticatedClient(wsObj, "com.totvs.IwsProcess", pUsuario, pPassword);
-    var ret = authService.executeWithXmlParams('CTRFATURAMENTOMEDICAOPROCDATA', xml);
-    log.info("ret");
-    log.dir(ret);
+        var pUsuario = "fluig";
+        var pPassword = "flu!g@cc#2018";
+        var authService = serviceHelper.getBasicAuthenticatedClient(wsObj, "com.totvs.IwsProcess", pUsuario, pPassword);
+        var ret = authService.executeWithXmlParams('CTRFATURAMENTOMEDICAOPROCDATA', xml);
+        if (ret == 1) {
+            return true;
+        } else {
+            throw "Erro ao Faturar Medição Retorno: " + ret;
+        }
+    } catch (error) {
+        throw error;
+    }
 }
 function MontaXML_FaturarMedicao(constraints) {
     try {
@@ -263,12 +270,11 @@ function MontaXML_FaturarMedicao(constraints) {
 
 
         return xml;
-
     } catch (error) {
         throw error;
     }
 }
-function buscaIDMOV(constraints) {
+function buscaCodColigada_IDMovDoMovimentoGerado(constraints) {
     try {
         var dataSource = "/jdbc/RM";
         var ic = new javax.naming.InitialContext();
