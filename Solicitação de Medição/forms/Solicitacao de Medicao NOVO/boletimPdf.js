@@ -672,7 +672,7 @@ function gerarPDF(medicao) {
 							{
 								border: [true, true, true, true],
 								fillColor: '#eeeeee',
-								text: toCurrency(arredondar(Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL) - Number(medicao.DESCONTOS_EXTRA), 2)),
+								text: toCurrency(arredondar(Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL) - Number(medicao.VALORDESCONTOEXTRA), 2)),
 								alignment: 'center',
 								style: 'fontCustomTable'
 							},

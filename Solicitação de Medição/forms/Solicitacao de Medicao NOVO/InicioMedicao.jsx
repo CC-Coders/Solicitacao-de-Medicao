@@ -515,6 +515,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
         medicao.ACUMULADOATUAL = medicao.ACUMULADOANTERIOR + medicao.PRESENTEMEDICAO;
         medicao.RETENCAOATUAL = Number(Number(medicao.PRESENTEMEDICAO) - Number(medicao.DESCONTOATUAL) - Number(medicao.VALORDESCONTOEXTRA))  * (medicao.POSSUIRETENCAO ? medicao.PERCENTUALRETENCAO : 0);
         medicao.REIDIATUAL = Number(medicao.PRESENTEMEDICAO - medicao.RETENCAOATUAL - Number(medicao.DESCONTOATUAL) - Number(medicao.VALORDESCONTOEXTRA)) * Number(medicao.TAXAREIDI) / 100;
+        console.log(medicao)
     }
 
     function updateDescontoSisma(medicao) {
@@ -546,6 +547,7 @@ function InicioMedicao({ Contrato, onChangeContrato, CCUSTO, Fornecedor, medicao
         }
         var MedicaoTemp = { ...Medicao, ...e };
         setMedicao(MedicaoTemp);
+        totalizarValores(MedicaoTemp);
     }
 
     async function onRemoverItem(id) {
