@@ -775,3 +775,73 @@ function BuscaInfoDoc(id) {
         });
     });
 }
+
+
+// Lancamento Medicao
+function geraItensContrato() {
+    var itens = buscaItensContrato();
+    var html = geraHtmlLinhas(itens);
+    $("#tabelaItensLancarMedicao>tbody").html(html);
+    
+    FLUIGC.switcher.init('.checkboxLancaMedicao');
+    FLUIGC.switcher.onChange(".checkboxLancaMedicao", function(event, state){
+        if (!state) {
+            $(this).closest("tr").find(".inputValorItemMedicao").maskMoney('destroy');
+            $(this).closest("tr").find(".inputValorItemMedicao").val("");
+            $(this).closest("tr").find(".inputValorItemMedicao").attr("readonly", "readonly");
+            
+            FLUIGC.calendar($(this).closest("tr").find(".inputDataCompetenciaItemMedicao")).disable();
+            $(this).closest("tr").find(".inputDataCompetenciaItemMedicao").val("");
+        }else{
+            $(this).closest("tr").find(".inputValorItemMedicao").removeAttr("readonly");
+            $(this).closest("tr").find(".inputValorItemMedicao").maskMoney({prefix:"R$"});
+
+            $(this).closest("tr").find(".inputDataCompetenciaItemMedicao").removeAttr("readonly");
+            FLUIGC.calendar($(this).closest("tr").find(".inputDataCompetenciaItemMedicao")).enable();
+        }
+      });
+
+    function buscaItensContrato() {
+        const CODCOLIGADA = $("#coligada").val();
+        const ObjContrato = JSON.parse($("#ObjContrato").val());
+
+        var ds = DatasetFactory.getDataset("dsBuscaItensDeContrato", null, [
+            DatasetFactory.createConstraint("CODCOLIGADA", CODCOLIGADA, CODCOLIGADA, ConstraintType.MUST),
+            DatasetFactory.createConstraint("IDCNT", ObjContrato.IDCNT, ObjContrato.IDCNT, ConstraintType.MUST),
+        ], null);
+
+        if (ds.values[0].STATUS != "SUCESSO") {
+            console.error("Erro ao buscar Itens do Contrato");
+            console.error(ds.values[0].MENSAGEM);
+            throw ds.values[0].MENSAGEM;
+        }
+ 
+        return JSON.parse(ds.values[0].RESULT);
+    }   
+    function geraHtmlLinhas(itens){
+        var html = "";
+        for (const item of itens) {
+            html +=
+            `<tr>
+                <td style="text-align:center;">
+                    <input type="checkbox" class="checkboxLancaMedicao control control--checkbox"  data-on-text="Sim" data-off-text="Não" data-on-color="success"/>
+                    <input type="hidden" class="NSEQITMCNT" value="${item.NSEQITMCNT}"/>
+                </td>
+                <td>
+                    <input type="text" class="inputProdutoItemMedicao form-control" value="${item.NOMEFANTASIA}" style="color:black;" readonly/>
+                </td>
+                <td>
+                    <input type="text" class="inputValorItemMedicao form-control" readonly />
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" class="inputDataCompetenciaItemMedicao form-control" readonly/>
+                        <span class="input-group-addon"><i class="flaticon flaticon-date-range icon-sm" aria-hidden="true"></i></span>
+                    </div>
+                </td>
+            </tr>`;
+
+        }
+        return html;
+    }
+}

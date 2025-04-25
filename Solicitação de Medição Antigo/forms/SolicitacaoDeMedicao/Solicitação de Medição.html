@@ -12,6 +12,7 @@
 	<script src="Funcoes.js"></script>
 	<script src="Script.js"></script>
 	<script src="/webdesk/vcXMLRPC.js"></script>
+	<script src="jquery.maskMoney.js"></script>
 </head>
 
 <body>
@@ -101,6 +102,24 @@
 				<br>
 			</div>
 			<br>
+			<div id="lancarMedicao" class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Lançar Medição</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table custom-table" id="tabelaItensLancarMedicao">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Produto</th>
+								<th>Valor</th>
+								<th>Data Competência</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</div>
 			<div id="divCollapse">
 				<ul id="coltabs" class="nav nav-tabs nav-justified nav-pills" role="tablist"
 					style="padding-bottom: 0px; width: 100%">
