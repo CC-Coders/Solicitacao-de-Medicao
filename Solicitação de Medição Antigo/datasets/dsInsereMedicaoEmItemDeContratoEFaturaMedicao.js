@@ -109,6 +109,7 @@ function FaturaMedicaoEGeraMovimento(constraints) {
         var authService = serviceHelper.getBasicAuthenticatedClient(wsObj, "com.totvs.IwsProcess", pUsuario, pPassword);
         var ret = authService.executeWithXmlParams('CTRFATURAMENTOMEDICAOPROCDATA', xml);
         if (ret == 1) {
+            console.log("teste");
             return true;
         } else {
             throw "Erro ao Faturar Medição Retorno: " + ret;
