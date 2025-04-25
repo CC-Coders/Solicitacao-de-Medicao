@@ -725,10 +725,7 @@ function BoletimDeMedicaoBody({
                             value={
                                 Number(
                                     Number(Medicao.ACUMULADOATUAL)
-                                    - (Number(Medicao.DESCONTOANTERIOR)
-                                        + Number(Medicao.DESCONTOATUAL)
-                                    -( Number(Medicao.ACUMULADOVALORDESCONTOEXTRA)+ Number(Medicao.VALORDESCONTOEXTRA))
-                                    )
+                                    - (Number(Medicao.DESCONTOANTERIOR) + Number(Medicao.DESCONTOATUAL) + Number(Medicao.ACUMULADOVALORDESCONTOEXTRA)+ Number(Medicao.VALORDESCONTOEXTRA))
                                     - (Medicao.POSSUIRETENCAO ? (Number(Medicao.RETENCAOANTERIOR) + Number(Medicao.RETENCAOATUAL)) : 0)
                                     - (Medicao.POSSUIREIDI ? (Number(Medicao.REIDIANTERIOR) + Number(Medicao.REIDIATUAL)) : 0)
                                 )
@@ -739,7 +736,7 @@ function BoletimDeMedicaoBody({
                     </tr>
                     {Medicao.TOTALDIASMEDICAO > 0 && (
                         <tr>
-                            <td colSpan={12}><span className="text-info text-left">*Valor mÁximo para mediÇÃo de item com unidade MÊS ou DIA corresponde ao total de dias da medição.</span></td>
+                            <td colSpan={12}><span className="text-info text-left">*Valor máximo para medição de item com unidade MÊS ou DIA corresponde ao total de dias da medição.</span></td>
                         </tr>
                     )}
                 </tfoot>
