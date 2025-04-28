@@ -1,0 +1,538 @@
+<html>
+
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<link rel="stylesheet" href="jquery.dataTables.min.css">
+	<script src="jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" href="Style.css">
+	<script src="Funcoes.js"></script>
+	<script src="Script.js"></script>
+	<script src="/webdesk/vcXMLRPC.js"></script>
+</head>
+
+<body>
+	<div class="fluig-style-guide">
+		<form name="form" role="form">
+			<div id="divImageColigada">
+				<img src="" alt="Coligada" width="auto" height="50">
+				<br><br>
+			</div>
+			<div id="divDecisao">
+				<div class="alignCenter">
+					<label for="optAprovacaoAprovar" class="checkbox-inline">
+						<input type="radio" name="optAprovacao" id="optAprovacaoAprovar" value="Aprovar">
+						Aprovar
+					</label>
+					<label for="optAprovacaoAprovarPendente" class="checkbox-inline" id="labelAprovarPendente">
+						<input type="radio" name="optAprovacao" id="optAprovacaoAprovarPendente" value="Aprovar">
+						Aprovar Assinatura Pendente
+					</label>
+					<label for="optAprovacaoRetornar" class="checkbox-inline bs-docs-popover-hover"
+						data-toggle="popover" data-placement="bottom"
+						data-content="Ao retornar é necessário escrever um 'Complemento' informando o motivo"
+						data-original-title="Popover title">
+						<input type="radio" name="optAprovacao" id="optAprovacaoRetornar" value="Retornar">
+						Retornar
+					</label>
+				</div>
+			</div>
+			<div id="divObraSelect">
+				<label for="obraSelect">Selecione a obra:</label>
+				<select name="obraSelect" id="obraSelect" class="form-control"></select>
+			</div>
+			<div id="divSelectFornecedor">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Fornecedor</h3>
+					</div>
+					<div class="panel-body">
+						<div id="divSelectFornecedorCNPJ">
+							<label for="CNPJFornecedor">CNPJ:</label>
+							<div style="display: flex;">
+								<input type="text" name="CNPJFornecedor" id="CNPJFornecedor" class="form-control"
+									placeholder="__.___.___/____-__" mask="99.999.999/9999-99">
+								<button class="btn btn-success" id="btnBuscarContratosFornecedor">Buscar</button>
+							</div>
+						</div>
+						<br>
+						<div id="divListaContratos">
+							<table class="table table-striped table-bordered" id="tableContratos" style="width: 100%;">
+								<thead>
+									<tr>
+										<th></th>
+										<th>
+											Número
+										</th>
+										<th>
+											Fornecedor
+										</th>
+										<th>
+											CNPJ
+										</th>
+										<th>
+											Tipo
+										</th>
+										<th>
+											Descrição
+										</th>
+										<th>
+											Status
+										</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+							<br>
+							<div style="text-align: center;">
+								<button class="btn btn-primary" id="btnMedicaoSemContrato">Medição sem Contrato</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="divAvisoStatusContrato">
+				<br>
+				<div></div>
+				<br>
+			</div>
+			<br>
+			<div id="divCollapse">
+				<ul id="coltabs" class="nav nav-tabs nav-justified nav-pills" role="tablist"
+					style="padding-bottom: 0px; width: 100%">
+					<li class="collapse-tab active">
+						<a href="#tabMedicao" role="tab" id="atabMedicao" data-toggle="tab" aria-expanded="true"
+							class="tab">Medição</a>
+					</li>
+					<li class="collapse-tab">
+						<a href="#tabChecklist" role="tab" id="atabChecklist" data-toggle="tab" aria-expanded="true"
+							class="tab">Documentação</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tabMedicao">
+						<div id="divInfoContrato">
+							<h3>Contrato</h3>
+							<div id="divCodigoContrato">
+								<label for="CodContrato">Código do Contrato:</label>
+								<input type="text" name="CodContrato" id="CodContrato" class="form-control" mask="9.9.999-999/99">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<a href="" id="linkContrato" target="_blank">
+										<label>Código: </label>
+										<span id="spanCodigoContrato"></span>
+									</a>
+								</div>
+								<div class="col-md-4">
+									<label>Tipo: </label>
+									<span id="spanTipoContrato"></span>
+								</div>
+								<div class="col-md-4">
+									<label>Descrição: </label>
+									<span id="spanDescContrato"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<label>Obra: </label>
+									<span id="spanObra"></span>
+								</div>
+								<div class="col-md-4">
+									<label>Fornecedor: </label>
+									<span id="spanFornecedor"></span>
+								</div>
+								<div class="col-md-4">
+									<label>CNPJ: </label>
+									<span id="spanCNPJFornecedor"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<label>Status: </label>
+									<span id="spanStatusContrato"></span>
+								</div>
+							</div>
+						</div>
+
+						<div id="divMedicao">
+							<h3>Medição <button class="btn btn-primary" id="btnAtualizarMedicao">Atualizar Medição</button> <button id="btnBuscarMedicoes" class="btn btn-primary">Buscar Medicoes</button></h3>
+							<div id="divInfoMedicao">
+								<div class="row">
+									<div class="col-md-4">
+										<label>Movimento: </label>
+										<span id="spanMovimento"></span>
+									</div>
+									<div class="col-md-4">
+										<label>Medição Nº: </label>
+										<span id="spanNumeroMedicao"></span>
+									</div>
+									<div class="col-md-4">
+										<label>Competência: </label>
+										<span id="spanCompetencia"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-4">
+										<label>Local de Estoque: </label>
+										<span id="spanLocalEstoque"></span>
+									</div>
+									<div class="col-md-4">
+										<label>Valor NF: </label>
+										<span id="spanValorNF"></span>
+									</div>
+									<div class="col-md-4">
+										<div id="popoverRetencaoAcumulada" class="bs-docs-popover-hover"
+											data-toggle="popover" data-content="" data-original-title="Popover title">
+											<label>Valor Retenção: </label>
+											<span id="spanValorRetencao"></span>
+										</div>
+									</div>
+								</div>
+								<br>
+							</div>
+							<div id="divAlertBoletimMedicao">
+								<br><br><br>
+								<div class="div-alert">
+									*Necessário anexar o Boletim de Medição assinado*
+								</div>
+								<br><br>
+							</div>
+							<div class="row">
+								<div class="col-lg-2 col-md-0"></div>
+								<div class="col-lg-4 col-md-6">
+									<div id="divInputFileMedicao" class="alignCenter">
+										<label for="inputFileMedicao">
+											Boletim de Medição (PDF):
+											<div style="display: contents;">
+												<input type="checkbox" name="checkboxAssinaturaPendente"
+													id="checkboxAssinaturaPendente" style="margin-left: 20px;">
+												<label for="checkboxAssinaturaPendente">Pendente assinatura</label>
+											</div>
+											<br />
+											<div style="display: flex; align-items: baseline">
+												<button class="btn btn-primary" onclick="$('#inputFileMedicao').click();"
+													style="margin-right: 5px">Escolher arquivo</button>
+												<div style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden">
+													Nenhum arquivo selecionado</div>
+												<input type="file" name="inputFileMedicao" id="inputFileMedicao"
+													class="form-control" style="display: none" />
+											</div>
+										</label>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6">
+									<div id="divInputFileMemoCalculo" class="alignCenter">
+										<label for="inputFileMemoCalculo">
+											Memória de Cálculo (Planilha):
+											<br />
+											<div style="display: flex; align-items: baseline">
+												<button class="btn btn-primary" onclick="$('#inputFileMemoCalculo').click();"
+													style="margin-right: 5px">Escolher arquivo</button>
+												<div style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden">
+													Nenhum arquivo selecionado</div>
+												<input type="file" name="inputFileMemoCalculo" id="inputFileMemoCalculo"
+													class="form-control" accept=".xls, .xlsx" style="display: none" />
+											</div>
+										</label>
+									</div>
+								</div>
+							</div>
+							<div id="divBoletimMedicao" class="alignCenter">
+								<embed id="pdfBoletimMedicao" src="" type="application/pdf">
+							</div>
+							<div id="linkBoletimMedicao" class="alignCenter">
+								<a href="" class="btn btn-primary" target="_blank">Abrir Boletim de Medição</a>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="tabChecklist">
+						<ol type="1">
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxCopyCNPJ" id="checkboxCopyCNPJ"
+										class="checkboxDocumentacao">
+									Cópia CNPJ constando atividade econômica da empresa - Atual
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxSimples" id="checkboxSimples"
+										class="checkboxDocumentacao">
+									Simples Nacional - Atual
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxDesoneracaoFolha" id="checkboxDesoneracaoFolha"
+										class="checkboxDocumentacao">
+									Termo de Desoneração da Folha - Atual
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxGFIP" id="checkboxGFIP"
+										class="checkboxDocumentacao">
+									GFIP completa, que deverá ser recolhida no CEI da Obra Cód. 150, nos casos em que o
+									serviço
+									estiver diretamente relacionado com alguma construção que permanecerá na obra após
+									sua
+									conclusão
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxGPS" id="checkboxGPS"
+										class="checkboxDocumentacao">
+									GPS - Cód. 2100 ou Cód. 2119 - 5.1 com comprovante de pagamento
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxGRF" id="checkboxGRF"
+										class="checkboxDocumentacao">
+									GRF - Cód. 150 - 6.1 com comprovante de pagamento
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxRE" id="checkboxRE"
+										class="checkboxDocumentacao">
+									RE e 7.1 Protocolo de envio p/ CEF (Caixa Econômica Federal)
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxFolha" id="checkboxFolha"
+										class="checkboxDocumentacao">
+									Cópia da folha de pagamento
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxHolerite" id="checkboxHolerite"
+										class="checkboxDocumentacao">
+									Cópia dos Recibos de Pagamento Salarial, assinados pelo funcionário (Holerite)
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxRAIS" id="checkboxRAIS"
+										class="checkboxDocumentacao">
+									Relação Anual de Informações Sociais (RAIS)
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxCertidaoNegativaUniao"
+										id="checkboxCertidaoNegativaUniao" class="checkboxDocumentacao">
+									Certidão Negativa de Débitos Relativos aos Tributos Federais e à Divida Ativa da
+									União
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxCRF" id="checkboxCRF"
+										class="checkboxDocumentacao">
+									Certificado de Regularidade do FGTS - CRF
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxCertidaoEstadual" id="checkboxCertidaoEstadual"
+										class="checkboxDocumentacao">
+									Certidão Negativa de Débitos Tributários e de Divida Ativa Estadual
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxCertidaoMunicipais"
+										id="checkboxCertidaoMunicipais" class="checkboxDocumentacao">
+									Certidão Negativa de Tributos e de Outros Débitos Municipais
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxCertidaoTrabalhistas"
+										id="checkboxCertidaoTrabalhistas" class="checkboxDocumentacao">
+									Certidão Negativa de Débitos Trabalhistas
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxFRE" id="checkboxFRE"
+										class="checkboxDocumentacao">
+									Cópia FRE (com foto e assinatura)
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxEPI" id="checkboxEPI"
+										class="checkboxDocumentacao">
+									Cópia da Ficha de EPI
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxASO" id="checkboxASO"
+										class="checkboxDocumentacao">
+									Cópia ASO (Exame admissional)
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxPPRA" id="checkboxPPRA"
+										class="checkboxDocumentacao">
+									Cópia do PPRA
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxPCMSO" id="checkboxPCMSO"
+										class="checkboxDocumentacao">
+									Cópia do PCMSO
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxOrdemServico" id="checkboxOrdemServico"
+										class="checkboxDocumentacao">
+									Cópia da Ordem de Serviço por Função
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxCIPA" id="checkboxCIPA"
+										class="checkboxDocumentacao">
+									Cópia do termo de designado de CIPA
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxCertificadoTreinamento"
+										id="checkboxCertificadoTreinamento" class="checkboxDocumentacao">
+									Cópia de Certificados de treinamento para atividades específicas (trabalho com
+									eletricidade
+									- NR10, atividades com máquinas e equipamentos - NR11 e 12, trabalho em altura -
+									NR35,
+									espaço confinado - NR 33)
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="checkbox" name="checkboxListaFuncionarios"
+										id="checkboxListaFuncionarios" class="checkboxDocumentacao">
+									Lista de funcionarios da obra
+								</label>
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div id="divInfoTerceiro">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Outras informações</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-6">
+								<div>
+									<label for="inputContabTerceiro">Contabilidade:</label>
+									<input type="text" name="inputContabTerceiro" id="inputContabTerceiro"
+										class="form-control campoContab">
+									<span></span>
+								</div>
+								<div>
+									<label for="inputNomeContabTerceiro">Nome:</label>
+									<input type="text" name="inputNomeContabTerceiro" id="inputNomeContabTerceiro"
+										class="form-control campoContab">
+									<span></span>
+								</div>
+								<div>
+									<label for="inputTelContabTerceiro">Telefone:</label>
+									<input type="text" name="inputTelContabTerceiro" id="inputTelContabTerceiro"
+										class="form-control campoContab">
+									<span></span>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div>
+									<label for="inputRHTerceiro">RH:</label>
+									<input type="text" name="inputRHTerceiro" id="inputRHTerceiro"
+										class="form-control campoRH">
+									<span></span>
+								</div>
+								<div>
+									<label for="inputNomeRHTerceiro">Nome:</label>
+									<input type="text" name="inputNomeRHTerceiro" id="inputNomeRHTerceiro"
+										class="form-control campoRH">
+									<span></span>
+								</div>
+								<div>
+									<label for="inputTelRHTerceiro">Telefone:</label>
+									<input type="text" name="inputTelRHTerceiro" id="inputTelRHTerceiro"
+										class="form-control campoRH">
+									<span></span>
+								</div>
+							</div>
+						</div>
+						<br><br>
+					</div>
+				</div>
+			</div>
+			<div style="display: none;">
+				<input type="hidden" name="coligada" id="coligada">
+				<input type="hidden" name="ccusto" id="ccusto">
+				<input type="hidden" name="obra" id="obra">
+
+				<input type="hidden" name="solicitacao" id="solicitacao">
+				<input type="hidden" name="controladoria" id="controladoria">
+				<input type="hidden" name="engenheiro" id="engenheiro">
+				<input type="hidden" name="superior" id="superior">
+				<input type="hidden" name="diretoria" id="diretoria">
+				<input type="hidden" name="ObjContrato" id="ObjContrato">
+				<input type="hidden" name="ObjMedicao" id="ObjMedicao">
+
+				<input type="hidden" name="CodigoContrato" id="CodigoContrato">
+
+				<input type="hidden" name="idDocMedicao" id="idDocMedicao">
+				<input type="hidden" name="idDocMemoCalculo" id="idDocMemoCalculo">
+				<input type="hidden" name="movimento" id="movimento">
+				<input type="hidden" name="valorMedicao" id="valorMedicao">
+				<input type="hidden" name="valorRetencao" id="valorRetencao">
+				<input type="hidden" name="dataCompetenciaMedicao" id="dataCompetenciaMedicao">
+				<input type="hidden" name="produtoMedicao" id="produtoMedicao">
+				<input type="hidden" name="localEstoqueMedicao" id="localEstoqueMedicao">
+				<input type="hidden" name="hiddenCNPJFornecedor" id="hiddenCNPJFornecedor">
+
+				<input type="hidden" name="poolGrupoObra" id="poolGrupoObra">
+				<input type="hidden" name="userCode" id="userCode">
+				<input type="hidden" name="isMobile" id="isMobile">
+				<input type="hidden" name="formMode" id="formMode">
+				<input type="hidden" name="atividade" id="atividade">
+				<input type="hidden" name="valueTpSolic" id="valueTpSolic">
+				<input type="hidden" name="usuarioSolicitante" id="usuarioSolicitante">
+				<input type="hidden" name="dataSolicitacao" id="dataSolicitacao">
+				<input type="hidden" name="countBeforeTaskSave" id="countBeforeTaskSave">
+			</div>
+			<script>
+				var beforeSendValidate = function (numState, nextState) {
+					var validacao = ValidaAntesDeEnviarAtividade();
+
+					if (validacao != true) {
+						throw validacao;
+					}
+				}
+			</script>
+		</form>
+	</div>
+</body>
+
+</html>
