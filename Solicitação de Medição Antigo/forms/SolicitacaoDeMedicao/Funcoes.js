@@ -777,6 +777,8 @@ function BuscaInfoDoc(id) {
 }
 
 
+
+
 // Lancamento Medicao
 function geraItensContrato() {
     var itens = buscaItensContrato();
@@ -794,7 +796,7 @@ function geraItensContrato() {
             $(this).closest("tr").find(".inputDataCompetenciaItemMedicao").val("");
         }else{
             $(this).closest("tr").find(".inputValorItemMedicao").removeAttr("readonly");
-            $(this).closest("tr").find(".inputValorItemMedicao").maskMoney({prefix:"R$"});
+            $(this).closest("tr").find(".inputValorItemMedicao").maskMoney({prefix:"R$",thousands:'.', decimal:','});
 
             $(this).closest("tr").find(".inputDataCompetenciaItemMedicao").removeAttr("readonly");
             FLUIGC.calendar($(this).closest("tr").find(".inputDataCompetenciaItemMedicao")).enable();
@@ -826,6 +828,7 @@ function geraItensContrato() {
                 <td style="text-align:center;">
                     <input type="checkbox" class="checkboxLancaMedicao control control--checkbox"  data-on-text="Sim" data-off-text="Não" data-on-color="success"/>
                     <input type="hidden" class="NSEQITMCNT" value="${item.NSEQITMCNT}"/>
+                    <input type="hidden" class="NSEQMEDICAO" value="${parseInt(item.NSEQMEDICAO) + 1}"/>
                 </td>
                 <td>
                     <input type="text" class="inputProdutoItemMedicao form-control" value="${item.NOMEFANTASIA}" style="color:black;" readonly/>
@@ -844,4 +847,58 @@ function geraItensContrato() {
         }
         return html;
     }
+}
+
+function lancarMedicoes(){
+    var medicoes = buscaDadosMedicoes();
+    for (const medicao of medicoes) {
+        geraMedicao(medicao);
+    }
+
+    function geraMedicao(medicao){
+        var ds = DatasetFactory.getDataset("dsInsereMedicaoEmItemDeContratoEFaturaMedicao",null,[
+            DatasetFactory.createConstraint("CODCOLIGADA", medicao.CODCOLIGADA,medicao.CODCOLIGADA,ConstraintType.MUST),
+            DatasetFactory.createConstraint("IDCNT", medicao.IDCNT,medicao.IDCNT,ConstraintType.MUST),
+            DatasetFactory.createConstraint("NSEQITMCNT", medicao.NSEQITMCNT,medicao.NSEQITMCNT,ConstraintType.MUST),
+            DatasetFactory.createConstraint("NSEQITEMMEDICAO", medicao.NSEQITEMMEDICAO,medicao.NSEQITEMMEDICAO,ConstraintType.MUST),
+            DatasetFactory.createConstraint("VALOR", medicao.VALOR,medicao.VALOR,ConstraintType.MUST),
+            DatasetFactory.createConstraint("QUANTIDADE", medicao.QUANTIDADE,medicao.QUANTIDADE,ConstraintType.MUST),
+            DatasetFactory.createConstraint("USUARIO", medicao.USUARIO,medicao.USUARIO,ConstraintType.MUST),
+            DatasetFactory.createConstraint("DATA", medicao.DATA,medicao.DATA,ConstraintType.MUST),
+        ],null);
+        console.log(ds);
+    }
+
+    function buscaDadosMedicoes(){
+        var retorno = [];
+        const CODCOLIGADA = $("#coligada").val();
+        const ObjContrato = JSON.parse($("#ObjContrato").val());
+        const IDCNT = ObjContrato.IDCNT;
+        const USUARIO = $("#userCode").val();
+        $("#tabelaItensLancarMedicao>tbody>tr").each(function(){
+            if ($(this).find(".checkboxLancaMedicao").is(":checked")) {
+                var dados = {
+                    CODCOLIGADA:CODCOLIGADA,
+                    IDCNT:IDCNT,
+                    NSEQITMCNT:$(this).find(".NSEQITMCNT").val(),
+                    NSEQITEMMEDICAO:$(this).find(".NSEQMEDICAO").val(),
+                    VALOR:moneyToFloat($(this).find(".inputValorItemMedicao").val()),
+                    DATA:$(this).find(".inputDataCompetenciaItemMedicao").val().split("/").reverse().join("-"),
+                    QUANTIDADE:1,
+                    USUARIO:USUARIO,
+                }
+                retorno.push(dados);
+            }
+        });
+
+        return retorno;
+    }
+}
+
+// Utils
+function moneyToFloat(val){
+    val = val.replace("R$","");
+    val = val.split(".").join("");
+    val = val.replace(",",".");
+    return parseFloat(val);
 }

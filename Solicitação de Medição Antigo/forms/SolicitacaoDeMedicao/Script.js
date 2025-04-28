@@ -177,6 +177,9 @@ $(document).ready(function () {
             $("#checkboxAssinaturaPendente").on("click", function(){
                 $("#optAprovacaoAprovarPendente, #optAprovacaoAprovar, #optAprovacaoRetornar").prop("checked", false);
             });
+            $("#optAprovacaoAprovar").on("click",function(){
+                geraItensContrato();
+            });
         }
         else if (atividade == 9) {//Atividade Inclusão da Documentação
             $(".checkboxDocumentacao").off("click");
