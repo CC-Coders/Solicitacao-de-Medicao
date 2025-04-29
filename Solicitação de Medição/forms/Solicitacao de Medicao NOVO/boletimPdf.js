@@ -172,8 +172,12 @@ function gerarPDF(medicao) {
 						arredondar(
 							Number(
 								Number(medicao.ACUMULADOATUAL) 
-								- (Number(medicao.DESCONTOANTERIOR)+ Number(medicao.DESCONTOATUAL)) 
-								- (Number(medicao.DESCONTOS_EXTRA) + Number(medicao.ACUMULADOVALORDESCONTOEXTRA))
+								- (Number(medicao.DESCONTOANTERIOR) 
+									+ Number(medicao.DESCONTOATUAL)
+								) 
+								- (
+									Number(medicao.DESCONTOS_EXTRA + Number(medicao.ACUMULADOVALORDESCONTOEXTRA))
+								)
                                 - (medicao.POSSUIRETENCAO ? (Number(medicao.RETENCAOANTERIOR) + Number(medicao.RETENCAOATUAL)) : 0)
                                 - (medicao.POSSUIREIDI ? (Number(medicao.REIDIANTERIOR) + Number(medicao.REIDIATUAL)) : 0))
 							, 2)
