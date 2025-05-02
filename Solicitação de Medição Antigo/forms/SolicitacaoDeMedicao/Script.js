@@ -178,6 +178,7 @@ $(document).ready(function () {
                 $("#optAprovacaoAprovarPendente, #optAprovacaoAprovar, #optAprovacaoRetornar").prop("checked", false);
             });
             $("#optAprovacaoAprovar").on("click",function(){
+                $("#lancarMedicao").show();
                 geraItensContrato();
             });
         }
@@ -317,6 +318,9 @@ $(document).ready(function () {
     });
     $(".campoContab, .campoRH").on("focus", function () {
         $(this).removeClass("has-error");
+    });
+    $("#btnLancarMedicao").on("click",function(){
+        lancarMedicoes();
     });
 
     $("#btnAtualizarMedicao").on("click", () => { BuscaContratoPorCodigo($("#CodigoContrato").val()); BuscaMedicao(); });

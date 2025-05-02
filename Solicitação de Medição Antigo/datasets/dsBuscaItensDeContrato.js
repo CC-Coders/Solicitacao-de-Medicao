@@ -30,7 +30,7 @@ function buscaItensDoContrato(CODCOLIGADA, IDCNT) {
         query += "FROM TCNT CONTRATO "
         query += "    INNER JOIN TITMCNT ITEM ON CONTRATO.IDCNT = ITEM.IDCNT AND  ITEM.CODCOLIGADA = CONTRATO.CODCOLIGADA "
         query += "    INNER JOIN TPRODUTO PRODUTO ON ITEM.CODCOLIGADA = PRODUTO.CODCOLPRD AND ITEM.IDPRD = PRODUTO.IDPRD "
-        query += "    INNER JOIN TITMCNTMEDICAO MEDICOES ON CONTRATO.CODCOLIGADA = MEDICOES.CODCOLIGADA AND CONTRATO.IDCNT = MEDICOES.IDCNT "
+        query += "    LEFT JOIN TITMCNTMEDICAO MEDICOES ON CONTRATO.CODCOLIGADA = MEDICOES.CODCOLIGADA AND CONTRATO.IDCNT = MEDICOES.IDCNT "
         query += "WHERE CONTRATO.CODCOLIGADA = ? AND CONTRATO.IDCNT = ? ";
         query += "GROUP BY ITEM.NSEQITMCNT,  PRODUTO.IDPRD, PRODUTO.CODIGOPRD, PRODUTO.NOMEFANTASIA";
 
@@ -84,7 +84,7 @@ function executaQuery(query, values) {
         while (rs.next()) {
             var linha = {};
             for (var i = 1; i <= columnCount; i++) {
-                linha[rs.getMetaData().getColumnName(i)] = rs.getObject(rs.getMetaData().getColumnName(i)).toString();
+                linha[rs.getMetaData().getColumnName(i)] = rs.getObject(rs.getMetaData().getColumnName(i));
             }
             retorno.push(linha);
         }
