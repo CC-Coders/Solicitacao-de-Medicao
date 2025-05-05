@@ -834,6 +834,8 @@ function geraItensContrato() {
                     <input type="checkbox" class="checkboxLancaMedicao control control--checkbox"  data-on-text="Sim" data-off-text="Não" data-on-color="success"/>
                     <input type="hidden" class="NSEQITMCNT" value="${item.NSEQITMCNT}"/>
                     <input type="hidden" class="NSEQMEDICAO" value="${NSEQMEDICAO + 1}"/>
+                    <input type="hidden" class="ITEMQUANTIDADE" value="${item.QUANTIDADE + 1}"/>
+                    <input type="hidden" class="ITEMMEDICOESVALOR" value="${item.VALORMEDICOES.toFixed(2)}"/>
                 </td>
                 <td>
                     <input type="text" class="inputProdutoItemMedicao form-control" value="${item.NOMEFANTASIA}" style="color:black;" readonly/>
@@ -885,6 +887,12 @@ async function lancarMedicoes() {
                 $("#lancarMedicao").hide();
                 resolve();
             } catch (error) {
+                loading.hide();
+                FLUIGC.toast({
+                    title: "Erro ao gerar Medição: ",
+                    message:error,
+                    type: "warning"
+                });
                 reject(error);
             }
 
@@ -899,7 +907,8 @@ async function lancarMedicoes() {
                 DatasetFactory.createConstraint("NSEQITMCNT", medicao.NSEQITMCNT, medicao.NSEQITMCNT, ConstraintType.MUST),
                 DatasetFactory.createConstraint("NSEQITEMMEDICAO", medicao.NSEQITEMMEDICAO, medicao.NSEQITEMMEDICAO, ConstraintType.MUST),
                 DatasetFactory.createConstraint("VALOR", medicao.VALOR, medicao.VALOR, ConstraintType.MUST),
-                DatasetFactory.createConstraint("QUANTIDADE", medicao.QUANTIDADE, medicao.QUANTIDADE, ConstraintType.MUST),
+                DatasetFactory.createConstraint("QUANTIDADEITEM", medicao.QUANTIDADEITEM, medicao.QUANTIDADEITEM, ConstraintType.MUST),
+                DatasetFactory.createConstraint("VALORITEM", medicao.VALORITEM, medicao.VALORITEM, ConstraintType.MUST),
                 DatasetFactory.createConstraint("USUARIO", medicao.USUARIO, medicao.USUARIO, ConstraintType.MUST),
                 DatasetFactory.createConstraint("DATA", medicao.DATA, medicao.DATA, ConstraintType.MUST),
             ], null);
@@ -930,7 +939,8 @@ async function lancarMedicoes() {
                     NSEQITEMMEDICAO: $(this).find(".NSEQMEDICAO").val(),
                     VALOR: moneyToFloat($(this).find(".inputValorItemMedicao").val()),
                     DATA: $(this).find(".inputDataCompetenciaItemMedicao").val().split("/").reverse().join("-"),
-                    QUANTIDADE: 1,
+                    QUANTIDADEITEM: $(this).find(".ITEMQUANTIDADE").val(),
+                    VALORITEM: ((parseFloat($(this).find(".ITEMMEDICOESVALOR").val()) + moneyToFloat($(this).find(".inputValorItemMedicao").val())) / $(this).find(".ITEMQUANTIDADE").val()).toFixed(2).replace(".",",") ,
                     USUARIO: USUARIO,
                 }
                 retorno.push(dados);
@@ -960,10 +970,6 @@ async function lancarMedicoes() {
             });
 
         } catch (error) {
-            FLUIGC.toast({
-                title: error,
-                type: "warning"
-            });
             throw error;
         }
     }

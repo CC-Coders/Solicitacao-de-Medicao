@@ -28,11 +28,11 @@ function createDataset(fields, constraints, sortFields) {
     try {
         // Le e Valida Constraints
         var constraints = getConstraints(constraints);
-        var listConstrainstObrigatorias = ["CODCOLIGADA", "IDCNT", "NSEQITMCNT", "NSEQITEMMEDICAO", "VALOR", "QUANTIDADE", "USUARIO", "DATA"];
+        var listConstrainstObrigatorias = ["CODCOLIGADA", "IDCNT", "NSEQITMCNT", "NSEQITEMMEDICAO", "VALOR", "QUANTIDADEITEM", "VALORITEM", "USUARIO", "DATA"];
         lancaErroSeConstraintsObrigatoriasNaoInformadas(constraints, listConstrainstObrigatorias);
 
+        alteraQuantidadeEValorDoItem(constraints);
         insereMedicaoNaTabelaTITMCNTMEDICAO(constraints);
-
         FaturaMedicaoEGeraMovimento(constraints);
         var dadosDoMovimento = buscaCodColigada_IDMovDoMovimentoGerado(constraints);
 
@@ -45,6 +45,8 @@ function createDataset(fields, constraints, sortFields) {
             for (var i = 0; i < keys.length; i++) {
                 mensagem.push(keys[i] + ": " + error[keys[i]]);
             }
+            log.info("Erro ao executar dsInsereMedicaoEmItemDeContratoEFaturaMedicao:");
+            log.info(mensagem.join(" - "));
 
             return returnDataset("ERRO", mensagem.join(" - "), null);
         } else {
@@ -70,7 +72,7 @@ function insereMedicaoNaTabelaTITMCNTMEDICAO(constraints) {
         stmt.setInt(5, 0);//STATUS
         stmt.setString(6, constraints.DATA);//DATA
         stmt.setFloat(7, constraints.VALOR);//VALOR
-        stmt.setFloat(8, constraints.QUANTIDADE);//QUANTIDADE
+        stmt.setFloat(8, 1);//QUANTIDADE
         stmt.setString(9, constraints.DATA);//DATAEXECUCAO
         stmt.setString(10, constraints.USUARIO);//RECCREATEDBY
         //RECCREATEDON cria como SYSDATETIME()
@@ -314,6 +316,42 @@ function buscaCodColigada_IDMovDoMovimentoGerado(constraints) {
         if (conn != null) {
             conn.close();
         }
+    }
+}
+function alteraQuantidadeEValorDoItem(constraints) {
+    try {
+        var xml ="<CTRCNT>";
+        xml += "    <TCNT>";
+        xml += "        <CODCOLIGADA>" + constraints.CODCOLIGADA + "</CODCOLIGADA>";
+        xml += "        <IDCNT>" + constraints.IDCNT + "</IDCNT>";
+        xml += "    </TCNT>";
+        xml += "    <TITMCNT>";
+        xml += "        <CODCOLIGADA>" + constraints.CODCOLIGADA + "</CODCOLIGADA>";
+        xml += "        <IDCNT>" + constraints.IDCNT + "</IDCNT>";
+        xml += "        <NSEQITMCNT>" + constraints.NSEQITMCNT + "</NSEQITMCNT>";
+        xml += "        <QUANTIDADE>" + constraints.QUANTIDADEITEM + "</QUANTIDADE>";
+        xml += "        <PRECOFATURAMENTO>" + constraints.VALORITEM + "</PRECOFATURAMENTO>";
+        xml += "      </TITMCNT>";
+        xml +="</CTRCNT>";
+
+        var contexto = "CODSISTEMA=T;CODCOLIGADA=" + constraints.CODCOLIGADA + ";CODUSUARIO=fluig";
+
+        var retorno = DatasetFactory.getDataset("InsereContratoRM", null, [
+            DatasetFactory.createConstraint("xml", xml, xml, ConstraintType.MUST),
+            DatasetFactory.createConstraint("contexto", contexto, contexto, ConstraintType.MUST),
+            DatasetFactory.createConstraint("idContrato", constraints.IDCNT, constraints.IDCNT, ConstraintType.MUST),
+            DatasetFactory.createConstraint("coligada", constraints.CODCOLIGADA, constraints.CODCOLIGADA, ConstraintType.MUST),
+        ], null);
+
+
+        if (retorno.values[0][0] == "true") {
+            return true;
+        }
+        else {
+            throw retorno.values[0][0];
+        }
+    } catch (error) {
+        throw error;
     }
 }
 
