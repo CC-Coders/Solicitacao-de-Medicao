@@ -61,7 +61,7 @@ function insereMedicaoNaTabelaTITMCNTMEDICAO(constraints) {
         var dataSource = "/jdbc/RM";
         var ic = new javax.naming.InitialContext();
         var ds = ic.lookup(dataSource);
-        var myQuery = "INSERT INTO TITMCNTMEDICAO (CODCOLIGADA, IDCNT, NSEQITMCNT, NSEQMEDICAO, STATUS, DATA, VALOR, QUANTIDADE, DATAEXECUCAO, RECCREATEDBY, RECCREATEDON) VALUES (?,?,?,?,?,?,?,?,?,?,SYSDATETIME())";
+        var myQuery = "INSERT INTO TITMCNTMEDICAO (CODCOLIGADA, IDCNT, NSEQITMCNT, NSEQMEDICAO, STATUS, DATA, VALOR, QUANTIDADE, DATAEXECUCAO, RECCREATEDBY, RECCREATEDON) VALUES (?,?,?,?,?,SYSDATETIME(),?,?,?,?,SYSDATETIME())";
         var conn = ds.getConnection();
         var stmt = conn.prepareStatement(myQuery);
 
@@ -70,11 +70,10 @@ function insereMedicaoNaTabelaTITMCNTMEDICAO(constraints) {
         stmt.setInt(3, constraints.NSEQITMCNT);//NSEQITMCNT
         stmt.setInt(4, constraints.NSEQITEMMEDICAO);//NSEQMEDICAO
         stmt.setInt(5, 0);//STATUS
-        stmt.setString(6, constraints.DATA);//DATA
-        stmt.setFloat(7, constraints.VALOR);//VALOR
-        stmt.setFloat(8, 1);//QUANTIDADE
-        stmt.setString(9, constraints.DATA);//DATAEXECUCAO
-        stmt.setString(10, constraints.USUARIO);//RECCREATEDBY
+        stmt.setDouble(6, constraints.VALOR);//VALOR
+        stmt.setDouble(7, 1);//QUANTIDADE
+        stmt.setString(8, constraints.DATA);//DATAEXECUCAO
+        stmt.setString(9, constraints.USUARIO);//RECCREATEDBY
         //RECCREATEDON cria como SYSDATETIME()
 
         var rowCount = stmt.executeUpdate();

@@ -937,7 +937,7 @@ async function lancarMedicoes() {
                     IDCNT: IDCNT,
                     NSEQITMCNT: $(this).find(".NSEQITMCNT").val(),
                     NSEQITEMMEDICAO: $(this).find(".NSEQMEDICAO").val(),
-                    VALOR: moneyToFloat($(this).find(".inputValorItemMedicao").val()),
+                    VALOR: moneyToFloat($(this).find(".inputValorItemMedicao").val()).toFixed(2),
                     DATA: $(this).find(".inputDataCompetenciaItemMedicao").val().split("/").reverse().join("-"),
                     QUANTIDADEITEM: $(this).find(".ITEMQUANTIDADE").val(),
                     VALORITEM: ((parseFloat($(this).find(".ITEMMEDICOESVALOR").val()) + moneyToFloat($(this).find(".inputValorItemMedicao").val())) / $(this).find(".ITEMQUANTIDADE").val()).toFixed(2).replace(".",",") ,
