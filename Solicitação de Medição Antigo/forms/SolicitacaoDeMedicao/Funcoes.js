@@ -833,9 +833,9 @@ function geraItensContrato() {
                 <td style="text-align:center;">
                     <input type="checkbox" class="checkboxLancaMedicao control control--checkbox"  data-on-text="Sim" data-off-text="Não" data-on-color="success"/>
                     <input type="hidden" class="NSEQITMCNT" value="${item.NSEQITMCNT}"/>
-                    <input type="hidden" class="NSEQMEDICAO" value="${NSEQMEDICAO + 1}"/>
-                    <input type="hidden" class="ITEMQUANTIDADE" value="${item.QUANTIDADE + 1}"/>
-                    <input type="hidden" class="ITEMMEDICOESVALOR" value="${item.VALORMEDICOES.toFixed(2)}"/>
+                    <input type="hidden" class="NSEQMEDICAO" value="${NSEQMEDICAO}"/>
+                    <input type="hidden" class="ITEMQUANTIDADE" value="${item.QUANTIDADE}"/>
+                    <input type="hidden" class="ITEMMEDICOESVALOR" value="${item.VALORMEDICOES}"/>
                 </td>
                 <td>
                     <input type="text" class="inputProdutoItemMedicao form-control" value="${item.NOMEFANTASIA}" style="color:black;" readonly/>
@@ -857,30 +857,28 @@ function geraItensContrato() {
 }
 async function lancarMedicoes() {
     try {
-        var loading = FLUIGC.loading(window,{
-            onBlock:lancaMedicoes,
-            textMessage:"Gerando Medição..."
+        var loading = FLUIGC.loading(window, {
+            onBlock: lancaMedicoes,
+            textMessage: "Gerando Medição..."
         });
         loading.show();
-      
+
     } catch (error) {
         console.error(error);
     }
 
 
-    function lancaMedicoes(){
-        return new Promise((resolve,reject)=>{
+    function lancaMedicoes() {
+        return new Promise((resolve, reject) => {
             try {
                 validaPreenchimentoDasMedicoes();
-    
+
                 var medicoes = buscaDadosMedicoes();
-                for (const medicao of medicoes) {
-                    geraMedicao(medicao);
-                }
+                geraMedicao(medicoes);
                 loading.hide();
                 FLUIGC.toast({
                     title: "Medição gerada!!",
-                    message:"",
+                    message: "",
                     type: "success"
                 });
                 $("#btnAtualizarMedicao").click();
@@ -890,27 +888,27 @@ async function lancarMedicoes() {
                 loading.hide();
                 FLUIGC.toast({
                     title: "Erro ao gerar Medição: ",
-                    message:error,
+                    message: error,
                     type: "warning"
                 });
                 reject(error);
             }
 
         });
-  
+
     }
-    function geraMedicao(medicao) {
+    function geraMedicao(medicoes) {
         try {
+            const ObjContrato = JSON.parse($("#ObjContrato").val());
+            const CODCOLIGADA = $("#coligada").val();
+            const IDCNT = ObjContrato.IDCNT;
+            const USUARIO = $("#userCode").val();
+
             var ds = DatasetFactory.getDataset("dsInsereMedicaoEmItemDeContratoEFaturaMedicao", null, [
-                DatasetFactory.createConstraint("CODCOLIGADA", medicao.CODCOLIGADA, medicao.CODCOLIGADA, ConstraintType.MUST),
-                DatasetFactory.createConstraint("IDCNT", medicao.IDCNT, medicao.IDCNT, ConstraintType.MUST),
-                DatasetFactory.createConstraint("NSEQITMCNT", medicao.NSEQITMCNT, medicao.NSEQITMCNT, ConstraintType.MUST),
-                DatasetFactory.createConstraint("NSEQITEMMEDICAO", medicao.NSEQITEMMEDICAO, medicao.NSEQITEMMEDICAO, ConstraintType.MUST),
-                DatasetFactory.createConstraint("VALOR", medicao.VALOR, medicao.VALOR, ConstraintType.MUST),
-                DatasetFactory.createConstraint("QUANTIDADEITEM", medicao.QUANTIDADEITEM, medicao.QUANTIDADEITEM, ConstraintType.MUST),
-                DatasetFactory.createConstraint("VALORITEM", medicao.VALORITEM, medicao.VALORITEM, ConstraintType.MUST),
-                DatasetFactory.createConstraint("USUARIO", medicao.USUARIO, medicao.USUARIO, ConstraintType.MUST),
-                DatasetFactory.createConstraint("DATA", medicao.DATA, medicao.DATA, ConstraintType.MUST),
+                DatasetFactory.createConstraint("CODCOLIGADA", CODCOLIGADA + "", CODCOLIGADA + "", ConstraintType.MUST),
+                DatasetFactory.createConstraint("IDCNT", IDCNT + "", IDCNT + "", ConstraintType.MUST),
+                DatasetFactory.createConstraint("USUARIO", USUARIO + "", USUARIO + "", ConstraintType.MUST),
+                DatasetFactory.createConstraint("MEDICOES", medicoes + "", medicoes + "", ConstraintType.MUST),
             ], null);
 
             if (ds.values[0].STATUS == "SUCESSO") {
@@ -926,28 +924,22 @@ async function lancarMedicoes() {
     }
     function buscaDadosMedicoes() {
         var retorno = [];
-        const CODCOLIGADA = $("#coligada").val();
-        const ObjContrato = JSON.parse($("#ObjContrato").val());
-        const IDCNT = ObjContrato.IDCNT;
-        const USUARIO = $("#userCode").val();
         $("#tabelaItensLancarMedicao>tbody>tr").each(function () {
-            if ($(this).find(".checkboxLancaMedicao").is(":checked")) {
-                var dados = {
-                    CODCOLIGADA: CODCOLIGADA,
-                    IDCNT: IDCNT,
-                    NSEQITMCNT: $(this).find(".NSEQITMCNT").val(),
-                    NSEQITEMMEDICAO: $(this).find(".NSEQMEDICAO").val(),
-                    VALOR: moneyToFloat($(this).find(".inputValorItemMedicao").val()).toFixed(2),
-                    DATA: $(this).find(".inputDataCompetenciaItemMedicao").val().split("/").reverse().join("-"),
-                    QUANTIDADEITEM: $(this).find(".ITEMQUANTIDADE").val(),
-                    VALORITEM: ((parseFloat($(this).find(".ITEMMEDICOESVALOR").val()) + moneyToFloat($(this).find(".inputValorItemMedicao").val())) / $(this).find(".ITEMQUANTIDADE").val()).toFixed(2).replace(".",",") ,
-                    USUARIO: USUARIO,
-                }
-                retorno.push(dados);
-            }
+            const CHECKED = $(this).find(".checkboxLancaMedicao").is(":checked")+"";
+
+            const NSEQITMCNT = $(this).find(".NSEQITMCNT").val() + "";
+            const NSEQITEMMEDICAO = parseInt($(this).find(".NSEQMEDICAO").val()) + (CHECKED ? 1 : 0);
+            const VALOR = moneyToFloat($(this).find(".inputValorItemMedicao").val()) + "";
+            const DATA = $(this).find(".inputDataCompetenciaItemMedicao").val().split("/").reverse().join("-") + "";
+            const QUANTIDADEITEM = parseInt($(this).find(".ITEMQUANTIDADE").val()) + (CHECKED ? 1 : 0);
+            var VALORITEM = parseFloat($(this).find(".ITEMMEDICOESVALOR").val());
+            VALORITEM = (VALORITEM + (CHECKED == "true" ? parseFloat(VALOR) : 0));//Somar o Valor Atual do Item com o Valor da Medição lançada
+            VALORITEM = (VALORITEM / QUANTIDADEITEM); //Divide o Valor Total do Item pela Quantidade, arredonda para duas casa e soma 0.01 para arredondar pra cima
+            VALORITEM = VALORITEM.toString().replace(".", ",");//Altera o Valor Unitario do Item para o padrão do Webservice do RM (12345,67)
+            retorno.push({ NSEQITMCNT, NSEQITEMMEDICAO, VALOR, DATA, QUANTIDADEITEM, VALORITEM, CHECKED });
         });
 
-        return retorno;
+        return JSON.stringify(retorno);
     }
     function validaPreenchimentoDasMedicoes() {
         try {

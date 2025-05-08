@@ -2,13 +2,10 @@
  * Dataset usado para gerar as Medições (1.1.98) via integração
  * @name dsInsereMedicaoEmItemDeContratoEFaturaMedicao
  * @author Gabriel Persike
- * @param  {int} CODCOLIGADA 
- * @param  {int} IDCNT 
- * @param  {int} NSEQITMCNT 
- * @param  {float} VALOR 
- * @param  {float} QUANTIDADE 
- * @param  {string} USUARIO 
- * @param  {Date} DATA 
+ * @param  {Int} CODCOLIGADA
+ * @param  {Int} IDCNT 
+ * @param  {String} USUARIO 
+ * @param  {Object} MEDICOES 
  * @returns {Dataset} {STATUS, MENSAGEM, RESULT}
 */
 
@@ -28,27 +25,35 @@ function createDataset(fields, constraints, sortFields) {
     try {
         // Le e Valida Constraints
         var constraints = getConstraints(constraints);
-        var listConstrainstObrigatorias = ["CODCOLIGADA", "IDCNT", "NSEQITMCNT", "NSEQITEMMEDICAO", "VALOR", "QUANTIDADEITEM", "VALORITEM", "USUARIO", "DATA"];
+        var listConstrainstObrigatorias = ["CODCOLIGADA", "IDCNT", "USUARIO", "MEDICOES"];
         lancaErroSeConstraintsObrigatoriasNaoInformadas(constraints, listConstrainstObrigatorias);
+        constraints.MEDICOES = JSON.parse(constraints.MEDICOES);
 
-        alteraQuantidadeEValorDoItem(constraints);
-        insereMedicaoNaTabelaTITMCNTMEDICAO(constraints);
-        FaturaMedicaoEGeraMovimento(constraints);
-        var dadosDoMovimento = buscaCodColigada_IDMovDoMovimentoGerado(constraints);
+        alteraQuantidadeEValorDoItem(constraints.CODCOLIGADA, constraints.IDCNT, constraints.MEDICOES);
+        for (let i = 0; i < constraints.MEDICOES.length; i++) {
+            var medicao = constraints.MEDICOES[i];
+
+            if (medicao.CHECKED == "true") {
+                insereMedicaoNaTabelaTITMCNTMEDICAO(constraints.CODCOLIGADA,constraints.IDCNT,constraints.USUARIO, medicao);
+                FaturaMedicaoEGeraMovimento(constraints.CODCOLIGADA, constraints.IDCNT,constraints.USUARIO, medicao);
+                var dadosDoMovimento = buscaCodColigada_IDMovDoMovimentoGerado(constraints.CODCOLIGADA, constraints.IDCNT, medicao);
+            }
+        }
 
         return returnDataset("SUCESSO", "Medição inserida!", JSONUtil.toJSON(dadosDoMovimento));
 
     } catch (error) {
         if (typeof error == "object") {
-            var mensagem = [];
+            var mensagem = "";
             var keys = Object.keys(error);
             for (var i = 0; i < keys.length; i++) {
-                mensagem.push(keys[i] + ": " + error[keys[i]]);
+                mensagem+=(keys[i] + ": " + error[keys[i]]) + " - ";
             }
             log.info("Erro ao executar dsInsereMedicaoEmItemDeContratoEFaturaMedicao:");
-            log.info(mensagem.join(" - "));
+            log.dir(error);
+            log.info(mensagem);
 
-            return returnDataset("ERRO", mensagem.join(" - "), null);
+            return returnDataset("ERRO", mensagem, null);
         } else {
             return returnDataset("ERRO", error, null);
         }
@@ -56,7 +61,7 @@ function createDataset(fields, constraints, sortFields) {
 }
 
 // Insere Medicao
-function insereMedicaoNaTabelaTITMCNTMEDICAO(constraints) {
+function insereMedicaoNaTabelaTITMCNTMEDICAO(CODCOLIGADA,IDCNT,USUARIO, medicao) {
     try {
         var dataSource = "/jdbc/RM";
         var ic = new javax.naming.InitialContext();
@@ -65,15 +70,15 @@ function insereMedicaoNaTabelaTITMCNTMEDICAO(constraints) {
         var conn = ds.getConnection();
         var stmt = conn.prepareStatement(myQuery);
 
-        stmt.setInt(1, constraints.CODCOLIGADA);//CODCOLIGADA
-        stmt.setInt(2, constraints.IDCNT);//IDCNT
-        stmt.setInt(3, constraints.NSEQITMCNT);//NSEQITMCNT
-        stmt.setInt(4, constraints.NSEQITEMMEDICAO);//NSEQMEDICAO
+        stmt.setInt(1, CODCOLIGADA);//CODCOLIGADA
+        stmt.setInt(2, IDCNT);//IDCNT
+        stmt.setInt(3, medicao.NSEQITMCNT);//NSEQITMCNT
+        stmt.setInt(4, medicao.NSEQITEMMEDICAO);//NSEQMEDICAO
         stmt.setInt(5, 0);//STATUS
-        stmt.setDouble(6, constraints.VALOR);//VALOR
+        stmt.setDouble(6, medicao.VALOR);//VALOR
         stmt.setDouble(7, 1);//QUANTIDADE
-        stmt.setString(8, constraints.DATA);//DATAEXECUCAO
-        stmt.setString(9, constraints.USUARIO);//RECCREATEDBY
+        stmt.setString(8, medicao.DATA);//DATAEXECUCAO
+        stmt.setString(9, USUARIO);//RECCREATEDBY
         //RECCREATEDON cria como SYSDATETIME()
 
         var rowCount = stmt.executeUpdate();
@@ -94,9 +99,9 @@ function insereMedicaoNaTabelaTITMCNTMEDICAO(constraints) {
         }
     }
 }
-function FaturaMedicaoEGeraMovimento(constraints) {
+function FaturaMedicaoEGeraMovimento(CODCOLIGADA, IDCNT, USUARIO,  medicao) {
     try {
-        var xml = MontaXML_FaturarMedicao(constraints);
+        var xml = MontaXML_FaturarMedicao(CODCOLIGADA, IDCNT, USUARIO, medicao);
 
         var service = ServiceManager.getService("ProcessRM");
         var serviceHelper = service.getBean();
@@ -119,7 +124,7 @@ function FaturaMedicaoEGeraMovimento(constraints) {
         throw error;
     }
 }
-function MontaXML_FaturarMedicao(constraints) {
+function MontaXML_FaturarMedicao(CODCOLIGADA, IDCNT,USUARIO, medicao) {
     try {
         var xml = "";
         xml += '<CtrFaturamentoMedicaoProcParams z:Id="i1" xmlns="http://www.totvs.com.br/RM/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/">';
@@ -253,19 +258,19 @@ function MontaXML_FaturarMedicao(constraints) {
         xml += '    <CtrFaturamento>';
         xml += '        <CtrFaturamentoMedicaoPar z:Id="i3">';
         xml += '            <InternalId i:nil="true" xmlns="http://www.totvs.com/" />';
-        xml += '            <CodColigada>' + constraints.CODCOLIGADA + '</CodColigada>';
+        xml += '            <CodColigada>' + CODCOLIGADA + '</CodColigada>';
         xml += '            <CodSistemaLogado>T</CodSistemaLogado>';
         xml += '            <CodTmvCompra>1.1.99</CodTmvCompra>';
         xml += '            <CodTmvVenda i:nil="true" />';
-        xml += '            <CodUsuarioLogado>' + constraints.USUARIO + '</CodUsuarioLogado>';
-        xml += '            <IdCnt>' + constraints.IDCNT + '</IdCnt>';
+        xml += '            <CodUsuarioLogado>' + USUARIO + '</CodUsuarioLogado>';
+        xml += '            <IdCnt>' + IDCNT + '</IdCnt>';
         xml += '            <NumeroMovCompra i:nil="true" />';
         xml += '            <NumeroMovVenda i:nil="true" />';
         xml += '            <SerieCompra>OC</SerieCompra>';
         xml += '            <SerieVenda i:nil="true" />';
         xml += '            <Data>2025-04-24T00:00:00</Data>';
-        xml += '            <NSeqItmCnt>' + constraints.NSEQITMCNT + '</NSeqItmCnt>';
-        xml += '            <NSeqMedicao>' + constraints.NSEQITEMMEDICAO + '</NSeqMedicao>';
+        xml += '            <NSeqItmCnt>' + medicao.NSEQITMCNT + '</NSeqItmCnt>';
+        xml += '            <NSeqMedicao>' + medicao.NSEQITEMMEDICAO + '</NSeqMedicao>';
         xml += '        </CtrFaturamentoMedicaoPar>';
         xml += '    </CtrFaturamento>';
         xml += '</CtrFaturamentoMedicaoProcParams>';
@@ -276,7 +281,7 @@ function MontaXML_FaturarMedicao(constraints) {
         throw error;
     }
 }
-function buscaCodColigada_IDMovDoMovimentoGerado(constraints) {
+function buscaCodColigada_IDMovDoMovimentoGerado(CODCOLIGADA,IDCNT,medicao) {
     try {
         var dataSource = "/jdbc/RM";
         var ic = new javax.naming.InitialContext();
@@ -289,9 +294,9 @@ function buscaCodColigada_IDMovDoMovimentoGerado(constraints) {
         var conn = ds.getConnection();
         var stmt = conn.prepareStatement(query);
 
-        stmt.setInt(1, constraints.CODCOLIGADA);//CODCOLIGADA
-        stmt.setInt(2, constraints.IDCNT);//IDCNT
-        stmt.setInt(3, constraints.NSEQITEMMEDICAO);//NSEQMEDICAO
+        stmt.setInt(1, CODCOLIGADA);//CODCOLIGADA
+        stmt.setInt(2, IDCNT);//IDCNT
+        stmt.setInt(3, medicao.NSEQITEMMEDICAO);//NSEQMEDICAO
 
         var rs = stmt.executeQuery();
 
@@ -317,29 +322,36 @@ function buscaCodColigada_IDMovDoMovimentoGerado(constraints) {
         }
     }
 }
-function alteraQuantidadeEValorDoItem(constraints) {
+function alteraQuantidadeEValorDoItem(CODCOLIGADA, IDCNT, MEDICOES) {
     try {
         var xml ="<CTRCNT>";
         xml += "    <TCNT>";
-        xml += "        <CODCOLIGADA>" + constraints.CODCOLIGADA + "</CODCOLIGADA>";
-        xml += "        <IDCNT>" + constraints.IDCNT + "</IDCNT>";
+        xml += "        <CODCOLIGADA>" + CODCOLIGADA + "</CODCOLIGADA>";
+        xml += "        <IDCNT>" + IDCNT + "</IDCNT>";
         xml += "    </TCNT>";
-        xml += "    <TITMCNT>";
-        xml += "        <CODCOLIGADA>" + constraints.CODCOLIGADA + "</CODCOLIGADA>";
-        xml += "        <IDCNT>" + constraints.IDCNT + "</IDCNT>";
-        xml += "        <NSEQITMCNT>" + constraints.NSEQITMCNT + "</NSEQITMCNT>";
-        xml += "        <QUANTIDADE>" + constraints.QUANTIDADEITEM + "</QUANTIDADE>";
-        xml += "        <PRECOFATURAMENTO>" + constraints.VALORITEM + "</PRECOFATURAMENTO>";
-        xml += "      </TITMCNT>";
+
+
+        for (var i = 0; i < MEDICOES.length; i++) {
+            var medicao = MEDICOES[i];
+            
+            xml += "    <TITMCNT>";
+            xml += "        <CODCOLIGADA>" + CODCOLIGADA + "</CODCOLIGADA>";
+            xml += "        <IDCNT>" + IDCNT + "</IDCNT>";
+            xml += "        <NSEQITMCNT>" + medicao.NSEQITMCNT + "</NSEQITMCNT>";
+            xml += "        <QUANTIDADE>" + medicao.QUANTIDADEITEM + "</QUANTIDADE>";
+            xml += "        <PRECOFATURAMENTO>" + medicao.VALORITEM + "</PRECOFATURAMENTO>";       
+            xml += "    </TITMCNT>";
+        }
+   
         xml +="</CTRCNT>";
 
-        var contexto = "CODSISTEMA=T;CODCOLIGADA=" + constraints.CODCOLIGADA + ";CODUSUARIO=fluig";
+        var contexto = "CODSISTEMA=T;CODCOLIGADA=" + CODCOLIGADA + ";CODUSUARIO=fluig";
 
         var retorno = DatasetFactory.getDataset("InsereContratoRM", null, [
             DatasetFactory.createConstraint("xml", xml, xml, ConstraintType.MUST),
             DatasetFactory.createConstraint("contexto", contexto, contexto, ConstraintType.MUST),
-            DatasetFactory.createConstraint("idContrato", constraints.IDCNT, constraints.IDCNT, ConstraintType.MUST),
-            DatasetFactory.createConstraint("coligada", constraints.CODCOLIGADA, constraints.CODCOLIGADA, ConstraintType.MUST),
+            DatasetFactory.createConstraint("idContrato", IDCNT, IDCNT, ConstraintType.MUST),
+            DatasetFactory.createConstraint("coligada", CODCOLIGADA, CODCOLIGADA, ConstraintType.MUST),
         ], null);
 
 
@@ -347,7 +359,7 @@ function alteraQuantidadeEValorDoItem(constraints) {
             return true;
         }
         else {
-            throw retorno.values[0][0];
+            throw retorno.values[0];
         }
     } catch (error) {
         throw error;
@@ -379,7 +391,7 @@ function lancaErroSeConstraintsObrigatoriasNaoInformadas(constraints, listConstr
         }
 
         if (retornoErro.length > 0) {
-            throw "Constraints obrigatorioas nao informadas (" + retornoErro.join(", ") + ")";
+            throw "Constraints obrigatorias nao informadas (" + retornoErro.join(", ") + ")";
         }
     } catch (error) {
         throw error;
